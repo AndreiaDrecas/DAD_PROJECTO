@@ -6,12 +6,11 @@ var TipoCelula;
     TipoCelula[TipoCelula["Navio"] = 1] = "Navio";
 })(TipoCelula = exports.TipoCelula || (exports.TipoCelula = {}));
 var Celula = (function () {
-    //public pertenceA: Navio;
     function Celula(linha, coluna) {
         this.posicao = new posicao_1.Posicao(linha, coluna);
         this.tipo = TipoCelula.Mar;
         this.tiro = false;
-        // this.pertenceA = null;
+        this.pertenceA = null;
     }
     Celula.prototype.sobreposicao = function (c) {
         return (c.posicao.linha == this.posicao.linha) && (c.posicao.coluna == this.posicao.coluna);

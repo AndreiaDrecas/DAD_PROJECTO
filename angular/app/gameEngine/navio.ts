@@ -55,10 +55,10 @@ export class Navio{
         if (Celula.existe(celula, this.celulas)) {
             throw new Error('Não é possível adicionar a célula ao navio, porque já existe uma célula na mesma posição.');
         }
-     //   if (celula.pertenceA != null){
-      //      throw new Error('Não é possível adicionar a célula ao navio, porque já está associada a outro navio.');
-      //  }            
-       // celula.pertenceA = this;
+        if (celula.pertenceA != null){
+            throw new Error('Não é possível adicionar a célula ao navio, porque já está associada a outro navio.');
+        }            
+        celula.pertenceA = this;
         celula.tipo = TipoCelula.Navio; 
         this.celulas.push(celula);
     }

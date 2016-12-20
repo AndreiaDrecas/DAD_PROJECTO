@@ -10,12 +10,13 @@ export class Celula{
     public posicao: Posicao;
     public tipo: TipoCelula;
     public tiro: Boolean;
-    //public pertenceA: Navio;
+    public pertenceA: Navio;
+    
     public constructor (linha: string, coluna: number){
         this.posicao = new Posicao(linha, coluna);
         this.tipo = TipoCelula.Mar;
         this.tiro = false;
-       // this.pertenceA = null;
+        this.pertenceA = null;
     }
 
     public sobreposicao(c: Celula){

@@ -19,6 +19,10 @@ export class WebSocketService {
         this.socket.emit('chat', message);
     }
 
+    /*sendTable(tabuleiro: any, ){
+
+    }*/ //array de tabuleiros, nome e ID do user
+
     getPlayersMessages(): Observable<any> {
         return this.listenOnChannel('players');
     }

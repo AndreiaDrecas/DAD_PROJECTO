@@ -4,6 +4,7 @@ import {Tabuleiro } from '../gameEngine/tabuleiro';
 import {Celula, TipoCelula } from '../gameEngine/celula';
 import {TipoNavio, Orientacao} from "../gameEngine/navio";
 import {Posicao} from "../gameEngine/posicao";
+import { TableToSendService } from "../gameEngine/tableToSend.service";
 
 @Component({
     moduleId: module.id,
@@ -15,7 +16,7 @@ export class BoardComponent implements OnInit{
     @Input()
     public tabuleiro: Tabuleiro ;
     
-    constructor(private websocketService: WebSocketService) {}
+    constructor(private websocketService: WebSocketService/*, private tableToSendService: TableToSendService*/) {}
 
     ngOnInit() {
         
@@ -31,15 +32,21 @@ export class BoardComponent implements OnInit{
     
     clickElemento(index: Celula){
         //
-       // this.websocketService.sendClickElementMessage(index);
+        this.websocketService.sendClickElementMessage(index);
         
         // TIRO 
-        //this.tabuleiro.getCelula(index.posicao.linha,index.posicao.coluna).tiro = true;
+        this.tabuleiro.getCelula(index.posicao.linha,index.posicao.coluna).tiro = true;
 
         //this.tabuleiro.adicionaNavio(TipoNavio.ContraTorpedeiro,Orientacao.Roda90,index.posicao.linha,index.posicao.coluna);
-        this.websocketService.sendClickElementMessage(this.tabuleiro);
+        //this.websocketService.sendClickElementMessage(this.tabuleiro);
 
+        //limpa a table
+        //emit da table
+        this.tabuleiro.nTiros += 1;
+        //this.tabuleiro = this.tableToSendService.tableHandler(this.tabuleiro);
+        //this.websocketService.sendTable(this.tabuleiro);
     }
+
     getPosicaoCelula(index: number){
         if(index)
 

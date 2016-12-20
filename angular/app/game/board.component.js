@@ -13,8 +13,8 @@ var websocket_service_1 = require("../notifications/websocket.service");
 var tabuleiro_1 = require("../gameEngine/tabuleiro");
 var celula_1 = require("../gameEngine/celula");
 var BoardComponent = (function () {
-    function BoardComponent(websocketService) {
-        this.websocketService = websocketService;
+    function BoardComponent(websocketService /*, private tableToSendService: TableToSendService*/) {
+        this.websocketService = websocketService; /*, private tableToSendService: TableToSendService*/
     }
     BoardComponent.prototype.ngOnInit = function () {
         this.tabuleiro = new tabuleiro_1.Tabuleiro();
@@ -27,11 +27,16 @@ var BoardComponent = (function () {
     };
     BoardComponent.prototype.clickElemento = function (index) {
         //
-        // this.websocketService.sendClickElementMessage(index);
+        this.websocketService.sendClickElementMessage(index);
         // TIRO 
-        //this.tabuleiro.getCelula(index.posicao.linha,index.posicao.coluna).tiro = true;
+        this.tabuleiro.getCelula(index.posicao.linha, index.posicao.coluna).tiro = true;
         //this.tabuleiro.adicionaNavio(TipoNavio.ContraTorpedeiro,Orientacao.Roda90,index.posicao.linha,index.posicao.coluna);
-        this.websocketService.sendClickElementMessage(this.tabuleiro);
+        //this.websocketService.sendClickElementMessage(this.tabuleiro);
+        //limpa a table
+        //emit da table
+        this.tabuleiro.nTiros += 1;
+        //this.tabuleiro = this.tableToSendService.tableHandler(this.tabuleiro);
+        //this.websocketService.sendTable(this.tabuleiro);
     };
     BoardComponent.prototype.getPosicaoCelula = function (index) {
         if (index)
@@ -63,7 +68,7 @@ BoardComponent = __decorate([
         templateUrl: 'board.component.html',
         styleUrls: ['board.component.css']
     }),
-    __metadata("design:paramtypes", [websocket_service_1.WebSocketService])
+    __metadata("design:paramtypes", [websocket_service_1.WebSocketService /*, private tableToSendService: TableToSendService*/])
 ], BoardComponent);
 exports.BoardComponent = BoardComponent;
 //# sourceMappingURL=board.component.js.map

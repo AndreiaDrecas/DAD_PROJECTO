@@ -20,6 +20,9 @@ var WebSocketService = (function () {
     WebSocketService.prototype.sendChatMessage = function (message) {
         this.socket.emit('chat', message);
     };
+    /*sendTable(tabuleiro: any, ){
+
+    }*/ //array de tabuleiros, nome e ID do user
     WebSocketService.prototype.getPlayersMessages = function () {
         return this.listenOnChannel('players');
     };
