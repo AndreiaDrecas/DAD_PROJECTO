@@ -31,13 +31,13 @@ export class BoardComponent implements OnInit{
     
     clickElemento(index: Celula){
         //
-        this.websocketService.sendClickElementMessage(index);
+       // this.websocketService.sendClickElementMessage(index);
         
         // TIRO 
-        this.tabuleiro.getCelula(index.posicao.linha,index.posicao.coluna).tiro = true;
+        //this.tabuleiro.getCelula(index.posicao.linha,index.posicao.coluna).tiro = true;
 
         //this.tabuleiro.adicionaNavio(TipoNavio.ContraTorpedeiro,Orientacao.Roda90,index.posicao.linha,index.posicao.coluna);
-        //this.websocketService.sendClickElementMessage(this.tabuleiro);
+        this.websocketService.sendClickElementMessage(this.tabuleiro);
 
     }
     getPosicaoCelula(index: number){

@@ -19,10 +19,20 @@ export class Tabuleiro {
     //Propriedade com todas as posições já ocupadas (incluindo a vizinhança dos navios)
     public posicoesOcupadas: Posicao[];
 
+    //USER
+
+    public userId: string;
+    public pontuacao: number;
+    public nTiros: number;
+
     constructor (){
         this.celulas = [];
         this.posicoesOcupadas = [];
         this.navios= [];
+        this.userId = "";
+        this.pontuacao = 0;
+        this.nTiros = 0;
+        
         Tabuleiro.todasLinhas().forEach(letra=> {
             Tabuleiro.todasColunas().forEach(coluna =>{
                 let c: Celula = new Celula(letra, coluna);
