@@ -1,0 +1,6 @@
+<div class="board" *ngIf="tabuleiro">
+    <div class="game-cell" *ngFor="let celula of tabuleiro.celulas"  (click)="clickElemento(celula)" [style.background-color]="getColor(celula)">
+    <!-- getText X tiro.contem ou nada -->
+    {{getText(celula)}}
+    </div>
+</div>
