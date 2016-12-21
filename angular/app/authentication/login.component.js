@@ -26,7 +26,7 @@ var LoginComponent = (function () {
         this.http.post('http://localhost:7777/api/v1/login', body, { headers: headers })
             .subscribe(function (response) {
             localStorage.setItem('id_token', response.json().id_token);
-            _this.router.navigate(['home']);
+            _this.router.navigate(['lobby']);
         }, function (error) {
             alert(error.text());
             console.log(error.text());

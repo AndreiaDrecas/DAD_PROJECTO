@@ -13,10 +13,11 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var app_routing_1 = require("./app.routing");
-//authentication imports
 var home_component_1 = require("./home.component");
+//authentication imports
 var login_component_1 = require("./authentication/login.component");
 var register_component_1 = require("./authentication/register.component");
+var lobby_component_1 = require("./game/lobby.component");
 var notifications_module_1 = require("./notifications/notifications.module");
 var chat_component_1 = require("./chat.component");
 var board_component_1 = require("./game/board.component");
@@ -32,7 +33,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, notifications_module_1.NotificationModule, forms_1.FormsModule, app_routing_1.routing],
         declarations: [app_component_1.AppComponent, chat_component_1.ChatComponent, board_component_1.BoardComponent, ship_component_1.ShipComponent,
-            game_component_1.GameComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, home_component_1.HomeComponent],
+            game_component_1.GameComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, home_component_1.HomeComponent, lobby_component_1.LobbyComponent],
         providers: [websocket_service_1.WebSocketService],
         bootstrap: [app_component_1.AppComponent]
     }),

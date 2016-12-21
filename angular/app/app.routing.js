@@ -3,10 +3,12 @@ var router_1 = require("@angular/router");
 var home_component_1 = require("./home.component");
 var login_component_1 = require("./authentication/login.component");
 var register_component_1 = require("./authentication/register.component");
+var lobby_component_1 = require("./game/lobby.component");
 var appRoutes = [
     { path: '', component: home_component_1.HomeComponent },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'register', component: register_component_1.RegisterComponent },
+    { path: 'lobby', component: lobby_component_1.LobbyComponent },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
