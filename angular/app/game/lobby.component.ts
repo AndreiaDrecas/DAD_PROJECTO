@@ -9,5 +9,9 @@ import { Router } from '@angular/router';
 })
 
 export class LobbyComponent {
-
+    //public id_token: any = localStorage.getItem('token');
+    public name: any = localStorage.getItem('name');
+    public totalVictories: any = localStorage.getItem('totalVictories');
+    public username: any = localStorage.getItem('username');
+    
 }

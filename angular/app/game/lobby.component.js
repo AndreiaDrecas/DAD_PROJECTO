@@ -11,6 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var LobbyComponent = (function () {
     function LobbyComponent() {
+        //public id_token: any = localStorage.getItem('token');
+        this.name = localStorage.getItem('name');
+        this.totalVictories = localStorage.getItem('totalVictories');
+        this.username = localStorage.getItem('username');
     }
     return LobbyComponent;
 }());
