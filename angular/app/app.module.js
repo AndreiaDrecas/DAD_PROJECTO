@@ -23,7 +23,6 @@ var board_component_1 = require("./game/board.component");
 var game_component_1 = require("./game/game.component");
 var ship_component_1 = require("./game/ship.component");
 var websocket_service_1 = require("./notifications/websocket.service");
-var tableToSend_service_1 = require("./gameEngine/tableToSend.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -34,7 +33,7 @@ AppModule = __decorate([
         imports: [platform_browser_1.BrowserModule, notifications_module_1.NotificationModule, forms_1.FormsModule, app_routing_1.routing],
         declarations: [app_component_1.AppComponent, chat_component_1.ChatComponent, board_component_1.BoardComponent, ship_component_1.ShipComponent,
             game_component_1.GameComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, home_component_1.HomeComponent],
-        providers: [websocket_service_1.WebSocketService, tableToSend_service_1.TableToSendService],
+        providers: [websocket_service_1.WebSocketService],
         bootstrap: [app_component_1.AppComponent]
     }),
     __metadata("design:paramtypes", [])

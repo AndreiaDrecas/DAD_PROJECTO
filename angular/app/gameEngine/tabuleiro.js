@@ -18,6 +18,21 @@ var Tabuleiro = (function () {
             });
         });
     }
+    //Reset pertenceA das células
+    Tabuleiro.prototype.resetReferencias = function () {
+        this.celulas.forEach(function (element) {
+            element.pertenceA = null;
+        });
+    };
+    Tabuleiro.prototype.getReferencias = function (tab) {
+        /*  let cloneCelulas = Tabuleiro.prototype.celulas;
+  
+          cloneCelulas.forEach(element => {
+              tab.celulas.forEach(i => {
+                  i.pertenceA = element.pertenceA;
+              });
+          });*/
+    };
     // Devolve a célula que está na posição linha, coluna
     Tabuleiro.prototype.getCelula = function (linha, coluna) {
         var posicao = new posicao_1.Posicao(linha, coluna);

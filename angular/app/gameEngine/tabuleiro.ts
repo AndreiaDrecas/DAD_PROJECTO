@@ -41,6 +41,25 @@ export class Tabuleiro {
         });
     }
 
+    //Reset pertenceA das células
+    public resetReferencias() {
+        
+        this.celulas.forEach(element => {
+            element.pertenceA = null;
+        });
+
+    }
+
+    public getReferencias(tab: Tabuleiro) {
+      /*  let cloneCelulas = Tabuleiro.prototype.celulas;
+
+        cloneCelulas.forEach(element => {
+            tab.celulas.forEach(i => {
+                i.pertenceA = element.pertenceA;
+            });
+        });*/
+    }
+
     // Devolve a célula que está na posição linha, coluna
     public getCelula(linha: string, coluna: number): Celula{
         let posicao: Posicao = new Posicao(linha, coluna);
@@ -89,5 +108,6 @@ export class Tabuleiro {
 
     public static todasColunas(): number[]{
         return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    }      
+    }
+          
 }

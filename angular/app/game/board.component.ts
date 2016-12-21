@@ -4,7 +4,6 @@ import {Tabuleiro } from '../gameEngine/tabuleiro';
 import {Celula, TipoCelula } from '../gameEngine/celula';
 import {TipoNavio, Orientacao} from "../gameEngine/navio";
 import {Posicao} from "../gameEngine/posicao";
-import { TableToSendService } from "../gameEngine/tableToSend.service";
 
 @Component({
     moduleId: module.id,
@@ -16,7 +15,7 @@ export class BoardComponent implements OnInit{
     @Input()
     public tabuleiro: Tabuleiro ;
     
-    constructor(private websocketService: WebSocketService, private tableToSendService: TableToSendService) {}
+    constructor(private websocketService: WebSocketService) {}
 
     ngOnInit() {
         
@@ -36,8 +35,8 @@ export class BoardComponent implements OnInit{
         //limpa a table
         //emit da table
         this.tabuleiro.nTiros += 1;
-        this.tabuleiro = this.tableToSendService.tableHandler(this.tabuleiro);
-        //this.websocketService.sendTable(this.tabuleiro);
+        this.tabuleiro.resetReferencias();
+        this.websocketService.sendTable(this.tabuleiro);
 
         
         //
