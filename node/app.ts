@@ -6,7 +6,7 @@ import {databaseConnection as database} from './app.database';
 import {WebSocketServer} from './app.websockets';
 import {HandlerSettings} from './handler.settings';
 
-const url = 'mongodb://localhost:27017/dad_mongo';
+const url = 'mongodb://localhost:27017/dad-pl1';
 
 // Create Restify and WebSocket Server
 const restifyServer = restify.createServer();

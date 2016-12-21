@@ -10,7 +10,7 @@ export class Security {
 
     public initMiddleware = (server : any) => {
         server.use(passport.initialize());
-    };
+         };
 
     public authorize = this.passport.authenticate('bearer', { session: false });
 }
