@@ -12,11 +12,9 @@ var core_1 = require("@angular/core");
 var websocket_service_1 = require("../notifications/websocket.service");
 var tabuleiro_1 = require("../gameEngine/tabuleiro");
 var celula_1 = require("../gameEngine/celula");
-var tableToSend_service_1 = require("../gameEngine/tableToSend.service");
 var BoardComponent = (function () {
-    function BoardComponent(websocketService, tableToSendService) {
+    function BoardComponent(websocketService) {
         this.websocketService = websocketService;
-        this.tableToSendService = tableToSendService;
     }
     BoardComponent.prototype.ngOnInit = function () {
         this.tabuleiro = new tabuleiro_1.Tabuleiro();
@@ -31,8 +29,8 @@ var BoardComponent = (function () {
         //limpa a table
         //emit da table
         this.tabuleiro.nTiros += 1;
-        this.tabuleiro = this.tableToSendService.tableHandler(this.tabuleiro);
-        //this.websocketService.sendTable(this.tabuleiro);
+        this.tabuleiro.resetReferencias();
+        this.websocketService.sendTable(this.tabuleiro);
         //
         this.websocketService.sendClickElementMessage(index);
         // TIRO 
@@ -70,7 +68,7 @@ BoardComponent = __decorate([
         templateUrl: 'board.component.html',
         styleUrls: ['board.component.css']
     }),
-    __metadata("design:paramtypes", [websocket_service_1.WebSocketService, tableToSend_service_1.TableToSendService])
+    __metadata("design:paramtypes", [websocket_service_1.WebSocketService])
 ], BoardComponent);
 exports.BoardComponent = BoardComponent;
 //# sourceMappingURL=board.component.js.map

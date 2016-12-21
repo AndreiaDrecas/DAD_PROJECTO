@@ -19,9 +19,15 @@ export class WebSocketService {
         this.socket.emit('chat', message);
     }
 
-    /*sendTable(tabuleiro: any, ){
+    sendTable(tabuleiro: any){
+        console.log('cheguei ao websocket client');
+        console.log('Numero de tiros: ' + tabuleiro.nTiros);
+        this.socket.emit('tabuleiro', tabuleiro);
+    } //array de tabuleiros, nome e ID do user
 
-    }*/ //array de tabuleiros, nome e ID do user
+    getTable(): Observable<any> {
+        return this.listenOnChannel('tabuleiro');
+    }
 
     getPlayersMessages(): Observable<any> {
         return this.listenOnChannel('players');

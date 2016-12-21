@@ -16,13 +16,12 @@ import {BoardComponent} from './game/board.component';
 import {GameComponent} from './game/game.component';
 import {ShipComponent} from './game/ship.component';
 import { WebSocketService } from './notifications/websocket.service';
-import { TableToSendService } from './gameEngine/tableToSend.service';
 
 @NgModule({
   imports:      [ BrowserModule, NotificationModule, FormsModule , routing],
   declarations: [ AppComponent, ChatComponent, BoardComponent, ShipComponent, 
   GameComponent, LoginComponent, RegisterComponent,HomeComponent ],
-  providers:    [ WebSocketService, TableToSendService ],
+  providers:    [ WebSocketService ],
   bootstrap:    [ AppComponent ]
 })
 

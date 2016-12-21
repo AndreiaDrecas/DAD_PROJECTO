@@ -15,9 +15,17 @@ export class WebSocketServer {
         this.io = io.listen(server);            
         this.io.sockets.on('connection', (client: any) => {
             client.emit('players', Date.now() + ': Welcome to battleship');
+            
             client.broadcast.emit('players', Date.now() + ': A new player has arrived');
+            
             client.on('chat', (data) => this.io.emit('chat', data));
             
+            //recieve and send tabuleiro
+            client.on('tabuleiro', function(tabuleiro){
+                console.log(tabuleiro);
+                io.sockets.emit('tabuleiro', tabuleiro);
+            });
+
             //Extra Exercise
             client.emit('board', this.board);
             client.on('clickElement', (tabuleiro) => {
