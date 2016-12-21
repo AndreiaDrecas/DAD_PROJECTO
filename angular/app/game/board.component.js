@@ -12,9 +12,11 @@ var core_1 = require("@angular/core");
 var websocket_service_1 = require("../notifications/websocket.service");
 var tabuleiro_1 = require("../gameEngine/tabuleiro");
 var celula_1 = require("../gameEngine/celula");
+var tableToSend_service_1 = require("../gameEngine/tableToSend.service");
 var BoardComponent = (function () {
-    function BoardComponent(websocketService /*, private tableToSendService: TableToSendService*/) {
-        this.websocketService = websocketService; /*, private tableToSendService: TableToSendService*/
+    function BoardComponent(websocketService, tableToSendService) {
+        this.websocketService = websocketService;
+        this.tableToSendService = tableToSendService;
     }
     BoardComponent.prototype.ngOnInit = function () {
         this.tabuleiro = new tabuleiro_1.Tabuleiro();
@@ -26,17 +28,17 @@ var BoardComponent = (function () {
         //this.tabuleiro.adicionaNavio(TipoNavio.ContraTorpedeiro,Orientacao.Roda90,"D",2);
     };
     BoardComponent.prototype.clickElemento = function (index) {
+        //limpa a table
+        //emit da table
+        this.tabuleiro.nTiros += 1;
+        this.tabuleiro = this.tableToSendService.tableHandler(this.tabuleiro);
+        this.websocketService.sendTable(this.tabuleiro);
         //
         this.websocketService.sendClickElementMessage(index);
         // TIRO 
         this.tabuleiro.getCelula(index.posicao.linha, index.posicao.coluna).tiro = true;
         //this.tabuleiro.adicionaNavio(TipoNavio.ContraTorpedeiro,Orientacao.Roda90,index.posicao.linha,index.posicao.coluna);
         //this.websocketService.sendClickElementMessage(this.tabuleiro);
-        //limpa a table
-        //emit da table
-        this.tabuleiro.nTiros += 1;
-        //this.tabuleiro = this.tableToSendService.tableHandler(this.tabuleiro);
-        //this.websocketService.sendTable(this.tabuleiro);
     };
     BoardComponent.prototype.getPosicaoCelula = function (index) {
         if (index)
@@ -68,7 +70,7 @@ BoardComponent = __decorate([
         templateUrl: 'board.component.html',
         styleUrls: ['board.component.css']
     }),
-    __metadata("design:paramtypes", [websocket_service_1.WebSocketService /*, private tableToSendService: TableToSendService*/])
+    __metadata("design:paramtypes", [websocket_service_1.WebSocketService, tableToSend_service_1.TableToSendService])
 ], BoardComponent);
 exports.BoardComponent = BoardComponent;
 //# sourceMappingURL=board.component.js.map

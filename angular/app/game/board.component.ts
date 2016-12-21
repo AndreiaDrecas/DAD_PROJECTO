@@ -16,7 +16,7 @@ export class BoardComponent implements OnInit{
     @Input()
     public tabuleiro: Tabuleiro ;
     
-    constructor(private websocketService: WebSocketService/*, private tableToSendService: TableToSendService*/) {}
+    constructor(private websocketService: WebSocketService, private tableToSendService: TableToSendService) {}
 
     ngOnInit() {
         
@@ -31,6 +31,15 @@ export class BoardComponent implements OnInit{
     }
     
     clickElemento(index: Celula){
+
+
+        //limpa a table
+        //emit da table
+        this.tabuleiro.nTiros += 1;
+        this.tabuleiro = this.tableToSendService.tableHandler(this.tabuleiro);
+        //this.websocketService.sendTable(this.tabuleiro);
+
+        
         //
         this.websocketService.sendClickElementMessage(index);
         
@@ -40,11 +49,6 @@ export class BoardComponent implements OnInit{
         //this.tabuleiro.adicionaNavio(TipoNavio.ContraTorpedeiro,Orientacao.Roda90,index.posicao.linha,index.posicao.coluna);
         //this.websocketService.sendClickElementMessage(this.tabuleiro);
 
-        //limpa a table
-        //emit da table
-        this.tabuleiro.nTiros += 1;
-        //this.tabuleiro = this.tableToSendService.tableHandler(this.tabuleiro);
-        //this.websocketService.sendTable(this.tabuleiro);
     }
 
     getPosicaoCelula(index: number){
