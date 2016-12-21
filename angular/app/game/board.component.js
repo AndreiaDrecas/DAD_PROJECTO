@@ -32,7 +32,7 @@ var BoardComponent = (function () {
         //emit da table
         this.tabuleiro.nTiros += 1;
         this.tabuleiro = this.tableToSendService.tableHandler(this.tabuleiro);
-        this.websocketService.sendTable(this.tabuleiro);
+        //this.websocketService.sendTable(this.tabuleiro);
         //
         this.websocketService.sendClickElementMessage(index);
         // TIRO 
