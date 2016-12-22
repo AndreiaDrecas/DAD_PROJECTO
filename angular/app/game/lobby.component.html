@@ -2,17 +2,20 @@
 <hr>
 <h3>Your total victories: {{totalVictories}}</h3>
 
-<button (click)="logout()" md-raised-button color="accent">Logout</button>
+<button class="logout" (click)="logout()" md-raised-button color="accent">Logout</button>
 
-<h2>Games Pending  <button class="btn btn-primary" (click)="getGamesPending()">Get pending Games</button></h2>
+<h2 class="gamesPending">Games Pending</h2>
+<button class="btn btn-primary" (click)="getGamesPending()">Get pending Games</button>
+
 <p *ngFor="let m of gamesPending">{{m}}</p>
 
 <div class="container">
 
-<top10></top10>
- <div class="container">
-    <hr>
-    <chat-control></chat-control>
-    <hr>
-    <notification-panel></notification-panel>
-</div>
+    <top10 class="top10"></top10>
+
+    <div class="container">
+        <hr>
+        <chat-control></chat-control>
+        <hr>
+        <notification-panel></notification-panel>
+    </div>

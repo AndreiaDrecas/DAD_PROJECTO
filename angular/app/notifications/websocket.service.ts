@@ -41,6 +41,7 @@ export class WebSocketService {
     sendClickElementMessage(tabuleiro: any) {
         this.socket.emit('clickElement', tabuleiro);
     }
+    
     getBoardMessages(): Observable<any> {
         return this.listenOnChannel('board');
     }

@@ -5,10 +5,20 @@ html {
   box-sizing: inherit;
 }
 
-h1,h2{
+h1/*,h2*/{
   text-align: center;
   font-family: monospace;
 }
+
+/*.logout {
+  display: inline-block;
+}*/
+
+/*.gamesPending, .top10 {
+  display: inline-block;
+}*/
+
+
 .container {
   margin-bottom: 100px;
  
