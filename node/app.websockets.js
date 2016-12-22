@@ -8,7 +8,7 @@ var WebSocketServer = (function () {
             _this.initBoard();
             _this.io = io.listen(server);
             _this.io.sockets.on('connection', function (client) {
-                client.emit('players', Date.now() + ': Welcome to battleship');
+                client.emit('players', ': Welcome to battleship');
                 client.broadcast.emit('players', Date.now() + ': A new player has arrived');
                 client.on('chat', function (data) { return _this.io.emit('chat', data); });
                 //recieve and send tabuleiro

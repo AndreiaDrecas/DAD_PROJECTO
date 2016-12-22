@@ -11,15 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
+var websocket_service_1 = require("../notifications/websocket.service");
 var LobbyComponent = (function () {
-    function LobbyComponent(router, http) {
+    function LobbyComponent(router, http, websocketService) {
         this.router = router;
         this.http = http;
-        //public id_token: any = localStorage.getItem('token');
+        this.websocketService = websocketService;
         this.name = localStorage.getItem('name');
         this.totalVictories = localStorage.getItem('totalVictories');
         this.username = localStorage.getItem('username');
+        this._serverPath = 'http://localhost:8888/api/v1/';
     }
+    //public id_token: any = localStorage.getItem('token');
     LobbyComponent.prototype.logout = function () {
         var _this = this;
         var authToken = localStorage.getItem('id_token');
@@ -30,7 +33,7 @@ var LobbyComponent = (function () {
         var body = JSON.stringify({});
         // headers.append('Authorization','Bearer 4a1fc711f2f7756353da87bf11e8d6a4828418a6');
         console.log(headers);
-        this.http.post('http://localhost:7777/api/v1/logout', body, { headers: headers, withCredentials: false })
+        this.http.post(this._serverPath + 'logout', body, { headers: headers, withCredentials: false })
             .subscribe(function (response) {
             alert("Logout success");
             _this.router.navigate(['login']);
@@ -47,7 +50,7 @@ LobbyComponent = __decorate([
         selector: 'lobby',
         templateUrl: 'lobby.component.html'
     }),
-    __metadata("design:paramtypes", [router_1.Router, http_1.Http])
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
 ], LobbyComponent);
 exports.LobbyComponent = LobbyComponent;
 //# sourceMappingURL=lobby.component.js.map

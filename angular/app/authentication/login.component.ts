@@ -10,10 +10,11 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent {
-
+  public _serverPath: string;
   public name: any;
 
   constructor(public router: Router, public http: Http) {
+    this._serverPath = 'http://localhost:8888/api/v1/login';
   }
 
   login(event: any, username: any, password: any) {
@@ -25,7 +26,7 @@ export class LoginComponent {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     
-    this.http.post('http://localhost:7777/api/v1/login', body, { headers: headers })
+    this.http.post(this._serverPath, body, { headers: headers })
       .subscribe(
       response => {
         console.log(response.json());

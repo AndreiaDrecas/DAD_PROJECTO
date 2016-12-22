@@ -14,6 +14,13 @@ restify.CORS.ALLOW_HEADERS.push("content-type");
 restifyServer.use(restify.bodyParser());
 restifyServer.use(restify.queryParser());
 restifyServer.use(restify.CORS());
+restifyServer.opts(/.*/, function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    //res.header("Access-Control-Allow-Methods", req.header("Access-Control-Request-Method"));
+    res.header("Access-Control-Allow-Headers", req.header("Access-Control-Request-Headers"));
+    res.send(200);
+    return next();
+});
 restifyServer.use(restify.fullResponse());
 // Prepare and configure Passport based security
 var app_security_1 = require('./app.security');
@@ -35,7 +42,7 @@ restifyServer.get(/^\/(?!api\/).*/, restify.serveStatic({
     default: 'index.html'
 }));
 app_database_1.databaseConnection.connect(url, function () {
-    restifyServer.listen(7777, function () { return console.log('%s listening at %s', restifyServer.name, restifyServer.url); });
+    restifyServer.listen(8888, function () { return console.log('%s listening at %s', restifyServer.name, restifyServer.url); });
     // Websocket is initialized after the server
     socketServer.init(restifyServer.server);
 });

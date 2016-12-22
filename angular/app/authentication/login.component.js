@@ -15,6 +15,7 @@ var LoginComponent = (function () {
     function LoginComponent(router, http) {
         this.router = router;
         this.http = http;
+        this._serverPath = 'http://localhost:8888/api/v1/login';
     }
     LoginComponent.prototype.login = function (event, username, password) {
         var _this = this;
@@ -23,7 +24,7 @@ var LoginComponent = (function () {
         var name = JSON.stringify({ password: password });
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        this.http.post('http://localhost:7777/api/v1/login', body, { headers: headers })
+        this.http.post(this._serverPath, body, { headers: headers })
             .subscribe(function (response) {
             console.log(response.json());
             localStorage.setItem('id_token', response.json().token);

@@ -15,6 +15,7 @@ var RegisterComponent = (function () {
     function RegisterComponent(router, http) {
         this.router = router;
         this.http = http;
+        this._serverPath = 'http://localhost:8888/api/v1/players';
     }
     RegisterComponent.prototype.register = function (name, username, password) {
         var _this = this;
@@ -24,7 +25,7 @@ var RegisterComponent = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         console.log(body);
-        this.http.post('http://localhost:7777/api/v1/players', body, { headers: headers, withCredentials: false })
+        this.http.post(this._serverPath, body, { headers: headers, withCredentials: false })
             .subscribe(function (response) {
             alert("Registation success");
             _this.router.navigate(['login']);

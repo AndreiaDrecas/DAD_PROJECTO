@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Router } from '@angular/router';
+import {WebSocketService } from '../notifications/websocket.service';
+
 
 @Component({
     moduleId: module.id,
@@ -9,15 +11,18 @@ import { Router } from '@angular/router';
 })
 
 export class LobbyComponent {
-
-    constructor(public router: Router, public http: Http) {
-    }
-    //public id_token: any = localStorage.getItem('token');
+    public _serverPath: string;
     public name: any = localStorage.getItem('name');
     public totalVictories: any = localStorage.getItem('totalVictories');
     public username: any = localStorage.getItem('username');
 
-
+    constructor(public router: Router, public http: Http,private websocketService: WebSocketService) {
+        this._serverPath = 'http://localhost:8888/api/v1/';
+    }
+    //public id_token: any = localStorage.getItem('token');
+    
+    
+    
     logout() {
 
         let authToken = localStorage.getItem('id_token');
@@ -28,7 +33,7 @@ export class LobbyComponent {
          let body = JSON.stringify({});
        // headers.append('Authorization','Bearer 4a1fc711f2f7756353da87bf11e8d6a4828418a6');
         console.log(headers);
-       this.http.post('http://localhost:7777/api/v1/logout', body ,<RequestOptionsArgs> {headers: headers, withCredentials: false})
+       this.http.post(this._serverPath+'logout', body ,<RequestOptionsArgs> {headers: headers, withCredentials: false})
             .subscribe(
             response => {
                 alert("Logout success");
