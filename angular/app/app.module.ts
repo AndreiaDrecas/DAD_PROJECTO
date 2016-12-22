@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 import { routing } from './app.routing';
 
+import { Top10Component } from './top10.component';
 import { HomeComponent } from './home.component';
 //authentication imports
 import { LoginComponent } from './authentication/login.component';
@@ -21,7 +22,7 @@ import { WebSocketService } from './notifications/websocket.service';
 @NgModule({
   imports: [BrowserModule, NotificationModule, FormsModule, routing],
   declarations: [AppComponent, ChatComponent, BoardComponent, ShipComponent,
-    GameComponent, LoginComponent, RegisterComponent, HomeComponent, LobbyComponent],
+    GameComponent, LoginComponent, RegisterComponent, HomeComponent, LobbyComponent, Top10Component],
   providers: [WebSocketService],
   bootstrap: [AppComponent]
 })

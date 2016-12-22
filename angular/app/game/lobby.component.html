@@ -4,8 +4,13 @@
 
 <button (click)="logout()" md-raised-button color="accent">Logout</button>
 
+<h2>Games Pending  <button class="btn btn-primary" (click)="getGamesPending()">Get pending Games</button></h2>
+<p *ngFor="let m of gamesPending">{{m}}</p>
 
 <div class="container">
+
+<top10></top10>
+ <div class="container">
     <hr>
     <chat-control></chat-control>
     <hr>

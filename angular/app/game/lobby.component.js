@@ -20,9 +20,25 @@ var LobbyComponent = (function () {
         this.name = localStorage.getItem('name');
         this.totalVictories = localStorage.getItem('totalVictories');
         this.username = localStorage.getItem('username');
+        this.gamesPending = [];
         this._serverPath = 'http://localhost:8888/api/v1/';
     }
     //public id_token: any = localStorage.getItem('token');
+    LobbyComponent.prototype.getGamesPending = function () {
+        var _this = this;
+        var authToken = localStorage.getItem('id_token');
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'bearer ' + authToken);
+        this.http.get(this._serverPath + 'games', { headers: headers, withCredentials: false })
+            .subscribe(function (response) {
+            _this.gamesPending = response.json();
+            console.log(response.json());
+        }, function (error) {
+            alert(error.text());
+            console.log(error.text());
+        });
+    };
     LobbyComponent.prototype.logout = function () {
         var _this = this;
         var authToken = localStorage.getItem('id_token');

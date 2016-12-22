@@ -27,7 +27,9 @@ var GameAPI = (function () {
         };
         this.getGames = function (request, response, next) {
             app_database_1.databaseConnection.db.collection('games')
-                .find()
+                .find({
+                state: 'pending'
+            })
                 .toArray()
                 .then(function (games) {
                 response.json(games || []);
