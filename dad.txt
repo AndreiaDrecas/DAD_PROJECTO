@@ -1,0 +1,20 @@
+Ponto 1 - fazer a vista/component para mostrar lista de players
+
+Ponto 2 - fazer a vista/component para mostrar lista de games(com estado)
+
+Ponto 3 - fazer a entrada de um jogo pendente 
+
+Ponto 4- implementar spa(navigate do menu) com home, lobby , top 10
+
+Ponto 5- adicionar imagem ao player
+
+Ponto 6- serviços de autenticacao externos - facebook. twitter , etc
+
+Ponto 7 - entender a ligacao do jogo a bd(com historico de jogos) - ver enunciado
+
+Ponto 8- alterar o register para confirmacao da senha e campo email
+
+Ponto 9- fazer a api do jogo
+
+
+	
