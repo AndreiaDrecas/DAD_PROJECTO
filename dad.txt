@@ -14,6 +14,7 @@ Ponto 7 - entender a ligacao do jogo a bd(com historico de jogos) - ver enunciad
 
 Ponto 8- alterar o register para confirmacao da senha e campo email
 
+
 Ponto 9- fazer a api do jogo
 
 
