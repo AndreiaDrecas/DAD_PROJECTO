@@ -1,12 +1,11 @@
-<h1>Welcome to the Lobby!</h1>
-<p>Complete Name: {{name}}</p>
-<p>Total victories: {{totalVictories}}</p>
-<p>Username: {{username}}</p>
+<h1>Welcome to the Lobby, {{name}}!</h1>
+<hr>
+<h3>Your total victories: {{totalVictories}}</h3>
 
- <button (click)="logout()" md-raised-button color="accent">Logout</button>
+<button (click)="logout()" md-raised-button color="accent">Logout</button>
 
 
- <div class="container">
+<div class="container">
     <hr>
     <chat-control></chat-control>
     <hr>
