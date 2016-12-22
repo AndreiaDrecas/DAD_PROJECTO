@@ -12,6 +12,11 @@ import { LoginComponent } from './authentication/login.component';
 import { RegisterComponent } from './authentication/register.component';
 import { LobbyComponent } from './game/lobby.component';
 
+
+//dashboard
+
+
+
 import { NotificationModule } from './notifications/notifications.module';
 import { ChatComponent } from './chat.component';
 import { BoardComponent } from './game/board.component';

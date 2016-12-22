@@ -19,6 +19,7 @@ var home_component_1 = require("./home.component");
 var login_component_1 = require("./authentication/login.component");
 var register_component_1 = require("./authentication/register.component");
 var lobby_component_1 = require("./game/lobby.component");
+//dashboard
 var notifications_module_1 = require("./notifications/notifications.module");
 var chat_component_1 = require("./chat.component");
 var board_component_1 = require("./game/board.component");

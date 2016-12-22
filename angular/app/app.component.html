@@ -1,4 +1,84 @@
-<router-outlet></router-outlet>
+ <!-- template -->
+
+ <!-- /#wrapper -->
+ <div class="wrapper">
+
+   <!-- Main Header -->
+   <header class="main-header">
+
+     <!-- Logo -->
+     <a [routerLink]="['']" class="logo">
+       <!-- mini logo for sidebar mini 50x50 pixels -->
+       
+       <!-- logo for regular state and mobile devices -->
+       <span class="logo-lg"><b>DAD </b>Battleships</span>
+     </a>
+
+     <!-- Header Navbar -->
+     <nav class="navbar navbar-static-top" role="navigation">
+       <!-- Sidebar toggle button-->
+      
+       <!-- Navbar Right Menu -->
+       <div class="navbar-custom-menu">
+         <ul class="nav navbar-nav"><br>
+  <p><a [routerLink]="['/login']"><b>Login   </b></a> <a [routerLink]="['/register']">  Register &nbsp; </a></p>
+         </ul>
+       </div>
+     </nav>
+   </header>
+   <!-- Left side column. contains the logo and sidebar -->
+   <aside class="main-sidebar">
+
+     <!-- sidebar: style can be found in sidebar.less -->
+     <section class="sidebar">
+          
+
+       <!-- Sidebar Menu -->
+       <ul class="sidebar-menu">
+         <li class="active"><a [routerLink]="['/lobby']"><i class="fa fa-link"></i> <b>Lobby   </b></a></li>
+         <li class="active"><a [routerLink]="['/top10']"><i class="fa fa-link"></i> <b>Top 10 Victories   </b></a></li>
+         
+         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+         <li class="treeview">
+        
+       </ul>
+       <!-- /.sidebar-menu -->
+     </section>
+     <!-- /.sidebar -->
+   </aside>
+
+   <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+     <!-- Content Header (Page header) -->
+    
+     <!-- Main content -->
+     <section class="content">
+
+       <!-- Your Page Content Here -->
+       
+	            <router-outlet></router-outlet>
+       
+
+     </section>
+     <!-- /.content -->
+   </div>
+   <!-- /.content-wrapper -->
+
+   <!-- Main Footer -->
+   <footer class="main-footer">
+     <!-- To the right -->
+     <div class="pull-right hidden-xs">
+       #DAD
+     </div>
+     <!-- Default to the left -->
+     <strong>Copyright &copy; 2016 <a href="#">DAD Battleships </a>.</strong> All rights reserved.
+   </footer>
+
+
+ </div>
+ <!-- ./wrapper -->
+
+
 <!--
 <div class="container">
     <h1>DAD - Websockets</h1>
