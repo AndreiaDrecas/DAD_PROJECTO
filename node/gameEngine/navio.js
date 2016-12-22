@@ -2,21 +2,21 @@
 var gameValidator_1 = require("./gameValidator");
 var celula_1 = require("./celula");
 var posicao_1 = require("./posicao");
-var TipoNavio;
 (function (TipoNavio) {
     TipoNavio[TipoNavio["PortaAvioes"] = 0] = "PortaAvioes";
     TipoNavio[TipoNavio["Couracado"] = 1] = "Couracado";
     TipoNavio[TipoNavio["Cruzador"] = 2] = "Cruzador";
     TipoNavio[TipoNavio["ContraTorpedeiro"] = 3] = "ContraTorpedeiro";
     TipoNavio[TipoNavio["Submarino"] = 4] = "Submarino";
-})(TipoNavio = exports.TipoNavio || (exports.TipoNavio = {}));
-var Orientacao;
+})(exports.TipoNavio || (exports.TipoNavio = {}));
+var TipoNavio = exports.TipoNavio;
 (function (Orientacao) {
     Orientacao[Orientacao["Normal"] = 0] = "Normal";
     Orientacao[Orientacao["Roda90"] = 1] = "Roda90";
     Orientacao[Orientacao["Roda180"] = 2] = "Roda180";
     Orientacao[Orientacao["Roda270"] = 3] = "Roda270";
-})(Orientacao = exports.Orientacao || (exports.Orientacao = {}));
+})(exports.Orientacao || (exports.Orientacao = {}));
+var Orientacao = exports.Orientacao;
 var Navio = (function () {
     // ------------------------------------------------------------------------------------------------
     // Interface Publica da classe - Membros Principais
@@ -186,4 +186,3 @@ var Navio = (function () {
     return Navio;
 }());
 exports.Navio = Navio;
-//# sourceMappingURL=navio.js.map

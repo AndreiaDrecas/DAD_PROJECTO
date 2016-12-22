@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent {
-  
+
   public name: any;
 
   constructor(public router: Router, public http: Http) {
@@ -20,21 +20,22 @@ export class LoginComponent {
     event.preventDefault();
 
     let body = JSON.stringify({ username, password });
-    let name = JSON.stringify({password});
-
+    let name = JSON.stringify({ password });
+    
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    console.log(headers);
-
+    
     this.http.post('http://localhost:7777/api/v1/login', body, { headers: headers })
       .subscribe(
       response => {
+        console.log(response.json());
         localStorage.setItem('id_token', response.json().token);
-        this.router.navigate(['lobby']);
+
         localStorage.setItem('name', response.json().name);
         localStorage.setItem('totalVictories', response.json().totalVictories);
         localStorage.setItem('username', response.json().username);
-        
+        console.log(response.json().token);
+        this.router.navigate(['lobby']);
       },
       error => {
         alert(error.text());

@@ -6,7 +6,7 @@ import {databaseConnection as database} from './app.database';
 import {WebSocketServer} from './app.websockets';
 import {HandlerSettings} from './handler.settings';
 
-const url = 'mongodb://localhost:27017/dad-pl1';
+const url = 'mongodb://localhost:27017/DAD_PROJECTO';
 
 // Create Restify and WebSocket Server
 const restifyServer = restify.createServer();
@@ -17,6 +17,15 @@ restify.CORS.ALLOW_HEADERS.push("content-type");
 restifyServer.use(restify.bodyParser());
 restifyServer.use(restify.queryParser());
 restifyServer.use(restify.CORS());
+
+restifyServer.opts(/.*/, function (req,res,next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    //res.header("Access-Control-Allow-Methods", req.header("Access-Control-Request-Method"));
+    res.header("Access-Control-Allow-Headers", req.header("Access-Control-Request-Headers"));
+    res.send(200);
+    return next();
+});
+
 restifyServer.use(restify.fullResponse());
 
 // Prepare and configure Passport based security

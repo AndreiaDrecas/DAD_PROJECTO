@@ -11,14 +11,15 @@ var WebSocketServer = (function () {
                 client.emit('players', Date.now() + ': Welcome to battleship');
                 client.broadcast.emit('players', Date.now() + ': A new player has arrived');
                 client.on('chat', function (data) { return _this.io.emit('chat', data); });
+                //recieve and send tabuleiro
+                client.on('tabuleiro', function (tabuleiro) {
+                    console.log(tabuleiro);
+                    io.sockets.emit('tabuleiro', tabuleiro);
+                });
                 //Extra Exercise
                 client.emit('board', _this.board);
-                client.on('clickElement', function (indexElement) {
-                    _this.board[indexElement]++;
-                    if (_this.board[indexElement] > 2) {
-                        _this.board[indexElement] = 0;
-                    }
-                    _this.notifyAll('board', _this.board);
+                client.on('clickElement', function (tabuleiro) {
+                    _this.notifyAll('board', tabuleiro);
                 });
             });
         };

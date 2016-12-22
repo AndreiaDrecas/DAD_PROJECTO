@@ -23,14 +23,15 @@ var LoginComponent = (function () {
         var name = JSON.stringify({ password: password });
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        console.log(headers);
         this.http.post('http://localhost:7777/api/v1/login', body, { headers: headers })
             .subscribe(function (response) {
+            console.log(response.json());
             localStorage.setItem('id_token', response.json().token);
-            _this.router.navigate(['lobby']);
             localStorage.setItem('name', response.json().name);
             localStorage.setItem('totalVictories', response.json().totalVictories);
             localStorage.setItem('username', response.json().username);
+            console.log(response.json().token);
+            _this.router.navigate(['lobby']);
         }, function (error) {
             alert(error.text());
             console.log(error.text());

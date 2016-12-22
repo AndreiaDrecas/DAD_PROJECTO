@@ -9,9 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var http_1 = require("@angular/http");
 var RegisterComponent = (function () {
-    function RegisterComponent() {
+    function RegisterComponent(router, http) {
+        this.router = router;
+        this.http = http;
     }
+    RegisterComponent.prototype.register = function (name, username, password) {
+        var _this = this;
+        var avatar = "";
+        var totalVictories = 0;
+        var body = JSON.stringify({ name: name, username: username, password: password, avatar: avatar, totalVictories: totalVictories });
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        console.log(body);
+        this.http.post('http://localhost:7777/api/v1/players', body, { headers: headers, withCredentials: false })
+            .subscribe(function (response) {
+            alert("Registation success");
+            _this.router.navigate(['login']);
+        }, function (error) {
+            0;
+            alert(error.text());
+            console.log(error.text());
+        });
+    };
     return RegisterComponent;
 }());
 RegisterComponent = __decorate([
@@ -20,7 +42,7 @@ RegisterComponent = __decorate([
         selector: 'register',
         templateUrl: 'register.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http])
 ], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 //# sourceMappingURL=register.component.js.map
