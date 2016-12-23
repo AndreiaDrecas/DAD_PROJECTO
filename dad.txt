@@ -12,7 +12,7 @@ Ponto 6- servi�os de autenticacao externos - facebook. twitter , etc
 
 Ponto 7 - entender a ligacao do jogo a bd(com historico de jogos) - ver enunciado
 
-Ponto 8- alterar o register para confirmacao da senha e campo email
+Ponto 8- alterar o register para confirmacao da senha e campo email ( e fazer as verificacoes, pois esta a registar sem nenhuma verificacao)
 
 
 Ponto 9- fazer a api do jogo
@@ -22,3 +22,5 @@ PONTO 10 IMPORTANTE!!!!! - a forma que estamos a fazer o LOGIN esta quase certa,
 https://medium.com/@blacksonic86/angular-2-authentication-revisited-611bf7373bf9#.kvcm6vsww
 
 ainda nao tive tempo de fazer, mas se ninguem o fizer irei fazer. acho q ja temos o GetPlayer na api.. falta so resolver como iremos tratar os dados localmente.
+
+
