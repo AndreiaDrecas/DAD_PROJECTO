@@ -18,4 +18,7 @@ Ponto 8- alterar o register para confirmacao da senha e campo email
 Ponto 9- fazer a api do jogo
 
 
-	
+PONTO 10 IMPORTANTE!!!!! - a forma que estamos a fazer o LOGIN esta quase certa, so falta 1 coisa.. nao podemos guardar os nome localstorage, isto porque depois nao conseguimos fazer o controlo.. encontrei um site para fazer isso
+https://medium.com/@blacksonic86/angular-2-authentication-revisited-611bf7373bf9#.kvcm6vsww
+
+ainda nao tive tempo de fazer, mas se ninguem o fizer irei fazer. acho q ja temos o GetPlayer na api.. falta so resolver como iremos tratar os dados localmente.
