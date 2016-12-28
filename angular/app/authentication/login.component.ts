@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Router } from '@angular/router';
+import { SessionService } from './session.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent {
   public _serverPath: string;
   public name: any;
 
-  constructor(public router: Router, public http: Http) {
+  constructor(public router: Router, public http: Http, private sessionService: SessionService) {
     this._serverPath = 'http://localhost:8888/api/v1/login';
   }
 
@@ -22,10 +23,13 @@ export class LoginComponent {
 
     let body = JSON.stringify({ username, password });
     let name = JSON.stringify({ password });
-    
+
+    // session Service
+    this.sessionService.login();
+
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    
+
     this.http.post(this._serverPath, body, { headers: headers })
       .subscribe(
       response => {

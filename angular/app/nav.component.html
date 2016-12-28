@@ -1,0 +1,18 @@
+<nav class="navbar navbar-static-top" role="navigation">
+    <!-- Sidebar toggle button-->
+
+    <!-- Navbar Right Menu -->
+
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav"><br>
+
+            <!--<div *ngIf="hide">-->
+                <a [routerLink]="['/login']"><b>Login</b></a>
+                <a [routerLink]="['/register']">  Register &nbsp; </a>
+            <!--</div>
+            <div *ngIf="userIsIn()">-->
+                <button class="logout" (click)="userIsOut()" md-raised-button color="accent">Logout</button>
+            <!--</div>-->
+        </ul>
+    </div>
+</nav>

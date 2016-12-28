@@ -17,11 +17,15 @@ var RegisterComponent = (function () {
         this.http = http;
         this._serverPath = 'http://localhost:8888/api/v1/players';
     }
-    RegisterComponent.prototype.register = function (name, username, password) {
+    RegisterComponent.prototype.validate = function () {
+        //Isto é só para teste, depois é preciso fazer mesmo a validação e mostrar mensagem de erro
+        this.validated = true;
+    };
+    RegisterComponent.prototype.register = function (name, username, password, email) {
         var _this = this;
         var avatar = "";
         var totalVictories = 0;
-        var body = JSON.stringify({ name: name, username: username, password: password, avatar: avatar, totalVictories: totalVictories });
+        var body = JSON.stringify({ name: name, username: username, password: password, email: email, avatar: avatar, totalVictories: totalVictories });
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         console.log(body);

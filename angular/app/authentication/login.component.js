@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
+var session_service_1 = require("./session.service");
 var LoginComponent = (function () {
-    function LoginComponent(router, http) {
+    function LoginComponent(router, http, sessionService) {
         this.router = router;
         this.http = http;
+        this.sessionService = sessionService;
         this._serverPath = 'http://localhost:8888/api/v1/login';
     }
     LoginComponent.prototype.login = function (event, username, password) {
@@ -22,6 +24,8 @@ var LoginComponent = (function () {
         event.preventDefault();
         var body = JSON.stringify({ username: username, password: password });
         var name = JSON.stringify({ password: password });
+        // session Service
+        this.sessionService.login();
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         this.http.post(this._serverPath, body, { headers: headers })
@@ -46,7 +50,7 @@ LoginComponent = __decorate([
         selector: 'login',
         templateUrl: 'login.component.html'
     }),
-    __metadata("design:paramtypes", [router_1.Router, http_1.Http])
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http, session_service_1.SessionService])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

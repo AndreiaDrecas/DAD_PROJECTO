@@ -4,24 +4,24 @@ import { Router } from '@angular/router';
 
 @Component({
     moduleId: module.id,
-    selector: 'top10',
-    templateUrl: 'top10.component.html'
+    selector: 'gameHistory',
+    templateUrl: 'gameHistory.component.html'
 })
 
-export class Top10Component {
-    public Top10Victories: any[] = [];
+export class GameHistoryComponent {
+    public history: any[] = [];
     public _serverPath: string;
     constructor(public router: Router, public http: Http) {
         this._serverPath = 'http://localhost:8888/api/v1/';
     }
 
-    getTop10() {
+    getGameHistory() {
 
-        let headers = new Headers();
+        /*let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
-        this.http.get(this._serverPath + 'top10', <RequestOptionsArgs>{ headers: headers, withCredentials: false })
-            .subscribe(
+        
+        this.http.get(this._serverPath+'top10',<RequestOptionsArgs> {headers: headers, withCredentials: false})
+        .subscribe(
             response => {
                 this.Top10Victories = response.json();
                 console.log(response.json());
@@ -31,6 +31,7 @@ export class Top10Component {
                 console.log(error.text());
             }
             );
+    */
     }
 
 }
