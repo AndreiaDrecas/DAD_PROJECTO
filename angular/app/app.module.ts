@@ -16,9 +16,6 @@ import { LobbyComponent } from './game/lobby.component';
 import { SessionService } from './authentication/session.service';
 
 //dashboard
-
-
-
 import { NotificationModule } from './notifications/notifications.module';
 import { ChatComponent } from './chat.component';
 import { NavComponent } from './nav.component';

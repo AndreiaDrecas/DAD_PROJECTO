@@ -18,6 +18,7 @@ export class LoginComponent {
     this._serverPath = 'http://localhost:8888/api/v1/login';
   }
 
+
   login(event: any, username: any, password: any) {
     event.preventDefault();
 
