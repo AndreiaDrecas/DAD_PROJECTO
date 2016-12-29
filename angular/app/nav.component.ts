@@ -13,17 +13,25 @@ export class NavComponent {
     public hide: boolean;
     public inSession = false;
     public _serverPath: string;
+    public name: any;
+    public avatar: any; 
 
     constructor(public router: Router, public http: Http, private sessionService: SessionService) {
         this.hide = true;
         this._serverPath = 'http://localhost:8888/api/v1/';
+        
+    }
+
+    refresh(){
+        this.name = localStorage.getItem('name');
+        this.avatar = localStorage.getItem('avatar');
     }
 
     userIsIn() {
         if (this.sessionService.isLoggedIn()) {
             this.inSession = true;
             this.hide = false;
-
+            this.refresh();
             return true;
         }
 
@@ -36,6 +44,7 @@ export class NavComponent {
         this.inSession = false;
         this.hide = true;
         this.logout();
+        localStorage.clear();
     }
 
     logout() {

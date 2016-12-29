@@ -21,10 +21,15 @@ var NavComponent = (function () {
         this.hide = true;
         this._serverPath = 'http://localhost:8888/api/v1/';
     }
+    NavComponent.prototype.refresh = function () {
+        this.name = localStorage.getItem('name');
+        this.avatar = localStorage.getItem('avatar');
+    };
     NavComponent.prototype.userIsIn = function () {
         if (this.sessionService.isLoggedIn()) {
             this.inSession = true;
             this.hide = false;
+            this.refresh();
             return true;
         }
         return false;
@@ -35,6 +40,7 @@ var NavComponent = (function () {
         this.inSession = false;
         this.hide = true;
         this.logout();
+        localStorage.clear();
     };
     NavComponent.prototype.logout = function () {
         var _this = this;

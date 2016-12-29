@@ -13,6 +13,7 @@ export class Top10Component {
     public _serverPath: string;
     constructor(public router: Router, public http: Http) {
         this._serverPath = 'http://localhost:8888/api/v1/';
+        this.getTop10();
     }
 
     getTop10() {
@@ -24,7 +25,7 @@ export class Top10Component {
             .subscribe(
             response => {
                 this.Top10Victories = response.json();
-                console.log(response.json());
+                //console.log(response.json());
             },
             error => {
                 alert(error.text());

@@ -2,27 +2,24 @@ import { Component } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Router } from '@angular/router';
 import { WebSocketService } from '../notifications/websocket.service';
-import { SessionService } from '../authentication/session.service';
+
 
 @Component({
     moduleId: module.id,
-    selector: 'lobby',
-    templateUrl: 'lobby.component.html'
+    selector: 'gamesPending',
+    templateUrl: 'gamesPending.component.html'
 })
 
-export class LobbyComponent {
+export class gamesPendingComponent {
     public _serverPath: string;
     public name: any = localStorage.getItem('name');
     public totalVictories: any = localStorage.getItem('totalVictories');
     public username: any = localStorage.getItem('username');
     public gamesPending: any[] = [];
 
-    constructor(public router: Router, public http: Http, private websocketService: WebSocketService, private sessionService: SessionService) {
+    constructor(public router: Router, public http: Http, private websocketService: WebSocketService) {
         this._serverPath = 'http://localhost:8888/api/v1/';
-        if(!this.sessionService.isLoggedIn()){
-            this.router.navigate(['login']);
-        }
-        
+        this.getGamesPending();
     }
     //public id_token: any = localStorage.getItem('token');
 
@@ -35,7 +32,7 @@ export class LobbyComponent {
             .subscribe(
             response => {
                 this.gamesPending = response.json();
-                console.log(response.json());
+                
             },
             error => {
                 alert(error.text());
@@ -43,7 +40,4 @@ export class LobbyComponent {
             }
             );
     }
-
-
-
 }

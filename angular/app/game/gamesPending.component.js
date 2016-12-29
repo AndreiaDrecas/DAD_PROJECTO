@@ -12,24 +12,20 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
 var websocket_service_1 = require("../notifications/websocket.service");
-var session_service_1 = require("../authentication/session.service");
-var LobbyComponent = (function () {
-    function LobbyComponent(router, http, websocketService, sessionService) {
+var gamesPendingComponent = (function () {
+    function gamesPendingComponent(router, http, websocketService) {
         this.router = router;
         this.http = http;
         this.websocketService = websocketService;
-        this.sessionService = sessionService;
         this.name = localStorage.getItem('name');
         this.totalVictories = localStorage.getItem('totalVictories');
         this.username = localStorage.getItem('username');
         this.gamesPending = [];
         this._serverPath = 'http://localhost:8888/api/v1/';
-        if (!this.sessionService.isLoggedIn()) {
-            this.router.navigate(['login']);
-        }
+        this.getGamesPending();
     }
     //public id_token: any = localStorage.getItem('token');
-    LobbyComponent.prototype.getGamesPending = function () {
+    gamesPendingComponent.prototype.getGamesPending = function () {
         var _this = this;
         var authToken = localStorage.getItem('id_token');
         var headers = new http_1.Headers();
@@ -38,21 +34,20 @@ var LobbyComponent = (function () {
         this.http.get(this._serverPath + 'games', { headers: headers, withCredentials: false })
             .subscribe(function (response) {
             _this.gamesPending = response.json();
-            console.log(response.json());
         }, function (error) {
             alert(error.text());
             console.log(error.text());
         });
     };
-    return LobbyComponent;
+    return gamesPendingComponent;
 }());
-LobbyComponent = __decorate([
+gamesPendingComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'lobby',
-        templateUrl: 'lobby.component.html'
+        selector: 'gamesPending',
+        templateUrl: 'gamesPending.component.html'
     }),
-    __metadata("design:paramtypes", [router_1.Router, http_1.Http, websocket_service_1.WebSocketService, session_service_1.SessionService])
-], LobbyComponent);
-exports.LobbyComponent = LobbyComponent;
-//# sourceMappingURL=lobby.component.js.map
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
+], gamesPendingComponent);
+exports.gamesPendingComponent = gamesPendingComponent;
+//# sourceMappingURL=gamesPending.component.js.map

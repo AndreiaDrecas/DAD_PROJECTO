@@ -39,6 +39,7 @@ export class LoginComponent {
         localStorage.setItem('name', response.json().name);
         localStorage.setItem('totalVictories', response.json().totalVictories);
         localStorage.setItem('username', response.json().username);
+        localStorage.setItem('avatar', response.json().avatar);
         console.log(response.json().token);
         this.router.navigate(['lobby']);
       },

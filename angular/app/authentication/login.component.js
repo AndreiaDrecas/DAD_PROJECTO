@@ -35,6 +35,7 @@ var LoginComponent = (function () {
             localStorage.setItem('name', response.json().name);
             localStorage.setItem('totalVictories', response.json().totalVictories);
             localStorage.setItem('username', response.json().username);
+            localStorage.setItem('avatar', response.json().avatar);
             console.log(response.json().token);
             _this.router.navigate(['lobby']);
         }, function (error) {
