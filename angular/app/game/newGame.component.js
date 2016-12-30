@@ -19,7 +19,7 @@ var NewGameComponent = (function () {
         this.websocketService = websocketService;
     }
     NewGameComponent.prototype.create = function () {
-        this.arrayPlayers = JSON.stringify({ player: sessionStorage.getItem('_id'), score: 0 });
+        this.arrayPlayers = { player: sessionStorage.getItem('_id'), score: 0 };
         var game = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
         console.log(game);
     };

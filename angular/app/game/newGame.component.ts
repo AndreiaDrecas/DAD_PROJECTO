@@ -25,9 +25,9 @@ export class NewGameComponent {
 
 	create(){
 
-		this.arrayPlayers = JSON.stringify({player: sessionStorage.getItem('_id') , score: 0});
+		this.arrayPlayers = {player: sessionStorage.getItem('_id') , score: 0};
 	
-		let game = JSON.stringify({players: this.arrayPlayers , state: 'pending'});
+		let game = JSON.stringify({players: this.arrayPlayers, state: 'pending'});
 
 		console.log(game);
 	}
