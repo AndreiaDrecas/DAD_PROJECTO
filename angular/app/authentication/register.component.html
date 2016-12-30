@@ -1,6 +1,6 @@
 <div class="Register jumbotron center-block">
   <h1>Register</h1>
-  <form role="form" (submit)="register(name.value , username.value, password.value)">
+  <form role="form" (submit)="register(name.value , username.value, password.value, passwordConfirmation.value, email.value)">
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" #name class="form-control" id="name" placeholder="Name">
@@ -12,6 +12,9 @@
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" #password class="form-control" id="password" placeholder="Password">
+      <div *ngIf="!validate()">
+        <p>{{errorMessagePasswordLength}}</p>
+      </div>
     </div>
     <div class="form-group">
       <label for="password">Password Confirmation</label>
@@ -21,11 +24,11 @@
       <label for="email">E-mail</label>
       <input type="email" #email class="form-control" id="email" placeholder="E-mail">
     </div>
-    <button type="submit" class="btn btn-default" (click)="validate()">Submit</button>
+    <button type="submit" class="btn btn-default">Submit</button>
     <a [routerLink]="['']">Cancel </a>
     
-    <div *ngIf="validated"> 
-     <p>Error validating!</p>
+    <div *ngIf="errorMessage != null"> 
+     <p>{{errorMessage}}</p>
     </div>
 
   </form>

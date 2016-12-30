@@ -18,6 +18,12 @@ var ValidatorService = (function () {
             return { invalidEmail: true };
         }
     };
+    ValidatorService.prototype.passwordLength = function (passwordKey) {
+        var size = passwordKey.length;
+        /*if(size >= 3) {
+          return true;
+        }*/
+    };
     //CONTROL GROUP VALIDATORS
     ValidatorService.prototype.matchingPasswords = function (passwordKey, confirmPasswordKey) {
         return function (group) {
@@ -53,4 +59,4 @@ ValidatorService = __decorate([
     __metadata("design:paramtypes", [])
 ], ValidatorService);
 exports.ValidatorService = ValidatorService;
-//# sourceMappingURL=validators.js.map
+//# sourceMappingURL=validator.service.js.map
