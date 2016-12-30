@@ -27,3 +27,6 @@ ESTIVE A FAZER O MESMO Q TU, UTILIZEI O TEU CODIGO E COLOQUEI O MEU A FUNCIONAR 
 
 
 Ponto 11 - Mostrar os histórico dos jogos (a página já está criada, agora é só mostrar a informação)
+
+
+test
