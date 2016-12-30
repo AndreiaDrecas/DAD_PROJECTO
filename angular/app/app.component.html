@@ -27,7 +27,7 @@
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-        <li class="active"><a [routerLink]="['/lobby']"><i class="fa fa-link"></i> <b>Lobby   </b></a></li>
+        <li class="active" *ngIf="isLoggedIn()"><a [routerLink]="['/lobby']"><i class="fa fa-link"></i> <b>Lobby</b></a></li>
         <li class="active"><a [routerLink]="['/top10']"><i class="fa fa-link"></i><b>Top 10 Victories</b></a></li>
         <li class="active"><a [routerLink]="['/gameHistory']"><i class="fa fa-link"></i><b>Game History</b></a></li>
 

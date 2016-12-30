@@ -3,10 +3,7 @@ import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@an
 import { Router } from '@angular/router';
 import { WebSocketService } from '../notifications/websocket.service';
 import { SessionService } from '../authentication/session.service';
-<<<<<<< HEAD
 
-=======
->>>>>>> ebe506fc4a920ccdd2944e803b58bf34104c7a4c
 
 @Component({
     moduleId: module.id,

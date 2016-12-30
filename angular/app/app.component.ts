@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SessionService } from './authentication/session.service';
 
 @Component({
     moduleId: module.id,
@@ -6,4 +7,10 @@ import { Component } from '@angular/core';
     templateUrl: 'app.component.html'
 })
 
-export class AppComponent {}
+export class AppComponent {
+    constructor(private sessionService: SessionService) {}
+
+    isLoggedIn(){
+        return this.sessionService.isLoggedIn();
+    }
+}
