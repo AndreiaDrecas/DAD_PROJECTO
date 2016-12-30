@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var router_1 = require("@angular/router");
+var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var router_1 = require('@angular/router');
 var SessionService = (function () {
     function SessionService(router, http) {
         this.router = router;
@@ -71,11 +71,11 @@ var SessionService = (function () {
     SessionService.prototype.isLoggedIn = function () {
         return this.loggedIn;
     };
+    SessionService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [router_1.Router, http_1.Http])
+    ], SessionService);
     return SessionService;
 }());
-SessionService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [router_1.Router, http_1.Http])
-], SessionService);
 exports.SessionService = SessionService;
 //# sourceMappingURL=session.service.js.map

@@ -7,6 +7,7 @@ import { GameHistoryComponent }  from './gameHistory.component';
 import { LoginComponent } from './authentication/login.component';
 import { RegisterComponent } from './authentication/register.component';
 import { LobbyComponent }  from './game/lobby.component';
+import { NewGameComponent } from './game/newGame.component';
 
 
 const appRoutes: Routes = [
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
     { path: 'lobby', component: LobbyComponent },
     { path: 'top10', component: Top10Component },
     { path: 'gameHistory', component: GameHistoryComponent },
+    { path: 'game' , component: NewGameComponent },
     
 
     // otherwise redirect to home

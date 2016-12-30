@@ -9,23 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var router_1 = require('@angular/router');
 var websocket_service_1 = require('../notifications/websocket.service');
-var ShipComponent = (function () {
-    function ShipComponent(websocketService) {
+var NewGameComponent = (function () {
+    function NewGameComponent(router, http, websocketService) {
+        this.router = router;
+        this.http = http;
         this.websocketService = websocketService;
     }
-    ShipComponent.prototype.ngOnInit = function () {
-        ///
+    NewGameComponent.prototype.create = function () {
+        this.arrayPlayers = JSON.stringify({ player: sessionStorage.getItem('_id'), score: 0 });
+        var game = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
+        console.log(game);
     };
-    ShipComponent = __decorate([
+    NewGameComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'ship-selector',
-            templateUrl: 'ship.component.html'
+            selector: 'newGame',
+            templateUrl: 'newGame.component.html'
         }), 
-        __metadata('design:paramtypes', [websocket_service_1.WebSocketService])
-    ], ShipComponent);
-    return ShipComponent;
+        __metadata('design:paramtypes', [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
+    ], NewGameComponent);
+    return NewGameComponent;
 }());
-exports.ShipComponent = ShipComponent;
-//# sourceMappingURL=ship.component.js.map
+exports.NewGameComponent = NewGameComponent;
+//# sourceMappingURL=newGame.component.js.map

@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var session_service_1 = require("./authentication/session.service");
+var core_1 = require('@angular/core');
+var session_service_1 = require('./authentication/session.service');
 var AppComponent = (function () {
     function AppComponent(sessionService) {
         this.sessionService = sessionService;
@@ -17,15 +17,15 @@ var AppComponent = (function () {
     AppComponent.prototype.isLoggedIn = function () {
         return this.sessionService.isLoggedIn();
     };
+    AppComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'my-app',
+            templateUrl: 'app.component.html'
+        }), 
+        __metadata('design:paramtypes', [session_service_1.SessionService])
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'my-app',
-        templateUrl: 'app.component.html'
-    }),
-    __metadata("design:paramtypes", [session_service_1.SessionService])
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

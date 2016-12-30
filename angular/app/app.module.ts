@@ -27,12 +27,13 @@ import { GameComponent } from './game/game.component';
 import { gamesPendingComponent } from './game/gamesPending.component';
 import { ShipComponent } from './game/ship.component';
 import { WebSocketService } from './notifications/websocket.service';
+import { NewGameComponent } from './game/newGame.component';
 
 @NgModule({
   imports: [BrowserModule, NotificationModule, FormsModule, routing],
   declarations: [AppComponent, ChatComponent, BoardComponent, ShipComponent,
     GameComponent, LoginComponent, RegisterComponent, HomeComponent, LobbyComponent, Top10Component, 
-    GameHistoryComponent, NavComponent,gamesPendingComponent ],
+    GameHistoryComponent, NavComponent,gamesPendingComponent, NewGameComponent ],
   providers: [ WebSocketService, SessionService, ValidatorService ],
   bootstrap: [ AppComponent ]
 })

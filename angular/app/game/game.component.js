@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var websocket_service_1 = require("../notifications/websocket.service");
-var game_1 = require("../gameEngine/game");
+var core_1 = require('@angular/core');
+var websocket_service_1 = require('../notifications/websocket.service');
+var game_1 = require('../gameEngine/game');
 var GameComponent = (function () {
     function GameComponent(websocketService) {
         this.websocketService = websocketService;
@@ -22,16 +22,16 @@ var GameComponent = (function () {
     };
     GameComponent.prototype.tiro = function () {
     };
+    GameComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'game',
+            templateUrl: 'game.component.html',
+            styleUrls: ['game.component.css']
+        }), 
+        __metadata('design:paramtypes', [websocket_service_1.WebSocketService])
+    ], GameComponent);
     return GameComponent;
 }());
-GameComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'game',
-        templateUrl: 'game.component.html',
-        styleUrls: ['game.component.css']
-    }),
-    __metadata("design:paramtypes", [websocket_service_1.WebSocketService])
-], GameComponent);
 exports.GameComponent = GameComponent;
 //# sourceMappingURL=game.component.js.map
