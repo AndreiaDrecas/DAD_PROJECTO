@@ -44,9 +44,6 @@ var LobbyComponent = (function () {
             console.log(error.text());
         });
     };
-    LobbyComponent.prototype.logout = function () {
-        this.sessionService.logout();
-    };
     return LobbyComponent;
 }());
 LobbyComponent = __decorate([

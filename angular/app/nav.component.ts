@@ -25,6 +25,7 @@ export class NavComponent {
     }
 
     userIsIn() {
+
         if (this.sessionService.isLoggedIn()) {
             this.refresh();
             return true;
@@ -33,12 +34,6 @@ export class NavComponent {
         return false;
     }
 
-    //Isto ainda não está a funcionar mto bem
-    userIsOut() {
-        this.sessionService.logout();
-        this.logout();
-        localStorage.clear();
-    }
 
     logout() {
         this.sessionService.logout();

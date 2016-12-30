@@ -25,6 +25,7 @@ export class LobbyComponent {
     constructor(public router: Router, public http: Http, private websocketService: WebSocketService, 
     private sessionService: SessionService) {
         this._serverPath = 'http://localhost:8888/api/v1/';
+        
         if(!this.sessionService.isLoggedIn()){
             this.router.navigate(['login']);
         }
@@ -48,11 +49,6 @@ export class LobbyComponent {
                 console.log(error.text());
             }
             );
-    }
-
-    logout() {
-
-        this.sessionService.logout();
     }
 
 

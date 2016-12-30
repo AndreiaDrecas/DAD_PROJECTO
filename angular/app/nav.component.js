@@ -30,12 +30,6 @@ var NavComponent = (function () {
         }
         return false;
     };
-    //Isto ainda não está a funcionar mto bem
-    NavComponent.prototype.userIsOut = function () {
-        this.sessionService.logout();
-        this.logout();
-        localStorage.clear();
-    };
     NavComponent.prototype.logout = function () {
         this.sessionService.logout();
     };

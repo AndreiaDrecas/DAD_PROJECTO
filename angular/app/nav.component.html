@@ -8,12 +8,13 @@
            
             <div *ngIf="!userIsIn()">
                 <a [routerLink]="['/login']"><b>Login</b></a>
-                <a [routerLink]="['/register']">  Register &nbsp; </a>
+                <a [routerLink]="['/register']">Register</a>
             </div>
+
             <div *ngIf="userIsIn()">
-                 <b>{{name}}</b>&nbsp;&nbsp;&nbsp;<img class="avatar" src="{{avatar}}" height="20" width="20"/>&nbsp;&nbsp;
-                 
-                <button class="logout" (click)="userIsOut()" md-raised-button color="accent">Logout</button>
+                 <b>{{name}}</b>
+                 <img class="avatar" src="{{avatar}}" height="20" width="20"/>
+                <button class="logout" (click)="logout()" md-raised-button color="accent">Logout</button>
             </div>
         </ul>
     </div>
