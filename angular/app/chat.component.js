@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var websocket_service_1 = require("./notifications/websocket.service");
+var core_1 = require('@angular/core');
+var websocket_service_1 = require('./notifications/websocket.service');
 var ChatComponent = (function () {
     function ChatComponent(websocketService) {
         this.websocketService = websocketService;
@@ -18,15 +18,15 @@ var ChatComponent = (function () {
         this.websocketService.sendChatMessage(this.message);
         this.message = '';
     };
+    ChatComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'chat-control',
+            templateUrl: 'chat.component.html'
+        }), 
+        __metadata('design:paramtypes', [websocket_service_1.WebSocketService])
+    ], ChatComponent);
     return ChatComponent;
 }());
-ChatComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'chat-control',
-        templateUrl: 'chat.component.html'
-    }),
-    __metadata("design:paramtypes", [websocket_service_1.WebSocketService])
-], ChatComponent);
 exports.ChatComponent = ChatComponent;
 //# sourceMappingURL=chat.component.js.map

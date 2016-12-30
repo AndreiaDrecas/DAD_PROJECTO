@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var session_service_1 = require("./authentication/session.service");
-var http_1 = require("@angular/http");
-var router_1 = require("@angular/router");
+var core_1 = require('@angular/core');
+var session_service_1 = require('./authentication/session.service');
+var http_1 = require('@angular/http');
+var router_1 = require('@angular/router');
 var NavComponent = (function () {
     function NavComponent(router, http, sessionService) {
         this.router = router;
@@ -33,15 +33,15 @@ var NavComponent = (function () {
     NavComponent.prototype.logout = function () {
         this.sessionService.logout();
     };
+    NavComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'nav-bar',
+            templateUrl: 'nav.component.html'
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, http_1.Http, session_service_1.SessionService])
+    ], NavComponent);
     return NavComponent;
 }());
-NavComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'nav-bar',
-        templateUrl: 'nav.component.html'
-    }),
-    __metadata("design:paramtypes", [router_1.Router, http_1.Http, session_service_1.SessionService])
-], NavComponent);
 exports.NavComponent = NavComponent;
 //# sourceMappingURL=nav.component.js.map

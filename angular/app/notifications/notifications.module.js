@@ -8,22 +8,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var http_1 = require("@angular/http");
-var notification_component_1 = require("./notification.component");
+var core_1 = require('@angular/core');
+var platform_browser_1 = require('@angular/platform-browser');
+var http_1 = require('@angular/http');
+var notification_component_1 = require('./notification.component');
 var NotificationModule = (function () {
     function NotificationModule() {
     }
+    NotificationModule = __decorate([
+        core_1.NgModule({
+            imports: [platform_browser_1.BrowserModule, http_1.HttpModule],
+            declarations: [notification_component_1.NotificationComponent],
+            exports: [notification_component_1.NotificationComponent]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], NotificationModule);
     return NotificationModule;
 }());
-NotificationModule = __decorate([
-    core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, http_1.HttpModule],
-        declarations: [notification_component_1.NotificationComponent],
-        exports: [notification_component_1.NotificationComponent]
-    }),
-    __metadata("design:paramtypes", [])
-], NotificationModule);
 exports.NotificationModule = NotificationModule;
 //# sourceMappingURL=notifications.module.js.map
