@@ -69,6 +69,7 @@ export class SessionService {
       <RequestOptionsArgs>{ headers: headers, withCredentials: false })
       .subscribe(response => {
 
+
         if (response.ok) {
           alert("Logout success");
 
