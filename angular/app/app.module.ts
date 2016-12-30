@@ -13,7 +13,10 @@ import { GameHistoryComponent } from './gameHistory.component'
 import { LoginComponent } from './authentication/login.component';
 import { RegisterComponent } from './authentication/register.component';
 import { LobbyComponent } from './game/lobby.component';
+
+//services
 import { SessionService } from './authentication/session.service';
+import { ValidatorService } from './validator.service';
 
 //dashboard
 import { NotificationModule } from './notifications/notifications.module';
@@ -30,7 +33,7 @@ import { WebSocketService } from './notifications/websocket.service';
   declarations: [AppComponent, ChatComponent, BoardComponent, ShipComponent,
     GameComponent, LoginComponent, RegisterComponent, HomeComponent, LobbyComponent, Top10Component, 
     GameHistoryComponent, NavComponent,gamesPendingComponent ],
-  providers: [ WebSocketService, SessionService ],
+  providers: [ WebSocketService, SessionService, ValidatorService ],
   bootstrap: [ AppComponent ]
 })
 
