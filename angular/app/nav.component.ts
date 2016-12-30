@@ -12,20 +12,19 @@ import { Router } from '@angular/router';
 export class NavComponent {
     public _serverPath: string;
     public name: any;
-    public avatar: any; 
+    public avatar: any;
 
     constructor(public router: Router, public http: Http, private sessionService: SessionService) {
         this._serverPath = 'http://localhost:8888/api/v1/';
 
     }
 
-    refresh(){
+    refresh() {
         this.name = localStorage.getItem('name');
         this.avatar = localStorage.getItem('avatar');
     }
 
-    userIsIn() {
-
+    userIsLoggedIn() {
         if (this.sessionService.isLoggedIn()) {
             this.refresh();
             return true;

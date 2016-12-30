@@ -23,7 +23,7 @@ var NavComponent = (function () {
         this.name = localStorage.getItem('name');
         this.avatar = localStorage.getItem('avatar');
     };
-    NavComponent.prototype.userIsIn = function () {
+    NavComponent.prototype.userIsLoggedIn = function () {
         if (this.sessionService.isLoggedIn()) {
             this.refresh();
             return true;

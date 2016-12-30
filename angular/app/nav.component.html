@@ -6,12 +6,12 @@
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav"><br>
            
-            <div *ngIf="!userIsIn()">
+            <div *ngIf="!userIsLoggedIn()">
                 <a [routerLink]="['/login']"><b>Login</b></a>
                 <a [routerLink]="['/register']">Register</a>
             </div>
 
-            <div *ngIf="userIsIn()">
+            <div *ngIf="userIsLoggedIn()">
                  <b>{{name}}</b>
                  <img class="avatar" src="{{avatar}}" height="20" width="20"/>
                 <button class="logout" (click)="logout()" md-raised-button color="accent">Logout</button>
