@@ -18,7 +18,7 @@ var WebSocketService = (function () {
         }
     }
     WebSocketService.prototype.sendChatMessage = function (message) {
-        this.socket.emit('chat', localStorage.getItem('name') + ': ' + message);
+        this.socket.emit('chat', sessionStorage.getItem('name') + ': ' + message);
     };
     WebSocketService.prototype.sendTable = function (tabuleiro) {
         console.log('cheguei ao websocket client');

@@ -12,9 +12,9 @@ import { WebSocketService } from '../notifications/websocket.service';
 
 export class gamesPendingComponent {
     public _serverPath: string;
-    public name: any = localStorage.getItem('name');
-    public totalVictories: any = localStorage.getItem('totalVictories');
-    public username: any = localStorage.getItem('username');
+    public name: any = sessionStorage.getItem('name');
+    public totalVictories: any = sessionStorage.getItem('totalVictories');
+    public username: any = sessionStorage.getItem('username');
     public gamesPending: any[] = [];
 
     constructor(public router: Router, public http: Http, private websocketService: WebSocketService) {
@@ -24,7 +24,7 @@ export class gamesPendingComponent {
     //public id_token: any = localStorage.getItem('token');
 
     getGamesPending() {
-        let authToken = localStorage.getItem('id_token');
+        let authToken = sessionStorage.getItem('id_token');
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'bearer ' + authToken);

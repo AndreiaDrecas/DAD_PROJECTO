@@ -20,8 +20,8 @@ export class NavComponent {
     }
 
     refresh() {
-        this.name = localStorage.getItem('name');
-        this.avatar = localStorage.getItem('avatar');
+        this.name = sessionStorage.getItem('name');
+        this.avatar = sessionStorage.getItem('avatar');
     }
 
     userIsLoggedIn() {
@@ -29,7 +29,7 @@ export class NavComponent {
             this.refresh();
             return true;
         }
-        localStorage.clear();
+        
         return false;
     }
 

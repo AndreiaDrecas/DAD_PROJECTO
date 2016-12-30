@@ -20,15 +20,14 @@ var NavComponent = (function () {
         this._serverPath = 'http://localhost:8888/api/v1/';
     }
     NavComponent.prototype.refresh = function () {
-        this.name = localStorage.getItem('name');
-        this.avatar = localStorage.getItem('avatar');
+        this.name = sessionStorage.getItem('name');
+        this.avatar = sessionStorage.getItem('avatar');
     };
     NavComponent.prototype.userIsLoggedIn = function () {
         if (this.sessionService.isLoggedIn()) {
             this.refresh();
             return true;
         }
-        localStorage.clear();
         return false;
     };
     NavComponent.prototype.logout = function () {

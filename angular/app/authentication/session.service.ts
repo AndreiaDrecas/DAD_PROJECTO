@@ -30,14 +30,14 @@ export class SessionService {
 
         if (response.ok) {
 
-          console.log(response.json());
-          localStorage.setItem('id_token', response.json().token);
+          
+          sessionStorage.setItem('id_token', response.json().token);
          
-          localStorage.setItem('name', response.json().name);
-          localStorage.setItem('totalVictories', response.json().totalVictories);
-          localStorage.setItem('username', response.json().username);
-          localStorage.setItem('avatar', response.json().avatar);
-          console.log(response.json().token);
+          sessionStorage.setItem('name', response.json().name);
+          sessionStorage.setItem('totalVictories', response.json().totalVictories);
+          sessionStorage.setItem('username', response.json().username);
+          sessionStorage.setItem('avatar', response.json().avatar);
+         
            this.loggedIn = true;
 
 
@@ -75,7 +75,7 @@ export class SessionService {
 
 
           this.loggedIn = false;
-          localStorage.clear();
+          sessionStorage.clear();
           this.router.navigate(['login']);
         }
 

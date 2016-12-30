@@ -31,13 +31,11 @@ var SessionService = (function () {
             .post(this._serverPathLogin, body, { headers: headers })
             .subscribe(function (response) {
             if (response.ok) {
-                console.log(response.json());
-                localStorage.setItem('id_token', response.json().token);
-                localStorage.setItem('name', response.json().name);
-                localStorage.setItem('totalVictories', response.json().totalVictories);
-                localStorage.setItem('username', response.json().username);
-                localStorage.setItem('avatar', response.json().avatar);
-                console.log(response.json().token);
+                sessionStorage.setItem('id_token', response.json().token);
+                sessionStorage.setItem('name', response.json().name);
+                sessionStorage.setItem('totalVictories', response.json().totalVictories);
+                sessionStorage.setItem('username', response.json().username);
+                sessionStorage.setItem('avatar', response.json().avatar);
                 _this.loggedIn = true;
                 _this.router.navigate(['lobby']);
             }
@@ -62,7 +60,7 @@ var SessionService = (function () {
             if (response.ok) {
                 alert("Logout success");
                 _this.loggedIn = false;
-                localStorage.clear();
+                sessionStorage.clear();
                 _this.router.navigate(['login']);
             }
         }, function (error) {

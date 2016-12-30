@@ -19,9 +19,9 @@ var LobbyComponent = (function () {
         this.http = http;
         this.websocketService = websocketService;
         this.sessionService = sessionService;
-        this.name = localStorage.getItem('name');
-        this.totalVictories = localStorage.getItem('totalVictories');
-        this.username = localStorage.getItem('username');
+        this.name = sessionStorage.getItem('name');
+        this.totalVictories = sessionStorage.getItem('totalVictories');
+        this.username = sessionStorage.getItem('username');
         this.gamesPending = [];
         this._serverPath = 'http://localhost:8888/api/v1/';
         if (!this.sessionService.isLoggedIn()) {
@@ -31,7 +31,7 @@ var LobbyComponent = (function () {
     //public id_token: any = localStorage.getItem('token');
     LobbyComponent.prototype.getGamesPending = function () {
         var _this = this;
-        var authToken = localStorage.getItem('id_token');
+        var authToken = sessionStorage.getItem('id_token');
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'bearer ' + authToken);
