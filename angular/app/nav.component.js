@@ -19,6 +19,23 @@ var NavComponent = (function () {
         this.sessionService = sessionService;
         this._serverPath = 'http://localhost:8888/api/v1/';
     }
+    NavComponent.prototype.refresh = function () {
+        this.name = localStorage.getItem('name');
+        this.avatar = localStorage.getItem('avatar');
+    };
+    NavComponent.prototype.userIsIn = function () {
+        if (this.sessionService.isLoggedIn()) {
+            this.refresh();
+            return true;
+        }
+        return false;
+    };
+    //Isto ainda não está a funcionar mto bem
+    NavComponent.prototype.userIsOut = function () {
+        this.sessionService.logout();
+        this.logout();
+        localStorage.clear();
+    };
     NavComponent.prototype.logout = function () {
         var _this = this;
         var authToken = localStorage.getItem('id_token');

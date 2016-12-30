@@ -24,6 +24,9 @@ var LobbyComponent = (function () {
         this.username = localStorage.getItem('username');
         this.gamesPending = [];
         this._serverPath = 'http://localhost:8888/api/v1/';
+        if (!this.sessionService.isLoggedIn()) {
+            this.router.navigate(['login']);
+        }
     }
     //public id_token: any = localStorage.getItem('token');
     LobbyComponent.prototype.getGamesPending = function () {

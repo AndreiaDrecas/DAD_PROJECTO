@@ -3,7 +3,10 @@ import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@an
 import { Router } from '@angular/router';
 import { WebSocketService } from '../notifications/websocket.service';
 import { SessionService } from '../authentication/session.service';
+<<<<<<< HEAD
 
+=======
+>>>>>>> ebe506fc4a920ccdd2944e803b58bf34104c7a4c
 
 @Component({
     moduleId: module.id,
@@ -18,9 +21,14 @@ export class LobbyComponent {
     public username: any = localStorage.getItem('username');
     public gamesPending: any[] = [];
 
+
     constructor(public router: Router, public http: Http, private websocketService: WebSocketService, 
     private sessionService: SessionService) {
         this._serverPath = 'http://localhost:8888/api/v1/';
+        if(!this.sessionService.isLoggedIn()){
+            this.router.navigate(['login']);
+        }
+        
     }
     //public id_token: any = localStorage.getItem('token');
 

@@ -1,13 +1,6 @@
-<h1>Welcome to the Lobby, {{name}}!</h1>
-<hr>
-<h3>Your total victories: {{totalVictories}}</h3>
 
-<button class="logout" (click)="logout()" md-raised-button color="accent">Logout</button>
 
-<h2 class="gamesPending">Games Pending</h2>
-<button class="btn btn-primary" (click)="getGamesPending()">Get pending Games</button>
-
-<p *ngFor="let m of gamesPending">{{m}}</p>
+<gamesPending></gamesPending>
 
 <div class="container">
 

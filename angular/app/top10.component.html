@@ -16,7 +16,18 @@
 <!-- Descomentar o código seguinte para voltar --> 
 
 <div class="col-md-6 col-md-offset-3">
-    <p>You're in Top10</p>
-   <h2>Top 10 Victories  <button class="btn btn-primary" (click)="getTop10()">Top 10 Vic</button></h2>
-    <p *ngFor="let m of Top10Victories">{{m}}</p>
+    <h2>Top 10 Victories  <button class="btn btn-primary" (click)="getTop10()"> Refresh </button></h2>
+    <p *ngFor="let m of Top10Victories"></p>
+    <table>
+    <tr>
+        
+        <th>Name</th>
+        <th>Number of  Victories</th>
+    </tr>
+    <tr *ngFor="let m of Top10Victories">
+       
+        <td>{{m.name}}</td>
+        <td>{{m.totalVictories}}</td>
+    </tr>
+</table>
 </div>

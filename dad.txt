@@ -1,12 +1,12 @@
-Ponto 1 - fazer a vista/component para mostrar lista de players
+OK Ponto 1 - fazer a vista/component para mostrar lista de players (TOP 10 ) OK, Gabriel
 
-Ponto 2 - fazer a vista/component para mostrar lista de games(com estado)
+OK Ponto 2 - fazer a vista/component para mostrar lista de games(com estado) OK, Gabriel
 
-Ponto 3 - fazer a entrada de um jogo pendente 
+QUASE OK Ponto 3 - fazer a entrada de um jogo pendente QUASE OK, falta fazer a chamada a API mas ja aparece na listagem.
 
-Ponto 4- implementar spa(navigate do menu) com home, lobby , top 10 ( DASHBOARD) IMPLEMENTADO OK, Gabriel
+OK Ponto 4- implementar spa(navigate do menu) com home, lobby , top 10 ( DASHBOARD) IMPLEMENTADO OK, Gabriel
 
-Ponto 5- adicionar imagem ao player
+QUASE OK (FALTA ADD IMAGEM AO AVATAR, se ja tiver aparece se nao fica em branco)Ponto 5- adicionar imagem ao player ok, GABRIEL
 
 Ponto 6- servi�os de autenticacao externos - facebook. twitter , etc
 
@@ -18,11 +18,12 @@ Ponto 8- alterar o register para confirmacao da senha e campo email ( e fazer as
 Ponto 9- fazer a api do jogo
 
 
-PONTO 10 IMPORTANTE!!!!! - a forma que estamos a fazer o LOGIN esta quase certa, so falta 1 coisa.. nao podemos guardar o player localstorage e sim num array que teremos q criar( ao fazer loggout teremos q retirar as informacoes que la estiverem acho eu), isto porque depois nao conseguimos fazer o controlo.. encontrei um site para fazer isso
+OK PONTO 10 IMPORTANTE!!!!! - a forma que estamos a fazer o LOGIN esta quase certa, so falta 1 coisa.. nao podemos guardar o player localstorage e sim num array que teremos q criar( ao fazer loggout teremos q retirar as informacoes que la estiverem acho eu), isto porque depois nao conseguimos fazer o controlo.. encontrei um site para fazer isso
 https://medium.com/@blacksonic86/angular-2-authentication-revisited-611bf7373bf9#.kvcm6vsww
 Ainda n está tudo mudado, mas criei um component nav, para controlarmos melhor os botões login e logout
 Criei o tal serviço - session.component, ainda n está mto funcional. Vou tentar por isto a funcionar entretanto.
+ESTIVE A FAZER O MESMO Q TU, UTILIZEI O TEU CODIGO E COLOQUEI O MEU A FUNCIONAR JUNTAMENTE COM O TEU ANDRE, a PROTECAO DO LOBBY JA ESTA FEITA.
 
-ainda nao tive tempo de fazer, mas se ninguem o fizer irei fazer. acho q ja temos o GetPlayer na api.. falta so resolver como iremos tratar os dados localmente.
+
 
 Ponto 11 - Mostrar os histórico dos jogos (a página já está criada, agora é só mostrar a informação)

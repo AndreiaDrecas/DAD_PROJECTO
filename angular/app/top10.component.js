@@ -17,6 +17,7 @@ var Top10Component = (function () {
         this.http = http;
         this.Top10Victories = [];
         this._serverPath = 'http://localhost:8888/api/v1/';
+        this.getTop10();
     }
     Top10Component.prototype.getTop10 = function () {
         var _this = this;
@@ -25,7 +26,7 @@ var Top10Component = (function () {
         this.http.get(this._serverPath + 'top10', { headers: headers, withCredentials: false })
             .subscribe(function (response) {
             _this.Top10Victories = response.json();
-            console.log(response.json());
+            //console.log(response.json());
         }, function (error) {
             alert(error.text());
             console.log(error.text());
