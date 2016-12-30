@@ -23,8 +23,9 @@ export class NewGameComponent {
 		this.authToken = sessionStorage.getItem('id_token');
 		this.arrayPlayers.push({ player: id, score: 0 });
 		this._serverPath = 'http://localhost:8888/api/v1/';
+		
 	}
-
+ 
 
 	create() {
 
