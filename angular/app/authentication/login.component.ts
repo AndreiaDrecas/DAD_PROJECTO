@@ -11,45 +11,12 @@ import { SessionService } from './session.service';
 })
 
 export class LoginComponent {
-  public _serverPath: string;
-  public name: any;
 
-  constructor(public router: Router, public http: Http, private sessionService: SessionService) {
-    this._serverPath = 'http://localhost:8888/api/v1/login';
-  }
+  constructor(public router: Router, public http: Http, private sessionService: SessionService) {}
+
 
   login(event: any, username: any, password: any) {
-    event.preventDefault();
-
-    let body = JSON.stringify({ username, password });
-    let name = JSON.stringify({ password });
-
-    // session Service
-    this.sessionService.login();
-
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    this.http.post(this._serverPath, body, { headers: headers })
-      .subscribe(
-      response => {
-        console.log(response.json());
-        localStorage.setItem('id_token', response.json().token);
-
-        localStorage.setItem('name', response.json().name);
-        localStorage.setItem('totalVictories', response.json().totalVictories);
-        localStorage.setItem('username', response.json().username);
-        console.log(response.json().token);
-        this.router.navigate(['lobby']);
-      },
-      error => {
-        alert(error.text());
-        console.log(error.text());
-      }
-      );
+    this.sessionService.login(event, username, password);
   }
-
-
-
 
 }

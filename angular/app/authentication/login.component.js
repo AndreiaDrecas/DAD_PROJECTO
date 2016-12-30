@@ -17,30 +17,9 @@ var LoginComponent = (function () {
         this.router = router;
         this.http = http;
         this.sessionService = sessionService;
-        this._serverPath = 'http://localhost:8888/api/v1/login';
     }
     LoginComponent.prototype.login = function (event, username, password) {
-        var _this = this;
-        event.preventDefault();
-        var body = JSON.stringify({ username: username, password: password });
-        var name = JSON.stringify({ password: password });
-        // session Service
-        this.sessionService.login();
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        this.http.post(this._serverPath, body, { headers: headers })
-            .subscribe(function (response) {
-            console.log(response.json());
-            localStorage.setItem('id_token', response.json().token);
-            localStorage.setItem('name', response.json().name);
-            localStorage.setItem('totalVictories', response.json().totalVictories);
-            localStorage.setItem('username', response.json().username);
-            console.log(response.json().token);
-            _this.router.navigate(['lobby']);
-        }, function (error) {
-            alert(error.text());
-            console.log(error.text());
-        });
+        this.sessionService.login(event, username, password);
     };
     return LoginComponent;
 }());

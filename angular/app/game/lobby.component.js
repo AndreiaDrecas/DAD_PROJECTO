@@ -12,11 +12,13 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
 var websocket_service_1 = require("../notifications/websocket.service");
+var session_service_1 = require("../authentication/session.service");
 var LobbyComponent = (function () {
-    function LobbyComponent(router, http, websocketService) {
+    function LobbyComponent(router, http, websocketService, sessionService) {
         this.router = router;
         this.http = http;
         this.websocketService = websocketService;
+        this.sessionService = sessionService;
         this.name = localStorage.getItem('name');
         this.totalVictories = localStorage.getItem('totalVictories');
         this.username = localStorage.getItem('username');
@@ -40,23 +42,7 @@ var LobbyComponent = (function () {
         });
     };
     LobbyComponent.prototype.logout = function () {
-        var _this = this;
-        var authToken = localStorage.getItem('id_token');
-        console.log(authToken);
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'bearer ' + authToken);
-        var body = JSON.stringify({});
-        // headers.append('Authorization','Bearer 4a1fc711f2f7756353da87bf11e8d6a4828418a6');
-        console.log(headers);
-        this.http.post(this._serverPath + 'logout', body, { headers: headers, withCredentials: false })
-            .subscribe(function (response) {
-            alert("Logout success");
-            _this.router.navigate(['login']);
-        }, function (error) {
-            alert(error.text());
-            console.log(error.text());
-        });
+        this.sessionService.logout();
     };
     return LobbyComponent;
 }());
@@ -66,7 +52,8 @@ LobbyComponent = __decorate([
         selector: 'lobby',
         templateUrl: 'lobby.component.html'
     }),
-    __metadata("design:paramtypes", [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http, websocket_service_1.WebSocketService,
+        session_service_1.SessionService])
 ], LobbyComponent);
 exports.LobbyComponent = LobbyComponent;
 //# sourceMappingURL=lobby.component.js.map

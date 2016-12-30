@@ -17,25 +17,8 @@ var NavComponent = (function () {
         this.router = router;
         this.http = http;
         this.sessionService = sessionService;
-        this.inSession = false;
-        this.hide = true;
         this._serverPath = 'http://localhost:8888/api/v1/';
     }
-    NavComponent.prototype.userIsIn = function () {
-        if (this.sessionService.isLoggedIn()) {
-            this.inSession = true;
-            this.hide = false;
-            return true;
-        }
-        return false;
-    };
-    //Isto ainda não está a funcionar mto bem
-    NavComponent.prototype.userIsOut = function () {
-        this.sessionService.logout();
-        this.inSession = false;
-        this.hide = true;
-        this.logout();
-    };
     NavComponent.prototype.logout = function () {
         var _this = this;
         var authToken = localStorage.getItem('id_token');

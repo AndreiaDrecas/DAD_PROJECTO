@@ -10,32 +10,11 @@ import { Router } from '@angular/router';
 })
 
 export class NavComponent {
-    public hide: boolean;
-    public inSession = false;
     public _serverPath: string;
 
     constructor(public router: Router, public http: Http, private sessionService: SessionService) {
-        this.hide = true;
         this._serverPath = 'http://localhost:8888/api/v1/';
-    }
 
-    userIsIn() {
-        if (this.sessionService.isLoggedIn()) {
-            this.inSession = true;
-            this.hide = false;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    //Isto ainda não está a funcionar mto bem
-    userIsOut() {
-        this.sessionService.logout();
-        this.inSession = false;
-        this.hide = true;
-        this.logout();
     }
 
     logout() {
@@ -51,6 +30,7 @@ export class NavComponent {
         this.http.post(this._serverPath + 'logout', body, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
             .subscribe(
             response => {
+                
                 alert("Logout success");
                 this.router.navigate(['login']);
             },
