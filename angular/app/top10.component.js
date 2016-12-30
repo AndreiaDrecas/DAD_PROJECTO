@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var router_1 = require('@angular/router');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var router_1 = require("@angular/router");
 var Top10Component = (function () {
     function Top10Component(router, http) {
         this.router = router;
@@ -32,15 +32,15 @@ var Top10Component = (function () {
             console.log(error.text());
         });
     };
-    Top10Component = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'top10',
-            templateUrl: 'top10.component.html'
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, http_1.Http])
-    ], Top10Component);
     return Top10Component;
 }());
+Top10Component = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'top10',
+        templateUrl: 'top10.component.html'
+    }),
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http])
+], Top10Component);
 exports.Top10Component = Top10Component;
 //# sourceMappingURL=top10.component.js.map

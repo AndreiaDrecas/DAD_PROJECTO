@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var ValidatorService = (function () {
     function ValidatorService() {
     }
@@ -52,11 +52,11 @@ var ValidatorService = (function () {
             }
         };
     };
-    ValidatorService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], ValidatorService);
     return ValidatorService;
 }());
+ValidatorService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], ValidatorService);
 exports.ValidatorService = ValidatorService;
 //# sourceMappingURL=validator.service.js.map

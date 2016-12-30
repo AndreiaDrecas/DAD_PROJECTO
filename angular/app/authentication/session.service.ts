@@ -30,9 +30,8 @@ export class SessionService {
 
         if (response.ok) {
 
-          
+          sessionStorage.setItem('_id', response.json()._id);
           sessionStorage.setItem('id_token', response.json().token);
-         
           sessionStorage.setItem('name', response.json().name);
           sessionStorage.setItem('totalVictories', response.json().totalVictories);
           sessionStorage.setItem('username', response.json().username);
@@ -56,7 +55,7 @@ export class SessionService {
 
   logout() {
 
-    let authToken = localStorage.getItem('id_token');
+    let authToken = sessionStorage.getItem('id_token');
     console.log(authToken);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

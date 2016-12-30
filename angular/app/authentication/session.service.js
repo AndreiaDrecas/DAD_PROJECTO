@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var router_1 = require('@angular/router');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var router_1 = require("@angular/router");
 var SessionService = (function () {
     function SessionService(router, http) {
         this.router = router;
@@ -31,6 +31,7 @@ var SessionService = (function () {
             .post(this._serverPathLogin, body, { headers: headers })
             .subscribe(function (response) {
             if (response.ok) {
+                sessionStorage.setItem('_id', response.json()._id);
                 sessionStorage.setItem('id_token', response.json().token);
                 sessionStorage.setItem('name', response.json().name);
                 sessionStorage.setItem('totalVictories', response.json().totalVictories);
@@ -46,7 +47,7 @@ var SessionService = (function () {
     };
     SessionService.prototype.logout = function () {
         var _this = this;
-        var authToken = localStorage.getItem('id_token');
+        var authToken = sessionStorage.getItem('id_token');
         console.log(authToken);
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
@@ -71,11 +72,11 @@ var SessionService = (function () {
     SessionService.prototype.isLoggedIn = function () {
         return this.loggedIn;
     };
-    SessionService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [router_1.Router, http_1.Http])
-    ], SessionService);
     return SessionService;
 }());
+SessionService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http])
+], SessionService);
 exports.SessionService = SessionService;
 //# sourceMappingURL=session.service.js.map
