@@ -16,7 +16,7 @@ var SessionService = (function () {
         this.router = router;
         this.http = http;
         this.loggedIn = false;
-        this.loggedIn = !!localStorage.getItem('id_token');
+        this.loggedIn = !!localStorage.getItem('id_token'); //!!localStorage.getItem('id_toen'); quero entender o porque. gabriel
         this._serverPathLogin = 'http://localhost:8888/api/v1/login';
         this._serverPathLogout = 'http://localhost:8888/api/v1/';
     }
@@ -33,11 +33,12 @@ var SessionService = (function () {
             if (response.ok) {
                 console.log(response.json());
                 localStorage.setItem('id_token', response.json().token);
-                _this.loggedIn = true;
                 localStorage.setItem('name', response.json().name);
                 localStorage.setItem('totalVictories', response.json().totalVictories);
                 localStorage.setItem('username', response.json().username);
+                localStorage.setItem('avatar', response.json().avatar);
                 console.log(response.json().token);
+                _this.loggedIn = true;
                 _this.router.navigate(['lobby']);
             }
         }, function (error) {
@@ -60,8 +61,8 @@ var SessionService = (function () {
             .subscribe(function (response) {
             if (response.ok) {
                 alert("Logout success");
-                localStorage.clear();
                 _this.loggedIn = false;
+                localStorage.clear();
                 _this.router.navigate(['login']);
             }
         }, function (error) {

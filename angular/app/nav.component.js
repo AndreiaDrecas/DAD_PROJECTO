@@ -28,6 +28,7 @@ var NavComponent = (function () {
             this.refresh();
             return true;
         }
+        localStorage.clear();
         return false;
     };
     NavComponent.prototype.logout = function () {

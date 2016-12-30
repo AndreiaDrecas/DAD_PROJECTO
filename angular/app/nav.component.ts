@@ -29,7 +29,7 @@ export class NavComponent {
             this.refresh();
             return true;
         }
-
+        localStorage.clear();
         return false;
     }
 

@@ -64,7 +64,6 @@ var Player = (function () {
                 response.send(400, 'No player data');
                 return next();
             }
-            // let passAux = sha1(player.passwordHash);
             player.passwordHash = sha1(player.passwordHash);
             app_database_1.databaseConnection.db.collection('players')
                 .insertOne(player)

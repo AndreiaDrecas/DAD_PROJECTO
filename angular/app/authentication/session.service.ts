@@ -9,7 +9,7 @@ export class SessionService {
   private _serverPathLogout: string;
 
   constructor(public router: Router, private http: Http) {
-    this.loggedIn = !!localStorage.getItem('id_token');
+    this.loggedIn = !!localStorage.getItem('id_token'); //!!localStorage.getItem('id_toen'); quero entender o porque. gabriel
     this._serverPathLogin = 'http://localhost:8888/api/v1/login';
     this._serverPathLogout = 'http://localhost:8888/api/v1/';
   }
@@ -32,13 +32,14 @@ export class SessionService {
 
           console.log(response.json());
           localStorage.setItem('id_token', response.json().token);
-          this.loggedIn = true;
-
+         
           localStorage.setItem('name', response.json().name);
           localStorage.setItem('totalVictories', response.json().totalVictories);
           localStorage.setItem('username', response.json().username);
-
+          localStorage.setItem('avatar', response.json().avatar);
           console.log(response.json().token);
+           this.loggedIn = true;
+
 
 
 
@@ -72,9 +73,9 @@ export class SessionService {
         if (response.ok) {
           alert("Logout success");
 
-          localStorage.clear();
-          this.loggedIn = false;
 
+          this.loggedIn = false;
+          localStorage.clear();
           this.router.navigate(['login']);
         }
 

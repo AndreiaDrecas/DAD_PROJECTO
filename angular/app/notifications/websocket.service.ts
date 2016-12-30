@@ -16,7 +16,7 @@ export class WebSocketService {
     }
 
     sendChatMessage(message: any) {
-        this.socket.emit('chat', message);
+        this.socket.emit('chat', localStorage.getItem('name') + ': ' + message);
     }
 
     sendTable(tabuleiro: any){
