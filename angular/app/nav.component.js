@@ -37,23 +37,7 @@ var NavComponent = (function () {
         localStorage.clear();
     };
     NavComponent.prototype.logout = function () {
-        var _this = this;
-        var authToken = localStorage.getItem('id_token');
-        console.log(authToken);
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'bearer ' + authToken);
-        var body = JSON.stringify({});
-        // headers.append('Authorization','Bearer 4a1fc711f2f7756353da87bf11e8d6a4828418a6');
-        console.log(headers);
-        this.http.post(this._serverPath + 'logout', body, { headers: headers, withCredentials: false })
-            .subscribe(function (response) {
-            alert("Logout success");
-            _this.router.navigate(['login']);
-        }, function (error) {
-            alert(error.text());
-            console.log(error.text());
-        });
+        this.sessionService.logout();
     };
     return NavComponent;
 }());

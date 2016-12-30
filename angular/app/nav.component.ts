@@ -17,7 +17,6 @@ export class NavComponent {
     constructor(public router: Router, public http: Http, private sessionService: SessionService) {
         this._serverPath = 'http://localhost:8888/api/v1/';
 
-        
     }
 
     refresh(){
@@ -42,26 +41,6 @@ export class NavComponent {
     }
 
     logout() {
-
-        let authToken = localStorage.getItem('id_token');
-        console.log(authToken);
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'bearer ' + authToken);
-        let body = JSON.stringify({});
-        // headers.append('Authorization','Bearer 4a1fc711f2f7756353da87bf11e8d6a4828418a6');
-        console.log(headers);
-        this.http.post(this._serverPath + 'logout', body, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
-            .subscribe(
-            response => {
-                
-                alert("Logout success");
-                this.router.navigate(['login']);
-            },
-            error => {
-                alert(error.text());
-                console.log(error.text());
-            }
-            );
+        this.sessionService.logout();
     }
 }
