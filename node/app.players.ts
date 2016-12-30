@@ -2,6 +2,7 @@ const mongodb = require('mongodb');
 const util = require('util');
 import {HandlerSettings} from './handler.settings';
 import {databaseConnection as database} from './app.database';
+const sha1 = require('sha1');
 
 export class Player {
 
@@ -69,7 +70,8 @@ export class Player {
             response.send(400, 'No player data');
             return next();
         }
-        database.db.collection('players')
+        player.passwordHash = sha1(player.passwordHash);
+            database.db.collection('players')
             .insertOne(player)
             .then(result => this.returnPlayer(result.insertedId, response, next))
             .catch(err => this.handleError(err, response, next));

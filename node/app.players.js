@@ -2,6 +2,7 @@
 var mongodb = require('mongodb');
 var util = require('util');
 var app_database_1 = require('./app.database');
+var sha1 = require('sha1');
 var Player = (function () {
     function Player() {
         var _this = this;
@@ -63,6 +64,8 @@ var Player = (function () {
                 response.send(400, 'No player data');
                 return next();
             }
+            // let passAux = sha1(player.passwordHash);
+            player.passwordHash = sha1(player.passwordHash);
             app_database_1.databaseConnection.db.collection('players')
                 .insertOne(player)
                 .then(function (result) { return _this.returnPlayer(result.insertedId, response, next); })

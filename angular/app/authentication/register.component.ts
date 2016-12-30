@@ -23,10 +23,10 @@ export class RegisterComponent {
     }
 
 
-    register(name: any, username: any, password: any, email: any) {
+    register(name: any, username: any, passwordHash: any, email: any) {
         let avatar = "";
         let totalVictories = 0;
-        let body = JSON.stringify({ name, username, password, email, avatar, totalVictories });
+        let body = JSON.stringify({ name, username, passwordHash, email, avatar, totalVictories });
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

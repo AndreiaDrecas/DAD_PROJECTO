@@ -60,7 +60,7 @@ var SessionService = (function () {
             .subscribe(function (response) {
             if (response.ok) {
                 alert("Logout success");
-                localStorage.removeItem('id_token');
+                localStorage.clear();
                 _this.loggedIn = false;
                 _this.router.navigate(['login']);
             }

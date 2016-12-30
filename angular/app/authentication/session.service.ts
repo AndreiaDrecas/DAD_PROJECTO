@@ -72,7 +72,7 @@ export class SessionService {
         if (response.ok) {
           alert("Logout success");
 
-          localStorage.removeItem('id_token');
+          localStorage.clear();
           this.loggedIn = false;
 
           this.router.navigate(['login']);
