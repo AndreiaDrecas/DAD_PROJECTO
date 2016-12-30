@@ -14,6 +14,7 @@ export class Top10Component {
     constructor(public router: Router, public http: Http) {
         this._serverPath = 'http://localhost:8888/api/v1/';
         this.getTop10();
+        
     }
 
     getTop10() {
