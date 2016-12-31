@@ -8,7 +8,7 @@ import { LoginComponent } from './authentication/login.component';
 import { RegisterComponent } from './authentication/register.component';
 import { LobbyComponent }  from './game/lobby.component';
 import { NewGameComponent } from './game/newGame.component';
-
+import { GameComponent } from './game/game.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -17,11 +17,11 @@ const appRoutes: Routes = [
     { path: 'lobby', component: LobbyComponent },
     { path: 'top10', component: Top10Component },
     { path: 'gameHistory', component: GameHistoryComponent },
-    { path: 'game' , component: NewGameComponent },
-    
+   // { path: 'game' , component: NewGameComponent },
+    { path: 'game/:id' , component: GameComponent },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: '' , pathMatch: 'full'}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

@@ -1,6 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+
 import { WebSocketService } from '../notifications/websocket.service';
 import { Game } from '../gameEngine/game';
+
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -8,18 +11,31 @@ import { Game } from '../gameEngine/game';
     templateUrl: 'game.component.html',
     styleUrls: ['game.component.css']
 })
-export class GameComponent implements OnInit{
+
+export class GameComponent implements OnInit, OnDestroy {
+  id: number;
+ 
 
     public game: Game;
 
-constructor(private websocketService: WebSocketService) {}
+constructor(private websocketService: WebSocketService, private route: ActivatedRoute) {}
 
-    ngOnInit() {
-        
-       this.game = new Game(4);
+private sub: any;      // -> Subscriber
 
-    }
+ngOnInit() {
+    // get URL parameters
+    this.sub = this.route
+        .params
+        .subscribe(params => {
+           
+            this.id = params['id'];
+           
+    });
+}
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
     getBoard(){
 
@@ -30,3 +46,4 @@ constructor(private websocketService: WebSocketService) {}
 
     }
 }
+
