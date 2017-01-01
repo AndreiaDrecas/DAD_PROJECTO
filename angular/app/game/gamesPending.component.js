@@ -21,19 +21,52 @@ var gamesPendingComponent = (function () {
         this.totalVictories = sessionStorage.getItem('totalVictories');
         this.username = sessionStorage.getItem('username');
         this.gamesPending = [];
+        this.authToken = sessionStorage.getItem('id_token');
+        this.idPlayer = sessionStorage.getItem('_id');
+        this.arrayPlayers = [];
         this._serverPath = 'http://localhost:8888/api/v1/';
         this.getGamesPending();
     }
     //public id_token: any = localStorage.getItem('token');
     gamesPendingComponent.prototype.enterGame = function (id) {
-        this.router.navigate(['game', id]);
+        this.getGame(id);
+    };
+    gamesPendingComponent.prototype.getGame = function (id) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'bearer ' + this.authToken);
+        this.http.get(this._serverPath + 'games/' + id, { headers: headers, withCredentials: false })
+            .subscribe(function (response) {
+            if (response.json().players.length < 5) {
+                _this.arrayPlayers = response.json().players;
+                _this.arrayPlayers.push({ player: id, score: 0 });
+                var body = JSON.stringify({ players: _this.arrayPlayers, state: 'pending' });
+                _this.updateGame(body, id);
+            }
+        }, function (error) {
+            alert(error.text());
+            console.log(error.text());
+        });
+    };
+    gamesPendingComponent.prototype.updateGame = function (body, id) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'bearer ' + this.authToken);
+        this.http.put(this._serverPath + 'games/' + id, body, { headers: headers, withCredentials: false })
+            .subscribe(function (response) {
+            _this.router.navigate(['game', id]);
+        }, function (error) {
+            alert(error.text());
+            console.log(error.text());
+        });
     };
     gamesPendingComponent.prototype.getGamesPending = function () {
         var _this = this;
-        var authToken = sessionStorage.getItem('id_token');
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'bearer ' + authToken);
+        headers.append('Authorization', 'bearer ' + this.authToken);
         this.http.get(this._serverPath + 'games', { headers: headers, withCredentials: false })
             .subscribe(function (response) {
             _this.gamesPending = response.json();
