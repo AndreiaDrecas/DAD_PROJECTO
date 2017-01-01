@@ -23,6 +23,11 @@ export class gamesPendingComponent {
     }
     //public id_token: any = localStorage.getItem('token');
 
+
+    enterGame(id: number){
+        this.router.navigate(['game', id]);
+    }
+
     getGamesPending() {
         let authToken = sessionStorage.getItem('id_token');
         let headers = new Headers();

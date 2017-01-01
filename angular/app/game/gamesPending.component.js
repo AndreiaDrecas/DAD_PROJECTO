@@ -25,6 +25,9 @@ var gamesPendingComponent = (function () {
         this.getGamesPending();
     }
     //public id_token: any = localStorage.getItem('token');
+    gamesPendingComponent.prototype.enterGame = function (id) {
+        this.router.navigate(['game', id]);
+    };
     gamesPendingComponent.prototype.getGamesPending = function () {
         var _this = this;
         var authToken = sessionStorage.getItem('id_token');
