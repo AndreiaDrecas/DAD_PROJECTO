@@ -2,8 +2,11 @@ const mongodb = require('mongodb');
 const util = require('util');
 import {HandlerSettings} from './handler.settings';
 import {databaseConnection as database} from './app.database';
+import { Game } from './gameEngine/game';
 
 export class GameAPI {
+
+    private game: any[] = [];
 
     private handleError = (err: string, response: any, next: any) => {
     	response.send(500, err);
@@ -73,6 +76,11 @@ export class GameAPI {
             .insertOne(game)
             .then(result => this.returnGame(result.insertedId, response, next))
             .catch(err => this.handleError(err, response, next));
+
+        this.game.push( new Game(4, response.json._id));
+        
+      
+
     }
 
     public deleteGame =  (request: any, response: any, next: any) => {

@@ -8,10 +8,11 @@ export class Game{
 
 public tabuleiros: Tabuleiro[];
 
+public _id: number;
 
+public constructor(nTabuleiros: number, idJogo: number){
 
-public constructor(nTabuleiros: number){
-
+this._id = idJogo;
 
 this.tabuleiros = Tabuleiro[nTabuleiros];
 

@@ -24,6 +24,7 @@ var NewGameComponent = (function () {
         this._serverPath = 'http://localhost:8888/api/v1/';
     }
     NewGameComponent.prototype.create = function () {
+        var _this = this;
         var body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
@@ -33,7 +34,7 @@ var NewGameComponent = (function () {
             .post(this._serverPath + 'games', body, { headers: headers, withCredentials: false })
             .subscribe(function (response) {
             if (response.ok) {
-                console.log(response.json());
+                _this.router.navigate(['game', response.json()._id]);
             }
         }, function (error) {
             alert(error.text());

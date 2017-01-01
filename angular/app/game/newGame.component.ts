@@ -40,9 +40,7 @@ export class NewGameComponent {
 			.subscribe(response => {
 
 				if (response.ok) {
-
-
-					console.log(response.json());
+					this.router.navigate(['game', response.json()._id]);
 
 				}
 			}, error => {

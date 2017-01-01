@@ -11,10 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var websocket_service_1 = require("../notifications/websocket.service");
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var session_service_1 = require("../authentication/session.service");
 var GameComponent = (function () {
-    function GameComponent(websocketService, route) {
+    function GameComponent(websocketService, route, router, sessionService) {
         this.websocketService = websocketService;
         this.route = route;
+        this.router = router;
+        this.sessionService = sessionService;
+        if (!this.sessionService.isLoggedIn()) {
+            this.router.navigate(['login']);
+        }
     }
     GameComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -41,7 +47,7 @@ GameComponent = __decorate([
         templateUrl: 'game.component.html',
         styleUrls: ['game.component.css']
     }),
-    __metadata("design:paramtypes", [websocket_service_1.WebSocketService, router_1.ActivatedRoute])
+    __metadata("design:paramtypes", [websocket_service_1.WebSocketService, router_1.ActivatedRoute, router_1.Router, session_service_1.SessionService])
 ], GameComponent);
 exports.GameComponent = GameComponent;
 //# sourceMappingURL=game.component.js.map
