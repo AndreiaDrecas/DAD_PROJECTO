@@ -1,8 +1,8 @@
 "use strict";
 var mongodb = require('mongodb');
 var util = require('util');
-var app_database_1 = require('./app.database');
-var game_1 = require('./gameEngine/game');
+var app_database_1 = require("./app.database");
+var game_1 = require("./gameEngine/game");
 var GameAPI = (function () {
     function GameAPI() {
         var _this = this;
@@ -23,6 +23,18 @@ var GameAPI = (function () {
                 else {
                     response.json(game);
                 }
+                next();
+            })
+                .catch(function (err) { return _this.handleError(err, response, next); });
+        };
+        this.getFinishedGames = function (request, response, next) {
+            app_database_1.databaseConnection.db.collection('games')
+                .find({
+                state: 'pending'
+            })
+                .toArray()
+                .then(function (games) {
+                response.json(games || []);
                 next();
             })
                 .catch(function (err) { return _this.handleError(err, response, next); });
@@ -94,6 +106,7 @@ var GameAPI = (function () {
         // Routes for the games
         this.init = function (server, settings) {
             server.get(settings.prefix + 'games', settings.security.authorize, _this.getGames);
+            server.get(settings.prefix + 'finishedgames', _this.getFinishedGames);
             server.get(settings.prefix + 'games/:id', settings.security.authorize, _this.getGame);
             server.put(settings.prefix + 'games/:id', settings.security.authorize, _this.updateGame);
             server.post(settings.prefix + 'games', settings.security.authorize, _this.createGame);

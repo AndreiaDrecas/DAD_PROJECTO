@@ -12,8 +12,8 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
 var websocket_service_1 = require("../notifications/websocket.service");
-var gamesPendingComponent = (function () {
-    function gamesPendingComponent(router, http, websocketService) {
+var GamesPendingComponent = (function () {
+    function GamesPendingComponent(router, http, websocketService) {
         this.router = router;
         this.http = http;
         this.websocketService = websocketService;
@@ -28,10 +28,10 @@ var gamesPendingComponent = (function () {
         this.getGamesPending();
     }
     //public id_token: any = localStorage.getItem('token');
-    gamesPendingComponent.prototype.enterGame = function (id) {
+    GamesPendingComponent.prototype.enterGame = function (id) {
         this.getGame(id);
     };
-    gamesPendingComponent.prototype.getGame = function (id) {
+    GamesPendingComponent.prototype.getGame = function (id) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
@@ -49,7 +49,7 @@ var gamesPendingComponent = (function () {
             console.log(error.text());
         });
     };
-    gamesPendingComponent.prototype.updateGame = function (body, id) {
+    GamesPendingComponent.prototype.updateGame = function (body, id) {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
@@ -62,7 +62,7 @@ var gamesPendingComponent = (function () {
             console.log(error.text());
         });
     };
-    gamesPendingComponent.prototype.getGamesPending = function () {
+    GamesPendingComponent.prototype.getGamesPending = function () {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
@@ -75,15 +75,15 @@ var gamesPendingComponent = (function () {
             console.log(error.text());
         });
     };
-    return gamesPendingComponent;
+    return GamesPendingComponent;
 }());
-gamesPendingComponent = __decorate([
+GamesPendingComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'gamesPending',
         templateUrl: 'gamesPending.component.html'
     }),
     __metadata("design:paramtypes", [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
-], gamesPendingComponent);
-exports.gamesPendingComponent = gamesPendingComponent;
+], GamesPendingComponent);
+exports.GamesPendingComponent = GamesPendingComponent;
 //# sourceMappingURL=gamesPending.component.js.map

@@ -10,7 +10,7 @@ import { WebSocketService } from '../notifications/websocket.service';
     templateUrl: 'gamesPending.component.html'
 })
 
-export class gamesPendingComponent {
+export class GamesPendingComponent {
     public _serverPath: string;
     public name: any = sessionStorage.getItem('name');
     public totalVictories: any = sessionStorage.getItem('totalVictories');
@@ -19,38 +19,38 @@ export class gamesPendingComponent {
     public authToken: string = sessionStorage.getItem('id_token');
     public idPlayer = sessionStorage.getItem('_id');
     public arrayPlayers: any[] = [];
-    
+
 
     constructor(public router: Router, public http: Http, private websocketService: WebSocketService) {
         this._serverPath = 'http://localhost:8888/api/v1/';
         this.getGamesPending();
-        
+
 
     }
     //public id_token: any = localStorage.getItem('token');
 
 
-    enterGame(id: number){
-        
+    enterGame(id: number) {
+
         this.getGame(id);
 
-        
+
     }
 
-    getGame(id: number){
+    getGame(id: number) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-       headers.append('Authorization', 'bearer ' + this.authToken);
-           this.http.get(this._serverPath + 'games/' + id, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
+        headers.append('Authorization', 'bearer ' + this.authToken);
+        this.http.get(this._serverPath + 'games/' + id, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
             .subscribe(
-            response => { 
-                if( response.json().players.length <5){
-                this.arrayPlayers = response.json().players;
-                this.arrayPlayers.push({ player: id, score: 0 });
-                let body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
-                this.updateGame(body, id);
+            response => {
+                if (response.json().players.length < 5) {
+                    this.arrayPlayers = response.json().players;
+                    this.arrayPlayers.push({ player: id, score: 0 });
+                    let body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
+                    this.updateGame(body, id);
                 }
-                
+
             },
             error => {
                 alert(error.text());
@@ -59,16 +59,16 @@ export class gamesPendingComponent {
             );
     }
 
-    updateGame(body: any, id: number){
+    updateGame(body: any, id: number) {
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-       headers.append('Authorization', 'bearer ' + this.authToken);
-        this.http.put(this._serverPath + 'games/' + id, body,<RequestOptionsArgs>{ headers: headers, withCredentials: false })
+        headers.append('Authorization', 'bearer ' + this.authToken);
+        this.http.put(this._serverPath + 'games/' + id, body, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
             .subscribe(
             response => {
-               this.router.navigate(['game', id]);
-                
+                this.router.navigate(['game', id]);
+
             },
             error => {
                 alert(error.text());
@@ -79,14 +79,14 @@ export class gamesPendingComponent {
     }
 
     getGamesPending() {
-       let headers = new Headers();
+        let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-       headers.append('Authorization', 'bearer ' + this.authToken);
+        headers.append('Authorization', 'bearer ' + this.authToken);
         this.http.get(this._serverPath + 'games', <RequestOptionsArgs>{ headers: headers, withCredentials: false })
             .subscribe(
             response => {
                 this.gamesPending = response.json();
-                
+
             },
             error => {
                 alert(error.text());

@@ -1,19 +1,18 @@
-
 <div class="col-md-6 col-md-offset-3">
-<h2 class="gamesPending">Games Pending  <button class="btn btn-primary" (click)="getGamesPending()"> Refresh </button></h2>
-    <p *ngFor="let m of Top10Victories"></p>
+    <h2 class="gamesPending">Games Pending <button class="btn btn-primary" (click)="getGamesPending()"> Refresh </button></h2>
+    
     <table>
-    <tr>
-        
-        <th>ID Game</th>
-        <th>Number of  Players</th>
-        <th>Enter Game</th>
-    </tr>
-    <tr *ngFor="let m of gamesPending">
-       
-        <td>{{m._id}}</td>
-        <td>{{m.players.length}}</td>
-        <td><button class="btn btn-sucess btn-xs" (click)="enterGame(m._id)"> Enter Game </button></td>
-    </tr>
-</table>
+        <tr>
+
+            <th>ID Game</th>
+            <th>Number of Players</th>
+            <th>Enter Game</th>
+        </tr>
+        <tr *ngFor="let m of gamesPending">
+
+            <td>{{m._id}}</td>
+            <td>{{m.players.length}}</td>
+            <td><button class="btn btn-sucess btn-xs" (click)="enterGame(m._id)"> Enter Game </button></td>
+        </tr>
+    </table>
 </div>

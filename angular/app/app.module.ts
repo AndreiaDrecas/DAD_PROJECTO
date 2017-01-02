@@ -24,7 +24,7 @@ import { ChatComponent } from './chat.component';
 import { NavComponent } from './nav.component';
 import { BoardComponent } from './game/board.component';
 import { GameComponent } from './game/game.component';
-import { gamesPendingComponent } from './game/gamesPending.component';
+import { GamesPendingComponent } from './game/gamesPending.component';
 import { ShipComponent } from './game/ship.component';
 import { WebSocketService } from './notifications/websocket.service';
 import { NewGameComponent } from './game/newGame.component';
@@ -33,7 +33,7 @@ import { NewGameComponent } from './game/newGame.component';
   imports: [BrowserModule, NotificationModule, FormsModule, routing],
   declarations: [AppComponent, ChatComponent, BoardComponent, ShipComponent,
     GameComponent, LoginComponent, RegisterComponent, HomeComponent, LobbyComponent, Top10Component, 
-    GameHistoryComponent, NavComponent,gamesPendingComponent, NewGameComponent ],
+    GameHistoryComponent, NavComponent, GamesPendingComponent, NewGameComponent ],
   providers: [ WebSocketService, SessionService, ValidatorService ],
   bootstrap: [ AppComponent ]
 })

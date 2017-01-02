@@ -19,21 +19,18 @@ var GameHistoryComponent = (function () {
         this._serverPath = 'http://localhost:8888/api/v1/';
     }
     GameHistoryComponent.prototype.getGameHistory = function () {
-        /*let headers = new Headers();
+        var _this = this;
+        var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        
-        this.http.get(this._serverPath+'top10',<RequestOptionsArgs> {headers: headers, withCredentials: false})
-        .subscribe(
-            response => {
-                this.Top10Victories = response.json();
-                console.log(response.json());
-            },
-            error => {
-                alert(error.text());
-                console.log(error.text());
-            }
-            );
-    */
+        this.http
+            .get(this._serverPath + 'finishedgames', { headers: headers, withCredentials: false })
+            .subscribe(function (response) {
+            _this.history = response.json();
+            console.log(response.json());
+        }, function (error) {
+            alert(error.text());
+            console.log(error.text());
+        });
     };
     return GameHistoryComponent;
 }());

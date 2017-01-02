@@ -1,2 +1,17 @@
-<h1>This is the game history!</h1>
-<hr>
+<div class="col-md-6 col-md-offset-3">
+    <h2 class="gameHistory">Game History <button class="btn btn-primary" (click)="getGameHistory()"> Refresh </button></h2>
+    <table>
+        <tr>
+
+            <th>ID Game</th>
+            <th>Players</th>
+        </tr>
+        <tr *ngFor="let m of history">
+
+            <td>{{m._id}}</td>
+            <div *ngFor="let f of m.players">
+                <td>{{f.player}}<br></td><br>
+            </div>
+        </tr>
+    </table>
+</div>

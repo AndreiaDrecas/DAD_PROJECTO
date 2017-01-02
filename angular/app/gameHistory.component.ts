@@ -17,21 +17,23 @@ export class GameHistoryComponent {
 
     getGameHistory() {
 
-        /*let headers = new Headers();
+        let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        
-        this.http.get(this._serverPath+'top10',<RequestOptionsArgs> {headers: headers, withCredentials: false})
-        .subscribe(
+
+        this.http
+            .get(this._serverPath + 'finishedgames', <RequestOptionsArgs>{ headers: headers, withCredentials: false })
+            .subscribe(
             response => {
-                this.Top10Victories = response.json();
+                this.history = response.json();
                 console.log(response.json());
+
             },
             error => {
                 alert(error.text());
                 console.log(error.text());
             }
             );
-    */
+
     }
 
 }

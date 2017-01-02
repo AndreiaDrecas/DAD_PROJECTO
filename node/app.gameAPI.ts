@@ -29,6 +29,19 @@ export class GameAPI {
             .catch(err => this.handleError(err, response, next));
     }
 
+    public getFinishedGames = (request: any, response: any, next: any) => {
+        database.db.collection('games')
+            .find({
+                state: 'pending'
+            })
+            .toArray()
+            .then(games => {
+                response.json(games || []);
+                next();
+            })
+            .catch(err => this.handleError(err, response, next));
+    }
+
     public getGames = (request: any, response: any, next: any) => {
         database.db.collection('games')
             .find({
@@ -105,6 +118,7 @@ export class GameAPI {
     // Routes for the games
     public init = (server: any, settings: HandlerSettings) => {
         server.get(settings.prefix + 'games', settings.security.authorize, this.getGames);
+        server.get(settings.prefix + 'finishedgames', this.getFinishedGames);
         server.get(settings.prefix + 'games/:id', settings.security.authorize, this.getGame);
         server.put(settings.prefix + 'games/:id', settings.security.authorize, this.updateGame);
         server.post(settings.prefix + 'games', settings.security.authorize, this.createGame);
