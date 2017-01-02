@@ -18,14 +18,22 @@ export class WebSocketServer {
             client.emit('players', Date.now() + ': Welcome to battleship');
             
             client.broadcast.emit('players', Date.now() + ': A new player has arrived');
+
+            client.emit('playersC', Date.now() + ': Welcome to battleship');
+            
+            client.broadcast.emit('playersC', Date.now() + ': A new player has arrived');
             
             client.on('chat', (data) => this.io.emit('chat', data));
+
+            client.on('chatC', (data) => this.io.emit('chatC', data));
             
             //recieve and send tabuleiro
             client.on('tabuleiro', function(tabuleiro){
                 console.log(tabuleiro);
                 io.sockets.emit('tabuleiro', tabuleiro);
             });
+
+            
 
             //Extra Exercise
             client.emit('board', this.board);

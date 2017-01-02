@@ -47,7 +47,8 @@ GameComponent = __decorate([
         templateUrl: 'game.component.html',
         styleUrls: ['game.component.css']
     }),
-    __metadata("design:paramtypes", [websocket_service_1.WebSocketService, router_1.ActivatedRoute, router_1.Router, session_service_1.SessionService])
+    __metadata("design:paramtypes", [websocket_service_1.WebSocketService, router_1.ActivatedRoute,
+        router_1.Router, session_service_1.SessionService])
 ], GameComponent);
 exports.GameComponent = GameComponent;
 //# sourceMappingURL=game.component.js.map
