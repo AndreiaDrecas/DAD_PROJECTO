@@ -1,10 +1,10 @@
 "use strict";
 var posicao_1 = require("./posicao");
-var TipoCelula;
 (function (TipoCelula) {
     TipoCelula[TipoCelula["Mar"] = 0] = "Mar";
     TipoCelula[TipoCelula["Navio"] = 1] = "Navio";
-})(TipoCelula = exports.TipoCelula || (exports.TipoCelula = {}));
+})(exports.TipoCelula || (exports.TipoCelula = {}));
+var TipoCelula = exports.TipoCelula;
 var Celula = (function () {
     //public pertenceA: Navio;
     function Celula(linha, coluna) {

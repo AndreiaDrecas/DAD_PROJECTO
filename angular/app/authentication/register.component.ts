@@ -18,40 +18,11 @@ export class RegisterComponent {
 
     constructor(public router: Router, public http: Http, private validator: ValidatorService) {
         this._serverPath = 'http://localhost:8888/api/v1/players'
-        /*this.errorMessagePasswordLength = null;
-        this.errorMessagePasswordConfirmation = null;
-        this.errorMessageValidName = null;*/
+        
     }
 
     validate(name: any, username: any, password: any, passwordConfirmation: any, email: any) {
-        //password >= 3
-        //nome de utilizador = nome único
-        //mail válido
-
-        /*this.errorMessagePasswordLength = null;
-        this.errorMessagePasswordConfirmation = null;
-        this.errorMessageValidName = null;
-
-        if (!this.validator.passwordLength(password)) {
-            this.errorMessagePasswordLength = "Password has few than 3 digits!";
-
-            return false;
-        }
-
-        if (!this.validator.matchingPasswords(password, passwordConfirmation)) {
-            this.errorMessagePasswordConfirmation = "Password and Password Confirmation are different!";
-
-            return false;
-        }
-
-        if (!this.validator.emailValidator) {
-            //this.errorMessage = "Email have wrong format!";
-
-            return false;
-        }
-
-        return true;*/
-
+       return true;
     }
 
 

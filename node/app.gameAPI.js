@@ -1,8 +1,8 @@
 "use strict";
 var mongodb = require('mongodb');
 var util = require('util');
-var app_database_1 = require("./app.database");
-var game_1 = require("./gameEngine/game");
+var app_database_1 = require('./app.database');
+var game_1 = require('./gameEngine/game');
 var GameAPI = (function () {
     function GameAPI() {
         var _this = this;
