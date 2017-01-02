@@ -19,6 +19,10 @@ export class WebSocketService {
         this.socket.emit('chat', sessionStorage.getItem('name') + ': ' + message);
     }
 
+    sendGameChatMessage(message: any) {
+        this.socket.emit('chatC', sessionStorage.getItem('name') + ': ' + message);
+    }
+
     sendTable(tabuleiro: any){
         console.log('cheguei ao websocket client');
         console.log('Numero de tiros: ' + tabuleiro.nTiros);
@@ -31,6 +35,13 @@ export class WebSocketService {
 
     getPlayersMessages(): Observable<any> {
         return this.listenOnChannel('players');
+    }
+
+    getGameChatMessages(): Observable<any> {
+        return this.listenOnChannel('chatC');
+    }
+    getGamePlayersMessages(): Observable<any> {
+        return this.listenOnChannel('playersC');
     }
 
     getChatMessages(): Observable<any> {

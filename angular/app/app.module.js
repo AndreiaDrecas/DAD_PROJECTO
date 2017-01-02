@@ -33,6 +33,7 @@ var gamesPending_component_1 = require("./game/gamesPending.component");
 var ship_component_1 = require("./game/ship.component");
 var websocket_service_1 = require("./notifications/websocket.service");
 var newGame_component_1 = require("./game/newGame.component");
+var gameChat_component_1 = require("./game/gameChat.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -43,7 +44,7 @@ AppModule = __decorate([
         imports: [platform_browser_1.BrowserModule, notifications_module_1.NotificationModule, forms_1.FormsModule, app_routing_1.routing],
         declarations: [app_component_1.AppComponent, chat_component_1.ChatComponent, board_component_1.BoardComponent, ship_component_1.ShipComponent,
             game_component_1.GameComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, home_component_1.HomeComponent, lobby_component_1.LobbyComponent, top10_component_1.Top10Component,
-            gameHistory_component_1.GameHistoryComponent, nav_component_1.NavComponent, gamesPending_component_1.GamesPendingComponent, newGame_component_1.NewGameComponent],
+            gameHistory_component_1.GameHistoryComponent, nav_component_1.NavComponent, gamesPending_component_1.GamesPendingComponent, newGame_component_1.NewGameComponent, gameChat_component_1.GameChatComponent],
         providers: [websocket_service_1.WebSocketService, session_service_1.SessionService, validator_service_1.ValidatorService],
         bootstrap: [app_component_1.AppComponent]
     }),

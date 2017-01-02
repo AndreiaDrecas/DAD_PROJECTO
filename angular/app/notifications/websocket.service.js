@@ -20,6 +20,9 @@ var WebSocketService = (function () {
     WebSocketService.prototype.sendChatMessage = function (message) {
         this.socket.emit('chat', sessionStorage.getItem('name') + ': ' + message);
     };
+    WebSocketService.prototype.sendGameChatMessage = function (message) {
+        this.socket.emit('chatC', sessionStorage.getItem('name') + ': ' + message);
+    };
     WebSocketService.prototype.sendTable = function (tabuleiro) {
         console.log('cheguei ao websocket client');
         console.log('Numero de tiros: ' + tabuleiro.nTiros);
@@ -30,6 +33,12 @@ var WebSocketService = (function () {
     };
     WebSocketService.prototype.getPlayersMessages = function () {
         return this.listenOnChannel('players');
+    };
+    WebSocketService.prototype.getGameChatMessages = function () {
+        return this.listenOnChannel('chatC');
+    };
+    WebSocketService.prototype.getGamePlayersMessages = function () {
+        return this.listenOnChannel('playersC');
     };
     WebSocketService.prototype.getChatMessages = function () {
         return this.listenOnChannel('chat');
