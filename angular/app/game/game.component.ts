@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from '../authentication/session.service';
 import { GameChatComponent } from '../game/gameChat.component';
 
+
 @Component({
     moduleId: module.id,
     selector: 'game',
@@ -21,12 +22,11 @@ export class GameComponent implements OnInit, OnDestroy {
     public game: Game;
 
     constructor(private websocketService: WebSocketService, private route: ActivatedRoute, 
-    private router: Router, private sessionService: SessionService) {
+        private router: Router, private sessionService: SessionService) {
 
         if (!this.sessionService.isLoggedIn()) {
             this.router.navigate(['login']);
         }
-
 
     }
 

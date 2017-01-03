@@ -23,6 +23,24 @@ export class WebSocketService {
         this.socket.emit('chatC', sessionStorage.getItem('name') + ': ' + message);
     }
 
+
+    //Métodos que será usado por todos os rooms
+    //Ainda em construção, quem souber como melhorar ajude
+    sendGCMessage(message: any, channel: any) {
+        this.socket.emit(channel, sessionStorage.getItem('name') + ': ' + message)
+    }
+
+
+    getGCMessages(channel: any): Observable<any> {
+        return this.listenOnChannel(channel);
+    }
+    
+    getGPMessages(players: any): Observable<any> {
+        return this.listenOnChannel(players);
+    }
+
+    //////////////////////////////////////////////////////////////////////
+
     sendTable(tabuleiro: any){
         console.log('cheguei ao websocket client');
         console.log('Numero de tiros: ' + tabuleiro.nTiros);
@@ -40,6 +58,7 @@ export class WebSocketService {
     getGameChatMessages(): Observable<any> {
         return this.listenOnChannel('chatC');
     }
+
     getGamePlayersMessages(): Observable<any> {
         return this.listenOnChannel('playersC');
     }

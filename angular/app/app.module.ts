@@ -17,6 +17,7 @@ import { LobbyComponent } from './game/lobby.component';
 //services
 import { SessionService } from './authentication/session.service';
 import { ValidatorService } from './validator.service';
+
 import { RouterModule } from '@angular/router';
 //dashboard
 import { NotificationModule } from './notifications/notifications.module';

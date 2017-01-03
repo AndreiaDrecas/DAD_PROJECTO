@@ -56,6 +56,7 @@ export class GameAPI {
     }
 
     public getGame =  (request: any, response: any, next: any) => {
+
         const id = new mongodb.ObjectID(request.params.id);
         this.returnGame(id, response, next);
     }
