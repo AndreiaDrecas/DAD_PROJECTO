@@ -30,3 +30,8 @@ Ponto 11 - Mostrar os histórico dos jogos (a página já está criada, agora é
 
 
 test
+
+
+
+
+http://www.benknowscode.com/2013/08/dynamically-creating-game-rooms-with-socket-io-node.html

@@ -8,7 +8,8 @@ var WebSocketServer = (function () {
             _this.initBoard();
             _this.io = io.listen(server);
             _this.io.sockets.on('connection', function (client) {
-                client.emit('players', Date.now() + ': Welcome to battleship');
+                var sessionid = client.id;
+                client.emit('players', sessionid + ': Welcome to battleship');
                 client.broadcast.emit('players', Date.now() + ': A new player has arrived');
                 client.emit('playersC', Date.now() + ': Welcome to battleship');
                 client.broadcast.emit('playersC', Date.now() + ': A new player has arrived');
