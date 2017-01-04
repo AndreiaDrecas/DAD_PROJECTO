@@ -19,7 +19,9 @@ var WebSocketService = (function () {
     }
     //usar este como teste
     WebSocketService.prototype.testSendChatMessage = function (message, room, player) {
-        this.socket.emit('join', { room: room, player: player });
+        //não faço bem ideia se será assim, mas dpois verei melhor quando conseguir
+        this.socket.emit('join', { room: room, player: player }, sessionStorage.getItem('name') + ': ' + message);
+        ;
     };
     WebSocketService.prototype.sendChatMessage = function (message) {
         this.socket.emit('chat', sessionStorage.getItem('name') + ': ' + message);
