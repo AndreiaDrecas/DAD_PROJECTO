@@ -17,16 +17,36 @@ export class NewGameComponent {
 	public arrayPlayers: any[] = [];
 	public authToken: any;
 	private _serverPath: string;
+	private room: number;
+	private userId: any;
+	private userName: any;
+
 
 	constructor(public router: Router, public http: Http, private websocketService: WebSocketService) {
-		let id = sessionStorage.getItem('_id');
+		this.userId = sessionStorage.getItem('_id');
+		this.userName = sessionStorage.getItem('username');
+
 		this.authToken = sessionStorage.getItem('id_token');
-		this.arrayPlayers.push({ player: id, score: 0 });
+		
 		this._serverPath = 'http://localhost:8888/api/v1/';
+
+
+	}
+
+	randomIntFromInterval(min: number, max: number) {
+		return Math.floor(Math.random() * (max - min + 1) + min);
 	}
 
 
 	create() {
+
+		this.arrayPlayers = [{
+			player: userId, name: userName, status: 'joined',
+			statusDate: Date.now(), score: 0
+		}];
+
+		this.room = this.randomIntFromInterval(10000000000, 99999999999);
+		console.log(this.room);
 
 		let body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
 		let headers = new Headers();

@@ -12,17 +12,14 @@ import { ValidatorService } from '../validator.service';
 
 export class RegisterComponent {
     public _serverPath: string;
-    public errorMessagePasswordLength: string;
-    public errorMessagePasswordConfirmation: string;
-    public errorMessageValidName: string;
 
     constructor(public router: Router, public http: Http, private validator: ValidatorService) {
         this._serverPath = 'http://localhost:8888/api/v1/players'
-        
+
     }
 
     validate(name: any, username: any, password: any, passwordConfirmation: any, email: any) {
-       return true;
+        return true;
     }
 
 
@@ -32,24 +29,24 @@ export class RegisterComponent {
 
         //if (this.validate(name, username, passwordHash, passwordConfirmation, email)) {
 
-            let body = JSON.stringify({ name, username, passwordHash, email, avatar, totalVictories });
+        let body = JSON.stringify({ name, username, passwordHash, email, avatar, totalVictories });
 
-            let headers = new Headers();
-            headers.append('Content-Type', 'application/json');
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
 
-            console.log(body);
-            this.http
-                .post(this._serverPath, body, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
-                .subscribe(
-                response => {
-                    alert("Registation success");
-                    this.router.navigate(['login']);
-                },
-                error => {
-                    alert(error.text());
-                    console.log(error.text());
-                }
-                );
+        console.log(body);
+        this.http
+            .post(this._serverPath, body, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
+            .subscribe(
+            response => {
+                alert("Registation success");
+                this.router.navigate(['login']);
+            },
+            error => {
+                alert(error.text());
+                console.log(error.text());
+            }
+            );
         //}
 
     }

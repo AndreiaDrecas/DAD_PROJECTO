@@ -5,14 +5,15 @@
         <tr>
 
             <th>ID Game</th>
-            <th>Number of Players</th>
-            <th>Enter Game</th>
+            <th>Nº. Players</th>
+            <th>Join Game</th>
+            <th>Status</th>
         </tr>
         <tr *ngFor="let m of gamesPending">
 
             <td>{{m._id}}</td>
             <td>{{m.players.length}}</td>
-            <td><button class="btn btn-sucess btn-xs" (click)="enterGame(m._id)"> Enter Game </button></td>
+            <td><button class="btn btn-sucess btn-xs" (click)="enterGame(m._id)">Enter Game</button></td>
         </tr>
     </table>
 </div>

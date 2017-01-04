@@ -12,13 +12,13 @@ import { WebSocketService } from '../notifications/websocket.service';
 
 export class GamesPendingComponent {
     public _serverPath: string;
-    public name: any = sessionStorage.getItem('name');
     public totalVictories: any = sessionStorage.getItem('totalVictories');
-    public username: any = sessionStorage.getItem('username');
+    private userName: any = sessionStorage.getItem('username');
     public gamesPending: any[] = [];
     public authToken: string = sessionStorage.getItem('id_token');
-    public idPlayer = sessionStorage.getItem('_id');
+    private userID = sessionStorage.getItem('_id');
     public arrayPlayers: any[] = [];
+    private body: any;
 
 
     constructor(public router: Router, public http: Http, private websocketService: WebSocketService) {
@@ -27,7 +27,6 @@ export class GamesPendingComponent {
 
 
     }
-    //public id_token: any = localStorage.getItem('token');
 
 
     enterGame(id: number) {
@@ -44,11 +43,25 @@ export class GamesPendingComponent {
         this.http.get(this._serverPath + 'games/' + id, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
             .subscribe(
             response => {
-                if (response.json().players.length < 5) {
+
+                if (response.json().players.length <= 4) {
+
                     this.arrayPlayers = response.json().players;
-                    this.arrayPlayers.push({ player: id, score: 0 });
-                    let body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
-                    this.updateGame(body, id);
+                    this.arrayPlayers.push({
+                        player: this.userID, name: this.userName, status: 'joined',
+                        statusDate: Date.now(), score: 0
+                    });
+
+                    //Podemos criar um serviço que invoque parte deste código e que se limite a saber
+                    //se já estão mais do que dois players (contando o array), se já estiverem mais
+                    //que dois no lobby, ao pé do botão enter game dizia: Ready to Start, has at least 2 players!
+                    // ou qq coisa deste género
+
+                    if (this.arrayPlayers.length > 1) {
+                        this.body = JSON.stringify({ players: this.arrayPlayers, state: 'readyToStart' });
+                    }
+
+                    this.updateGame(this.body, id);
                 }
 
             },

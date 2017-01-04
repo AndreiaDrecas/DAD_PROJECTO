@@ -17,17 +17,15 @@ var GamesPendingComponent = (function () {
         this.router = router;
         this.http = http;
         this.websocketService = websocketService;
-        this.name = sessionStorage.getItem('name');
         this.totalVictories = sessionStorage.getItem('totalVictories');
-        this.username = sessionStorage.getItem('username');
+        this.userName = sessionStorage.getItem('username');
         this.gamesPending = [];
         this.authToken = sessionStorage.getItem('id_token');
-        this.idPlayer = sessionStorage.getItem('_id');
+        this.userID = sessionStorage.getItem('_id');
         this.arrayPlayers = [];
         this._serverPath = 'http://localhost:8888/api/v1/';
         this.getGamesPending();
     }
-    //public id_token: any = localStorage.getItem('token');
     GamesPendingComponent.prototype.enterGame = function (id) {
         this.getGame(id);
     };
@@ -38,11 +36,20 @@ var GamesPendingComponent = (function () {
         headers.append('Authorization', 'bearer ' + this.authToken);
         this.http.get(this._serverPath + 'games/' + id, { headers: headers, withCredentials: false })
             .subscribe(function (response) {
-            if (response.json().players.length < 5) {
+            if (response.json().players.length <= 4) {
                 _this.arrayPlayers = response.json().players;
-                _this.arrayPlayers.push({ player: id, score: 0 });
-                var body = JSON.stringify({ players: _this.arrayPlayers, state: 'pending' });
-                _this.updateGame(body, id);
+                _this.arrayPlayers.push({
+                    player: _this.userID, name: _this.userName, status: 'joined',
+                    statusDate: Date.now(), score: 0
+                });
+                //Podemos criar um serviço que invoque parte deste código e que se limite a saber
+                //se já estão mais do que dois players (contando o array), se já estiverem mais
+                //que dois no lobby, ao pé do botão enter game dizia: Ready to Start, has at least 2 players!
+                // ou qq coisa deste género
+                if (_this.arrayPlayers.length > 1) {
+                    _this.body = JSON.stringify({ players: _this.arrayPlayers, state: 'readyToStart' });
+                }
+                _this.updateGame(_this.body, id);
             }
         }, function (error) {
             alert(error.text());
