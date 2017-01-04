@@ -28,13 +28,16 @@ var NewGameComponent = (function () {
     };
     NewGameComponent.prototype.create = function () {
         var _this = this;
+        var playerInfo = {
+            uid: this.userId, name: this.userName, status: 'joined',
+            statusDate: Date.now(), score: 0
+        };
         this.arrayPlayers = [{
-                player: userId, name: userName, status: 'joined',
-                statusDate: Date.now(), score: 0
+                player: playerInfo
             }];
         this.room = this.randomIntFromInterval(10000000000, 99999999999);
         console.log(this.room);
-        var body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
+        var body = JSON.stringify({ players: this.arrayPlayers, room: this.room, state: 'pending' });
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'bearer ' + this.authToken);

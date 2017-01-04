@@ -11,7 +11,7 @@ import { WebSocketService } from '../notifications/websocket.service';
 })
 
 export class GamesPendingComponent {
-    public _serverPath: string;
+    private _serverPath: string;
     public totalVictories: any = sessionStorage.getItem('totalVictories');
     private userName: any = sessionStorage.getItem('username');
     public gamesPending: any[] = [];
@@ -57,9 +57,9 @@ export class GamesPendingComponent {
                     //que dois no lobby, ao pé do botão enter game dizia: Ready to Start, has at least 2 players!
                     // ou qq coisa deste género
 
-                    if (this.arrayPlayers.length > 1) {
-                        this.body = JSON.stringify({ players: this.arrayPlayers, state: 'readyToStart' });
-                    }
+                    //Mudei o state pq já tem mais do que dois players no jogo!
+                    this.body = JSON.stringify({ players: this.arrayPlayers, state: 'readyToStart' });
+
 
                     this.updateGame(this.body, id);
                 }

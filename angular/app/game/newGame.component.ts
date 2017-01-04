@@ -27,7 +27,7 @@ export class NewGameComponent {
 		this.userName = sessionStorage.getItem('username');
 
 		this.authToken = sessionStorage.getItem('id_token');
-		
+
 		this._serverPath = 'http://localhost:8888/api/v1/';
 
 
@@ -40,15 +40,19 @@ export class NewGameComponent {
 
 	create() {
 
-		this.arrayPlayers = [{
-			player: userId, name: userName, status: 'joined',
+		let playerInfo: any = {
+			uid: this.userId, name: this.userName, status: 'joined',
 			statusDate: Date.now(), score: 0
+		};
+
+		this.arrayPlayers = [{
+			player: playerInfo
 		}];
 
 		this.room = this.randomIntFromInterval(10000000000, 99999999999);
 		console.log(this.room);
 
-		let body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
+		let body = JSON.stringify({ players: this.arrayPlayers, room: this.room, state: 'pending' });
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 		headers.append('Authorization', 'bearer ' + this.authToken);
@@ -61,13 +65,14 @@ export class NewGameComponent {
 
 				if (response.ok) {
 					this.router.navigate(['game', response.json()._id]);
-
+					
 				}
 			}, error => {
 
 				alert(error.text());
 				console.log(error.text());
 			}
+
 
 			);
 	}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {  Http, Response } from '@angular/http';
 
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 import * as io from 'socket.io-client';
 
@@ -15,6 +15,11 @@ export class WebSocketService {
         }
     }
 
+    //usar este como teste
+    testSendChatMessage(message: any, room: number, player: any) {
+        this.socket.emit('join', { room: room, player: player });
+    }
+
     sendChatMessage(message: any) {
         this.socket.emit('chat', sessionStorage.getItem('name') + ': ' + message);
     }
@@ -23,7 +28,7 @@ export class WebSocketService {
         this.socket.emit('chatC', sessionStorage.getItem('name') + ': ' + message);
     }
 
-    sendTable(tabuleiro: any){
+    sendTable(tabuleiro: any) {
         console.log('cheguei ao websocket client');
         console.log('Numero de tiros: ' + tabuleiro.nTiros);
         this.socket.emit('tabuleiro', tabuleiro);
@@ -53,15 +58,15 @@ export class WebSocketService {
     sendClickElementMessage(tabuleiro: any) {
         this.socket.emit('clickElement', tabuleiro);
     }
-    
+
     getBoardMessages(): Observable<any> {
         return this.listenOnChannel('board');
     }
-    
+
 
     private listenOnChannel(channel: string): Observable<any> {
-        return new Observable((observer:any) => {
-            this.socket.on(channel, (data:any) => {
+        return new Observable((observer: any) => {
+            this.socket.on(channel, (data: any) => {
                 observer.next(data);
             });
             return () => this.socket.disconnect();

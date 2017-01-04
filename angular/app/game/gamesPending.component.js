@@ -46,9 +46,8 @@ var GamesPendingComponent = (function () {
                 //se já estão mais do que dois players (contando o array), se já estiverem mais
                 //que dois no lobby, ao pé do botão enter game dizia: Ready to Start, has at least 2 players!
                 // ou qq coisa deste género
-                if (_this.arrayPlayers.length > 1) {
-                    _this.body = JSON.stringify({ players: _this.arrayPlayers, state: 'readyToStart' });
-                }
+                //Mudei o state pq já tem mais do que dois players no jogo!
+                _this.body = JSON.stringify({ players: _this.arrayPlayers, state: 'readyToStart' });
                 _this.updateGame(_this.body, id);
             }
         }, function (error) {

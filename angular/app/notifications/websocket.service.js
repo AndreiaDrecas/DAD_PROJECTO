@@ -17,6 +17,10 @@ var WebSocketService = (function () {
             this.socket = io("http://localhost:8888");
         }
     }
+    //usar este como teste
+    WebSocketService.prototype.testSendChatMessage = function (message, room, player) {
+        this.socket.emit('join', { room: room, player: player });
+    };
     WebSocketService.prototype.sendChatMessage = function (message) {
         this.socket.emit('chat', sessionStorage.getItem('name') + ': ' + message);
     };
