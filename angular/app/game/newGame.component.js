@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var router_1 = require("@angular/router");
-var websocket_service_1 = require("../notifications/websocket.service");
+var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var router_1 = require('@angular/router');
+var websocket_service_1 = require('../notifications/websocket.service');
 var NewGameComponent = (function () {
     function NewGameComponent(router, http, websocketService) {
         this.router = router;
@@ -53,15 +53,15 @@ var NewGameComponent = (function () {
             console.log(error.text());
         });
     };
+    NewGameComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'newGame',
+            templateUrl: 'newGame.component.html'
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
+    ], NewGameComponent);
     return NewGameComponent;
 }());
-NewGameComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'newGame',
-        templateUrl: 'newGame.component.html'
-    }),
-    __metadata("design:paramtypes", [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
-], NewGameComponent);
 exports.NewGameComponent = NewGameComponent;
 //# sourceMappingURL=newGame.component.js.map

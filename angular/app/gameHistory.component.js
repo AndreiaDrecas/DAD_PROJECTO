@@ -8,15 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var router_1 = require("@angular/router");
+var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var router_1 = require('@angular/router');
 var GameHistoryComponent = (function () {
     function GameHistoryComponent(router, http) {
         this.router = router;
         this.http = http;
         this.history = [];
         this._serverPath = 'http://localhost:8888/api/v1/';
+        this.getGameHistory();
     }
     GameHistoryComponent.prototype.getGameHistory = function () {
         var _this = this;
@@ -32,15 +33,15 @@ var GameHistoryComponent = (function () {
             console.log(error.text());
         });
     };
+    GameHistoryComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'gameHistory',
+            templateUrl: 'gameHistory.component.html'
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, http_1.Http])
+    ], GameHistoryComponent);
     return GameHistoryComponent;
 }());
-GameHistoryComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'gameHistory',
-        templateUrl: 'gameHistory.component.html'
-    }),
-    __metadata("design:paramtypes", [router_1.Router, http_1.Http])
-], GameHistoryComponent);
 exports.GameHistoryComponent = GameHistoryComponent;
 //# sourceMappingURL=gameHistory.component.js.map

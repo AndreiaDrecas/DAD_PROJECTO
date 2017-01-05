@@ -13,6 +13,7 @@ export class GameHistoryComponent {
     public _serverPath: string;
     constructor(public router: Router, public http: Http) {
         this._serverPath = 'http://localhost:8888/api/v1/';
+        this.getGameHistory();
     }
 
     getGameHistory() {

@@ -3,6 +3,9 @@ import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@an
 import { Router } from '@angular/router';
 import { SessionService } from './session.service';
 
+declare var gapi: any;
+
+
 
 @Component({
   moduleId: module.id,
@@ -15,8 +18,12 @@ export class LoginComponent {
   constructor(public router: Router, public http: Http, private sessionService: SessionService) {}
 
 
+  	public fb : any;
+
   login(event: any, username: any, password: any) {
     this.sessionService.login(event, username, password);
   }
+
+
 
 }

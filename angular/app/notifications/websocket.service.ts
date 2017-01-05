@@ -18,7 +18,7 @@ export class WebSocketService {
     //usar este como teste
     testSendChatMessage(message: any, room: number, player: any) {
         //não faço bem ideia se será assim, mas dpois verei melhor quando conseguir
-        this.socket.emit('join', { room: room, player: player }, sessionStorage.getItem('name') + ': ' + message));
+        this.socket.emit('join', { room: room, player: player }, sessionStorage.getItem('name') + ': ' + message);
     }
 
     sendChatMessage(message: any) {
