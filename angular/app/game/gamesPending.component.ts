@@ -48,7 +48,7 @@ export class GamesPendingComponent {
 
                     this.arrayPlayers = response.json().players;
                     this.arrayPlayers.push({
-                        player: this.userID, name: this.userName, status: 'joined',
+                        player: this.userID, name: this.userName,
                         statusDate: Date.now(), score: 0
                     });
 

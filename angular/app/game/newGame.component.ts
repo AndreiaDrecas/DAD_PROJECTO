@@ -17,7 +17,6 @@ export class NewGameComponent {
 	public arrayPlayers: any[] = [];
 	public authToken: any;
 	private _serverPath: string;
-	private room: number;
 	private userId: any;
 	private userName: any;
 
@@ -33,15 +32,11 @@ export class NewGameComponent {
 
 	}
 
-	randomIntFromInterval(min: number, max: number) {
-		return Math.floor(Math.random() * (max - min + 1) + min);
-	}
-
 
 	create() {
 
 		let playerInfo: any = {
-			uid: this.userId, name: this.userName, status: 'joined',
+			uid: this.userId, name: this.userName,
 			statusDate: Date.now(), score: 0
 		};
 
@@ -49,10 +44,8 @@ export class NewGameComponent {
 			player: playerInfo
 		}];
 
-		this.room = this.randomIntFromInterval(10000000000, 99999999999);
-		console.log(this.room);
 
-		let body = JSON.stringify({ players: this.arrayPlayers, room: this.room, state: 'pending' });
+		let body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 		headers.append('Authorization', 'bearer ' + this.authToken);
@@ -65,7 +58,7 @@ export class NewGameComponent {
 
 				if (response.ok) {
 					this.router.navigate(['game', response.json()._id]);
-					
+
 				}
 			}, error => {
 
