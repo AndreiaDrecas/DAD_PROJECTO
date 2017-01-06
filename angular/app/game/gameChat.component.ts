@@ -32,25 +32,4 @@ export class GameChatComponent {
         this.websocketService.getGameChatMessages().subscribe((m: any) => this.chatCChannel.push(<string>m));
         this.websocketService.getGamePlayersMessages().subscribe((m: any) => this.playersCChannel.push(<string>m));
     }
-
-     getGames() {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'bearer ' + this.authToken);
-        this.http.get(this._serverPath + 'games', <RequestOptionsArgs>{ headers: headers, withCredentials: false })
-            .subscribe(
-            response => {
-                //buscar pelo id do game o room
-                //invocar o método do WebSocketService que trata do chat, criei só um experimental
-                //não criei os que faltam.
-                //testSendChatMessage(message: any, room: number, player: any)
-
-            },
-            error => {
-                alert(error.text());
-                console.log(error.text());
-            }
-            );
-    }
-
 }

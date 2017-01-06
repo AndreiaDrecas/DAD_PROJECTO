@@ -52,11 +52,6 @@ export class GamesPendingComponent {
                         statusDate: Date.now(), score: 0
                     });
 
-                    //Podemos criar um serviço que invoque parte deste código e que se limite a saber
-                    //se já estão mais do que dois players (contando o array), se já estiverem mais
-                    //que dois no lobby, ao pé do botão enter game dizia: Ready to Start, has at least 2 players!
-                    // ou qq coisa deste género
-
                     //Mudei o state pq já tem mais do que dois players no jogo!
                     this.body = JSON.stringify({ players: this.arrayPlayers, state: 'readyToStart' });
 
