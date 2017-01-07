@@ -19,6 +19,8 @@ export class GamesPendingComponent {
     public authToken: string = sessionStorage.getItem('id_token');
     public idPlayer = sessionStorage.getItem('_id');
     public arrayPlayers: any[] = [];
+    public idGame: any;
+    public body: any;
 
 
     constructor(public router: Router, public http: Http, private websocketService: WebSocketService) {
@@ -31,24 +33,33 @@ export class GamesPendingComponent {
 
 
     enterGame(id: number) {
-
-        this.getGame(id);
+        this.idGame = id;
+        this.getGame();
+        this.arrayPlayers.push({ player: this.idPlayer, score: 0 });
+        this.body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
+        this.updateGame(this.body, this.idGame);
 
 
     }
 
-    getGame(id: number) {
+    exitGame(id: number) {
+        this.idGame = id;
+        this.getGame();
+         let playerPosition = this.arrayPlayers.find(myObj => myObj.player < 0);
+         console.log(playerPosition);
+
+    }
+
+    getGame() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'bearer ' + this.authToken);
-        this.http.get(this._serverPath + 'games/' + id, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
+        this.http.get(this._serverPath + 'games/' + this.idGame, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
             .subscribe(
             response => {
                 if (response.json().players.length < 5) {
                     this.arrayPlayers = response.json().players;
-                    this.arrayPlayers.push({ player: id, score: 0 });
-                    let body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
-                    this.updateGame(body, id);
+                    console.log(this.arrayPlayers);
                 }
 
             },

@@ -29,20 +29,28 @@ var GamesPendingComponent = (function () {
     }
     //public id_token: any = localStorage.getItem('token');
     GamesPendingComponent.prototype.enterGame = function (id) {
-        this.getGame(id);
+        this.idGame = id;
+        this.getGame();
+        this.arrayPlayers.push({ player: this.idPlayer, score: 0 });
+        this.body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
+        this.updateGame(this.body, this.idGame);
     };
-    GamesPendingComponent.prototype.getGame = function (id) {
+    GamesPendingComponent.prototype.exitGame = function (id) {
+        this.idGame = id;
+        this.getGame();
+        var playerPosition = this.arrayPlayers.find(function (myObj) { return myObj.player < 0; });
+        console.log(playerPosition);
+    };
+    GamesPendingComponent.prototype.getGame = function () {
         var _this = this;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'bearer ' + this.authToken);
-        this.http.get(this._serverPath + 'games/' + id, { headers: headers, withCredentials: false })
+        this.http.get(this._serverPath + 'games/' + this.idGame, { headers: headers, withCredentials: false })
             .subscribe(function (response) {
             if (response.json().players.length < 5) {
                 _this.arrayPlayers = response.json().players;
-                _this.arrayPlayers.push({ player: id, score: 0 });
-                var body = JSON.stringify({ players: _this.arrayPlayers, state: 'pending' });
-                _this.updateGame(body, id);
+                console.log(_this.arrayPlayers);
             }
         }, function (error) {
             alert(error.text());

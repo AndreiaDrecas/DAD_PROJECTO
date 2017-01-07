@@ -14,8 +14,8 @@ export class WebSocketServer {
         this.initBoard();
         this.io = io.listen(server);
         this.io.sockets.on('connection', (client: any) => {
-            let sessionid = client.id;
-            
+            var sessionid = client.id;
+
             client.emit('players', sessionid + ': Welcome to battleship');
 
             client.broadcast.emit('players', Date.now() + ': A new player has arrived');
