@@ -17,21 +17,19 @@ var GamesPendingComponent = (function () {
         this.router = router;
         this.http = http;
         this.websocketService = websocketService;
-        this.name = sessionStorage.getItem('name');
         this.totalVictories = sessionStorage.getItem('totalVictories');
-        this.username = sessionStorage.getItem('username');
+        this.userName = sessionStorage.getItem('username');
         this.gamesPending = [];
         this.authToken = sessionStorage.getItem('id_token');
-        this.idPlayer = sessionStorage.getItem('_id');
+        this.userID = sessionStorage.getItem('_id');
         this.arrayPlayers = [];
         this._serverPath = 'http://localhost:8888/api/v1/';
         this.getGamesPending();
     }
-    //public id_token: any = localStorage.getItem('token');
     GamesPendingComponent.prototype.enterGame = function (id) {
         this.idGame = id;
         this.getGame();
-        this.arrayPlayers.push({ player: this.idPlayer, score: 0 });
+        this.arrayPlayers.push({ player: this.userID, score: 0 });
         this.body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
         this.updateGame(this.body, this.idGame);
     };
@@ -48,9 +46,16 @@ var GamesPendingComponent = (function () {
         headers.append('Authorization', 'bearer ' + this.authToken);
         this.http.get(this._serverPath + 'games/' + this.idGame, { headers: headers, withCredentials: false })
             .subscribe(function (response) {
-            if (response.json().players.length < 5) {
+            if (response.json().players.length <= 4) {
                 _this.arrayPlayers = response.json().players;
                 console.log(_this.arrayPlayers);
+                _this.arrayPlayers.push({
+                    player: _this.userID, name: _this.userName,
+                    statusDate: Date.now(), score: 0
+                });
+                //Mudei o state pq já tem mais do que dois players no jogo!
+                _this.body = JSON.stringify({ players: _this.arrayPlayers, state: 'readyToStart' });
+                _this.updateGame(_this.body, _this.idGame);
             }
         }, function (error) {
             alert(error.text());

@@ -11,16 +11,17 @@ import { WebSocketService } from '../notifications/websocket.service';
 })
 
 export class GamesPendingComponent {
-    public _serverPath: string;
-    public name: any = sessionStorage.getItem('name');
+    private _serverPath: string;
     public totalVictories: any = sessionStorage.getItem('totalVictories');
-    public username: any = sessionStorage.getItem('username');
+    private userName: any = sessionStorage.getItem('username');
     public gamesPending: any[] = [];
     public authToken: string = sessionStorage.getItem('id_token');
-    public idPlayer = sessionStorage.getItem('_id');
+    private userID = sessionStorage.getItem('_id');
     public arrayPlayers: any[] = [];
+
     public idGame: any;
     public body: any;
+
 
 
     constructor(public router: Router, public http: Http, private websocketService: WebSocketService) {
@@ -29,13 +30,12 @@ export class GamesPendingComponent {
 
 
     }
-    //public id_token: any = localStorage.getItem('token');
 
 
     enterGame(id: number) {
         this.idGame = id;
         this.getGame();
-        this.arrayPlayers.push({ player: this.idPlayer, score: 0 });
+        this.arrayPlayers.push({ player: this.userID, score: 0 });
         this.body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
         this.updateGame(this.body, this.idGame);
 
@@ -57,9 +57,24 @@ export class GamesPendingComponent {
         this.http.get(this._serverPath + 'games/' + this.idGame, <RequestOptionsArgs>{ headers: headers, withCredentials: false })
             .subscribe(
             response => {
-                if (response.json().players.length < 5) {
+
+                if (response.json().players.length <= 4) {
+
                     this.arrayPlayers = response.json().players;
+
                     console.log(this.arrayPlayers);
+
+                    this.arrayPlayers.push({
+                        player: this.userID, name: this.userName,
+                        statusDate: Date.now(), score: 0
+                    });
+
+                    //Mudei o state pq já tem mais do que dois players no jogo!
+                    this.body = JSON.stringify({ players: this.arrayPlayers, state: 'readyToStart' });
+
+
+                    this.updateGame(this.body, this.idGame);
+
                 }
 
             },

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {  Http, Response } from '@angular/http';
 
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 import * as io from 'socket.io-client';
 
@@ -15,6 +15,12 @@ export class WebSocketService {
         }
     }
 
+    //usar este como teste
+    testSendChatMessage(message: any, room: number, player: any) {
+        //não faço bem ideia se será assim, mas dpois verei melhor quando conseguir
+        this.socket.emit('join', { room: room, player: player }, sessionStorage.getItem('name') + ': ' + message);
+    }
+
     sendChatMessage(message: any) {
         this.socket.emit('chat', sessionStorage.getItem('name') + ': ' + message);
     }
@@ -23,25 +29,7 @@ export class WebSocketService {
         this.socket.emit('chatC', sessionStorage.getItem('name') + ': ' + message);
     }
 
-
-    //Métodos que será usado por todos os rooms
-    //Ainda em construção, quem souber como melhorar ajude
-    sendGCMessage(message: any, channel: any) {
-        this.socket.emit(channel, sessionStorage.getItem('name') + ': ' + message)
-    }
-
-
-    getGCMessages(channel: any): Observable<any> {
-        return this.listenOnChannel(channel);
-    }
-    
-    getGPMessages(players: any): Observable<any> {
-        return this.listenOnChannel(players);
-    }
-
-    //////////////////////////////////////////////////////////////////////
-
-    sendTable(tabuleiro: any){
+    sendTable(tabuleiro: any) {
         console.log('cheguei ao websocket client');
         console.log('Numero de tiros: ' + tabuleiro.nTiros);
         this.socket.emit('tabuleiro', tabuleiro);
@@ -71,15 +59,15 @@ export class WebSocketService {
     sendClickElementMessage(tabuleiro: any) {
         this.socket.emit('clickElement', tabuleiro);
     }
-    
+
     getBoardMessages(): Observable<any> {
         return this.listenOnChannel('board');
     }
-    
+
 
     private listenOnChannel(channel: string): Observable<any> {
-        return new Observable((observer:any) => {
-            this.socket.on(channel, (data:any) => {
+        return new Observable((observer: any) => {
+            this.socket.on(channel, (data: any) => {
                 observer.next(data);
             });
             return () => this.socket.disconnect();

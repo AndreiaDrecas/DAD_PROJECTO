@@ -18,13 +18,20 @@ var NewGameComponent = (function () {
         this.http = http;
         this.websocketService = websocketService;
         this.arrayPlayers = [];
-        var id = sessionStorage.getItem('_id');
+        this.userId = sessionStorage.getItem('_id');
+        this.userName = sessionStorage.getItem('username');
         this.authToken = sessionStorage.getItem('id_token');
-        this.arrayPlayers.push({ player: id, score: 0 });
         this._serverPath = 'http://localhost:8888/api/v1/';
     }
     NewGameComponent.prototype.create = function () {
         var _this = this;
+        var playerInfo = {
+            uid: this.userId, name: this.userName,
+            statusDate: Date.now(), score: 0
+        };
+        this.arrayPlayers = [{
+                player: playerInfo
+            }];
         var body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');

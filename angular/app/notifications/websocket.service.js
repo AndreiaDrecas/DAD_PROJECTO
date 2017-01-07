@@ -17,24 +17,17 @@ var WebSocketService = (function () {
             this.socket = io("http://localhost:8888");
         }
     }
+    //usar este como teste
+    WebSocketService.prototype.testSendChatMessage = function (message, room, player) {
+        //não faço bem ideia se será assim, mas dpois verei melhor quando conseguir
+        this.socket.emit('join', { room: room, player: player }, sessionStorage.getItem('name') + ': ' + message);
+    };
     WebSocketService.prototype.sendChatMessage = function (message) {
         this.socket.emit('chat', sessionStorage.getItem('name') + ': ' + message);
     };
     WebSocketService.prototype.sendGameChatMessage = function (message) {
         this.socket.emit('chatC', sessionStorage.getItem('name') + ': ' + message);
     };
-    //Métodos que será usado por todos os rooms
-    //Ainda em construção, quem souber como melhorar ajude
-    WebSocketService.prototype.sendGCMessage = function (message, channel) {
-        this.socket.emit(channel, sessionStorage.getItem('name') + ': ' + message);
-    };
-    WebSocketService.prototype.getGCMessages = function (channel) {
-        return this.listenOnChannel(channel);
-    };
-    WebSocketService.prototype.getGPMessages = function (players) {
-        return this.listenOnChannel(players);
-    };
-    //////////////////////////////////////////////////////////////////////
     WebSocketService.prototype.sendTable = function (tabuleiro) {
         console.log('cheguei ao websocket client');
         console.log('Numero de tiros: ' + tabuleiro.nTiros);

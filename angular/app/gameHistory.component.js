@@ -11,13 +11,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
+var session_service_1 = require("./authentication/session.service");
 var GameHistoryComponent = (function () {
-    function GameHistoryComponent(router, http) {
+    function GameHistoryComponent(session, router, http) {
+        this.session = session;
         this.router = router;
         this.http = http;
         this.history = [];
+        this.userHistory = [];
+        this.userId = sessionStorage.getItem('_id');
         this._serverPath = 'http://localhost:8888/api/v1/';
+        this.isLoggedIn = this.session.isLoggedIn();
+        this.getGameHistory();
     }
+    GameHistoryComponent.prototype.getHistoryOfUser = function () {
+        for (var _i = 0, _a = this.history; _i < _a.length; _i++) {
+            var i = _a[_i];
+            for (var _b = 0, _c = i.players; _b < _c.length; _b++) {
+                var ps = _c[_b];
+                if (ps.player.uid == this.userId) {
+                    console.log(ps.player.uid);
+                    console.log('Coincide!');
+                    this.userHistory.push(i);
+                    console.log(i);
+                }
+            }
+        }
+    };
     GameHistoryComponent.prototype.getGameHistory = function () {
         var _this = this;
         var headers = new http_1.Headers();
@@ -27,6 +47,7 @@ var GameHistoryComponent = (function () {
             .subscribe(function (response) {
             _this.history = response.json();
             console.log(response.json());
+            _this.getHistoryOfUser();
         }, function (error) {
             alert(error.text());
             console.log(error.text());
@@ -40,7 +61,7 @@ GameHistoryComponent = __decorate([
         selector: 'gameHistory',
         templateUrl: 'gameHistory.component.html'
     }),
-    __metadata("design:paramtypes", [router_1.Router, http_1.Http])
+    __metadata("design:paramtypes", [session_service_1.SessionService, router_1.Router, http_1.Http])
 ], GameHistoryComponent);
 exports.GameHistoryComponent = GameHistoryComponent;
 //# sourceMappingURL=gameHistory.component.js.map

@@ -17,16 +17,33 @@ export class NewGameComponent {
 	public arrayPlayers: any[] = [];
 	public authToken: any;
 	private _serverPath: string;
+	private userId: any;
+	private userName: any;
+
 
 	constructor(public router: Router, public http: Http, private websocketService: WebSocketService) {
-		let id = sessionStorage.getItem('_id');
+		this.userId = sessionStorage.getItem('_id');
+		this.userName = sessionStorage.getItem('username');
+
 		this.authToken = sessionStorage.getItem('id_token');
-		this.arrayPlayers.push({ player: id, score: 0 });
+
 		this._serverPath = 'http://localhost:8888/api/v1/';
+
+
 	}
 
 
 	create() {
+
+		let playerInfo: any = {
+			uid: this.userId, name: this.userName,
+			statusDate: Date.now(), score: 0
+		};
+
+		this.arrayPlayers = [{
+			player: playerInfo
+		}];
+
 
 		let body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
 		let headers = new Headers();
@@ -48,6 +65,7 @@ export class NewGameComponent {
 				alert(error.text());
 				console.log(error.text());
 			}
+
 
 			);
 	}
