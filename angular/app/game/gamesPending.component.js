@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var router_1 = require('@angular/router');
-var websocket_service_1 = require('../notifications/websocket.service');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var router_1 = require("@angular/router");
+var websocket_service_1 = require("../notifications/websocket.service");
 var GamesPendingComponent = (function () {
     function GamesPendingComponent(router, http, websocketService) {
         this.router = router;
@@ -39,13 +39,9 @@ var GamesPendingComponent = (function () {
             if (response.json().players.length <= 4) {
                 _this.arrayPlayers = response.json().players;
                 _this.arrayPlayers.push({
-                    player: _this.userID, name: _this.userName, status: 'joined',
+                    player: _this.userID, name: _this.userName,
                     statusDate: Date.now(), score: 0
                 });
-                //Podemos criar um serviço que invoque parte deste código e que se limite a saber
-                //se já estão mais do que dois players (contando o array), se já estiverem mais
-                //que dois no lobby, ao pé do botão enter game dizia: Ready to Start, has at least 2 players!
-                // ou qq coisa deste género
                 //Mudei o state pq já tem mais do que dois players no jogo!
                 _this.body = JSON.stringify({ players: _this.arrayPlayers, state: 'readyToStart' });
                 _this.updateGame(_this.body, id);
@@ -81,15 +77,15 @@ var GamesPendingComponent = (function () {
             console.log(error.text());
         });
     };
-    GamesPendingComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'gamesPending',
-            templateUrl: 'gamesPending.component.html'
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
-    ], GamesPendingComponent);
     return GamesPendingComponent;
 }());
+GamesPendingComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'gamesPending',
+        templateUrl: 'gamesPending.component.html'
+    }),
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
+], GamesPendingComponent);
 exports.GamesPendingComponent = GamesPendingComponent;
 //# sourceMappingURL=gamesPending.component.js.map

@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var websocket_service_1 = require('../notifications/websocket.service');
-var http_1 = require('@angular/http');
-var router_1 = require('@angular/router');
+var core_1 = require("@angular/core");
+var websocket_service_1 = require("../notifications/websocket.service");
+var http_1 = require("@angular/http");
+var router_1 = require("@angular/router");
 var GameChatComponent = (function () {
     function GameChatComponent(router, http, websocketService) {
         this.router = router;
@@ -31,30 +31,15 @@ var GameChatComponent = (function () {
         this.websocketService.getGameChatMessages().subscribe(function (m) { return _this.chatCChannel.push(m); });
         this.websocketService.getGamePlayersMessages().subscribe(function (m) { return _this.playersCChannel.push(m); });
     };
-    GameChatComponent.prototype.getGames = function () {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'bearer ' + this.authToken);
-        this.http.get(this._serverPath + 'games', { headers: headers, withCredentials: false })
-            .subscribe(function (response) {
-            //buscar pelo id do game o room
-            //invocar o método do WebSocketService que trata do chat, criei só um experimental
-            //não criei os que faltam.
-            //testSendChatMessage(message: any, room: number, player: any)
-        }, function (error) {
-            alert(error.text());
-            console.log(error.text());
-        });
-    };
-    GameChatComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'gameChat',
-            templateUrl: 'gameChat.component.html'
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
-    ], GameChatComponent);
     return GameChatComponent;
 }());
+GameChatComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'gameChat',
+        templateUrl: 'gameChat.component.html'
+    }),
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http, websocket_service_1.WebSocketService])
+], GameChatComponent);
 exports.GameChatComponent = GameChatComponent;
 //# sourceMappingURL=gameChat.component.js.map

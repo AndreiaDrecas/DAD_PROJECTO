@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var router_1 = require('@angular/router');
-var websocket_service_1 = require('../notifications/websocket.service');
-var session_service_1 = require('../authentication/session.service');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var router_1 = require("@angular/router");
+var websocket_service_1 = require("../notifications/websocket.service");
+var session_service_1 = require("../authentication/session.service");
 var LobbyComponent = (function () {
     function LobbyComponent(router, http, websocketService, sessionService) {
         this.router = router;
@@ -44,15 +44,16 @@ var LobbyComponent = (function () {
             console.log(error.text());
         });
     };
-    LobbyComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'lobby',
-            templateUrl: 'lobby.component.html'
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, http_1.Http, websocket_service_1.WebSocketService, session_service_1.SessionService])
-    ], LobbyComponent);
     return LobbyComponent;
 }());
+LobbyComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'lobby',
+        templateUrl: 'lobby.component.html'
+    }),
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http, websocket_service_1.WebSocketService,
+        session_service_1.SessionService])
+], LobbyComponent);
 exports.LobbyComponent = LobbyComponent;
 //# sourceMappingURL=lobby.component.js.map

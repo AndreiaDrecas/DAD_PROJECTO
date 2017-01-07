@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var websocket_service_1 = require('./websocket.service');
+var core_1 = require("@angular/core");
+var websocket_service_1 = require("./websocket.service");
 var NotificationComponent = (function () {
     function NotificationComponent(websocketService) {
         this.websocketService = websocketService;
@@ -21,15 +21,15 @@ var NotificationComponent = (function () {
         this.websocketService.getChatMessages().subscribe(function (m) { return _this.chatChannel.push(m); });
         this.websocketService.getPlayersMessages().subscribe(function (m) { return _this.playersChannel.push(m); });
     };
-    NotificationComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'notification-panel',
-            templateUrl: 'notification.component.html'
-        }), 
-        __metadata('design:paramtypes', [websocket_service_1.WebSocketService])
-    ], NotificationComponent);
     return NotificationComponent;
 }());
+NotificationComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'notification-panel',
+        templateUrl: 'notification.component.html'
+    }),
+    __metadata("design:paramtypes", [websocket_service_1.WebSocketService])
+], NotificationComponent);
 exports.NotificationComponent = NotificationComponent;
 //# sourceMappingURL=notification.component.js.map

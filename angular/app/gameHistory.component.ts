@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Router } from '@angular/router';
+import { SessionService } from './authentication/session.service';
 
 @Component({
     moduleId: module.id,
@@ -9,11 +10,31 @@ import { Router } from '@angular/router';
 })
 
 export class GameHistoryComponent {
-    public history: any[] = [];
-    public _serverPath: string;
-    constructor(public router: Router, public http: Http) {
+    private history: any[] = [];
+    private userHistory: any[] = [];
+    private _serverPath: string;
+    private userId = sessionStorage.getItem('_id');
+    private isLoggedIn: boolean;
+
+    constructor(private session: SessionService, public router: Router, public http: Http) {
         this._serverPath = 'http://localhost:8888/api/v1/';
+        this. isLoggedIn = this.session.isLoggedIn();
         this.getGameHistory();
+    }
+
+    getHistoryOfUser() {
+
+        for (let i of this.history) {
+            for (let ps of i.players) {
+                if (ps.player.uid == this.userId) {
+                    console.log(ps.player.uid);
+                    console.log('Coincide!');
+                    this.userHistory.push(i);
+                    console.log(i);
+                }
+            }
+        }
+
     }
 
     getGameHistory() {
@@ -27,6 +48,7 @@ export class GameHistoryComponent {
             response => {
                 this.history = response.json();
                 console.log(response.json());
+                this.getHistoryOfUser();
 
             },
             error => {

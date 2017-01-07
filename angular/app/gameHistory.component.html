@@ -1,6 +1,29 @@
 <div class="col-md-6 col-md-offset-3">
     <h2 class="gameHistory">Game History <button class="btn btn-primary" (click)="getGameHistory()"> Refresh </button></h2>
-    <table border=1>
+    <table *ngIf="isLoggedIn" border=1>
+        <tr>
+
+            <th>ID Game</th>
+            <th>Game State and Room</th>
+            <th>Players</th>
+
+
+        </tr>
+        <tr *ngFor="let m of userHistory">
+
+            <td>Id Game:<br /> {{m._id}}</td>
+            <td>State: {{m.state}}<br />Room:{{m.room}}</td><br>
+         
+            <div *ngFor="let f of m.players" style="border:1px">
+                <td>Id Player:<br />{{f.player.uid}}<br></td><br>
+                <td>Name:{{f.player.name}}<br></td><br>
+                <td>Status:{{f.player.status}}<br></td><br>
+                <td>Status Date:{{f.player.statusDate}}<br></td><br>
+                <td>Score:{{f.score}}<br></td><br>
+            </div>
+        </tr>
+    </table>
+    <table *ngIf="!isLoggedIn" border=1>
         <tr>
 
             <th>ID Game</th>
