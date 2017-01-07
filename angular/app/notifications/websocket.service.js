@@ -17,16 +17,14 @@ var WebSocketService = (function () {
             this.socket = io("http://localhost:8888");
         }
     }
-    //usar este como teste
-    WebSocketService.prototype.testSendChatMessage = function (message, room, player) {
-        //não faço bem ideia se será assim, mas dpois verei melhor quando conseguir
-        this.socket.emit('join', { room: room, player: player }, sessionStorage.getItem('name') + ': ' + message);
-    };
     WebSocketService.prototype.sendChatMessage = function (message) {
         this.socket.emit('chat', sessionStorage.getItem('name') + ': ' + message);
     };
-    WebSocketService.prototype.sendGameChatMessage = function (message) {
-        this.socket.emit('chatC', sessionStorage.getItem('name') + ': ' + message);
+    WebSocketService.prototype.sendGameChatMessage = function (msgData) {
+        this.socket.emit('chatGame', msgData);
+    };
+    WebSocketService.prototype.sendGamePlayersMessage = function (msgData) {
+        this.socket.emit('gameNotification', msgData);
     };
     WebSocketService.prototype.sendTable = function (tabuleiro) {
         console.log('cheguei ao websocket client');
@@ -40,10 +38,10 @@ var WebSocketService = (function () {
         return this.listenOnChannel('players');
     };
     WebSocketService.prototype.getGameChatMessages = function () {
-        return this.listenOnChannel('chatC');
+        return this.listenOnChannel('chatGame');
     };
     WebSocketService.prototype.getGamePlayersMessages = function () {
-        return this.listenOnChannel('playersC');
+        return this.listenOnChannel('gameNotification');
     };
     WebSocketService.prototype.getChatMessages = function () {
         return this.listenOnChannel('chat');

@@ -15,18 +15,18 @@ export class WebSocketService {
         }
     }
 
-    //usar este como teste
-    testSendChatMessage(message: any, room: number, player: any) {
-        //não faço bem ideia se será assim, mas dpois verei melhor quando conseguir
-        this.socket.emit('join', { room: room, player: player }, sessionStorage.getItem('name') + ': ' + message);
-    }
+   
 
     sendChatMessage(message: any) {
         this.socket.emit('chat', sessionStorage.getItem('name') + ': ' + message);
     }
 
-    sendGameChatMessage(message: any) {
-        this.socket.emit('chatC', sessionStorage.getItem('name') + ': ' + message);
+    sendGameChatMessage(msgData: any) {
+        this.socket.emit('chatGame', msgData);
+    }
+
+    sendGamePlayersMessage(msgData: any) {
+        this.socket.emit('gameNotification', msgData);
     }
 
     sendTable(tabuleiro: any) {
@@ -44,11 +44,11 @@ export class WebSocketService {
     }
 
     getGameChatMessages(): Observable<any> {
-        return this.listenOnChannel('chatC');
+        return this.listenOnChannel('chatGame');
     }
 
     getGamePlayersMessages(): Observable<any> {
-        return this.listenOnChannel('playersC');
+        return this.listenOnChannel('gameNotification');
     }
 
     getChatMessages(): Observable<any> {

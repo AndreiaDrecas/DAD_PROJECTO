@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var websocket_service_1 = require("../notifications/websocket.service");
+var game_1 = require("../gameEngine/game");
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var session_service_1 = require("../authentication/session.service");
@@ -18,6 +19,7 @@ var GameComponent = (function () {
         this.route = route;
         this.router = router;
         this.sessionService = sessionService;
+        this.game = new game_1.Game(4);
         if (!this.sessionService.isLoggedIn()) {
             this.router.navigate(['login']);
         }
@@ -30,6 +32,10 @@ var GameComponent = (function () {
             .subscribe(function (params) {
             _this.id = params['id'];
         });
+        this.websocketService.getTable().subscribe(function (m) { return _this.game = m; });
+    };
+    GameComponent.prototype.sendtable = function () {
+        this.websocketService.sendTable({ id: this.id, msg: this.game });
     };
     GameComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();

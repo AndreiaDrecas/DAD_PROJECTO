@@ -70,7 +70,7 @@ export class GamesPendingComponent {
                     });
 
                     //Mudei o state pq já tem mais do que dois players no jogo!
-                    this.body = JSON.stringify({ players: this.arrayPlayers, state: 'readyToStart' });
+                    this.body = JSON.stringify({ players: this.arrayPlayers, state: 'pending' });
 
 
                     this.updateGame(this.body, this.idGame);

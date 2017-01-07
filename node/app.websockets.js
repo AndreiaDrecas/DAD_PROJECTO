@@ -8,17 +8,25 @@ var WebSocketServer = (function () {
             _this.initBoard();
             _this.io = io.listen(server);
             _this.io.sockets.on('connection', function (client) {
-                var sessionid = client.id;
-                client.emit('players', sessionid + ': Welcome to battleship');
+                client.emit('players', Date.now() + ': Welcome to battleship');
                 client.broadcast.emit('players', Date.now() + ': A new player has arrived');
-                client.emit('playersC', Date.now() + ': Welcome to battleship');
-                client.broadcast.emit('playersC', Date.now() + ': A new player has arrived');
                 client.on('chat', function (data) { return _this.io.emit('chat', data); });
-                client.on('chatC', function (data) { return _this.io.emit('chatC', data); });
+                client.on('chatGame', function (msgData) {
+                    this.join(msgData.id);
+                    this.emit('chatGame', msgData.name + ': ' + msgData.msg);
+                    this.to(msgData.id).emit('chatGame', msgData.name + ': ' + msgData.msg);
+                });
+                client.on('gameNotification', function (msgData) {
+                    var sessionid = client.id;
+                    this.join(msgData.id);
+                    this.emit('gameNotification', msgData.name + ': Welcome to game Room ' + msgData.id);
+                    this.broadcast.to(msgData.id).emit('gameNotification', Date.now() + ': ' + msgData.name + ' has arrived');
+                });
                 //recieve and send tabuleiro
-                client.on('tabuleiro', function (tabuleiro) {
-                    console.log(tabuleiro);
-                    io.sockets.emit('tabuleiro', tabuleiro);
+                client.on('tabuleiro', function (msgData) {
+                    this.join(msgData.id);
+                    this.emit('chattabuleiroGame', msgData.tabuleiro);
+                    this.to(msgData.id).emit('tabuleiro', msgData.tabuleiro);
                 });
                 //Extra Exercise
                 client.emit('board', _this.board);

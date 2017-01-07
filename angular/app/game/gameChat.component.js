@@ -23,16 +23,21 @@ var GameChatComponent = (function () {
         this._serverPath = 'http://localhost:8888/api/v1/';
     }
     GameChatComponent.prototype.send = function () {
-        this.websocketService.sendGameChatMessage(this.message);
+        this.websocketService.sendGameChatMessage({ id: this.idGame, msg: this.message, name: sessionStorage.getItem('name') });
         this.message = '';
     };
     GameChatComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.websocketService.getGameChatMessages().subscribe(function (m) { return _this.chatCChannel.push(m); });
         this.websocketService.getGamePlayersMessages().subscribe(function (m) { return _this.playersCChannel.push(m); });
+        this.websocketService.sendGamePlayersMessage({ id: this.idGame, msg: '', name: sessionStorage.getItem('name') });
     };
     return GameChatComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], GameChatComponent.prototype, "idGame", void 0);
 GameChatComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

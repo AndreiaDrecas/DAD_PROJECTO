@@ -54,7 +54,7 @@ var GamesPendingComponent = (function () {
                     statusDate: Date.now(), score: 0
                 });
                 //Mudei o state pq já tem mais do que dois players no jogo!
-                _this.body = JSON.stringify({ players: _this.arrayPlayers, state: 'readyToStart' });
+                _this.body = JSON.stringify({ players: _this.arrayPlayers, state: 'pending' });
                 _this.updateGame(_this.body, _this.idGame);
             }
         }, function (error) {

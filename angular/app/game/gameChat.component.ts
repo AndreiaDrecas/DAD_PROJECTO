@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { WebSocketService } from '../notifications/websocket.service';
 
 import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@angular/http';
@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
     selector: 'gameChat',
     templateUrl: 'gameChat.component.html'
 })
+
 export class GameChatComponent {
+    @Input() idGame: any;
     public message: string;
     public playersCChannel: string[] = [];
     public chatCChannel: string[] = [];
@@ -22,14 +24,20 @@ export class GameChatComponent {
     }
 
     send(): void {
-        this.websocketService.sendGameChatMessage(this.message);
+
+
+        this.websocketService.sendGameChatMessage({id: this.idGame,msg: this.message, name: sessionStorage.getItem('name')});
+        
     
 
         this.message = '';
     }
 
     ngOnInit() {
+        
         this.websocketService.getGameChatMessages().subscribe((m: any) => this.chatCChannel.push(<string>m));
         this.websocketService.getGamePlayersMessages().subscribe((m: any) => this.playersCChannel.push(<string>m));
+
+        this.websocketService.sendGamePlayersMessage({id: this.idGame,msg: '', name: sessionStorage.getItem('name')});
     }
 }

@@ -14,39 +14,66 @@ export class WebSocketServer {
         this.initBoard();
         this.io = io.listen(server);
         this.io.sockets.on('connection', (client: any) => {
-            var sessionid = client.id;
 
-            client.emit('players', sessionid + ': Welcome to battleship');
+            client.emit('players', Date.now() + ': Welcome to battleship');
 
             client.broadcast.emit('players', Date.now() + ': A new player has arrived');
 
-            client.emit('playersC', Date.now() + ': Welcome to battleship');
-
-            client.broadcast.emit('playersC', Date.now() + ': A new player has arrived');
-
             client.on('chat', (data) => this.io.emit('chat', data));
 
-            client.on('chatC', (data) => this.io.emit('chatC', data));
+
+
+            client.on('chatGame', function (msgData) {
+
+                this.join(msgData.id);
+                this.emit('chatGame', msgData.name + ': ' + msgData.msg);
+                this.to(msgData.id).emit('chatGame', msgData.name + ': ' + msgData.msg);
+
+            });
+
+            client.on('gameNotification', function (msgData) {
+                var sessionid = client.id;
+
+                this.join(msgData.id);
+                this.emit('gameNotification', msgData.name + ': Welcome to game Room ' + msgData.id);
+                this.broadcast.to(msgData.id).emit('gameNotification', Date.now() + ': ' + msgData.name + ' has arrived');
+
+
+            });
+
 
             //recieve and send tabuleiro
-            client.on('tabuleiro', function (tabuleiro) {
-                console.log(tabuleiro);
-                io.sockets.emit('tabuleiro', tabuleiro);
+            client.on('tabuleiro', function (msgData) {
+
+                this.join(msgData.id);
+                this.emit('tabuleiro', msgData.tabuleiro);
+                this.to(msgData.id).emit('tabuleiro', msgData.tabuleiro);
+
             });
 
+            client.on('clickElement', function (msgData) {
 
+                this.join(msgData.id);
+                this.emit('clickElement', msgData.tabuleiro);
+                this.to(msgData.id).emit('clickElement', msgData.tabuleiro);
 
+            });
+
+             client.on('board', function (msgData) {
+
+                this.join(msgData.id);
+                this.emit('board', msgData.tabuleiro);
+                this.to(msgData.id).emit('board', msgData.tabuleiro);
+
+            });
             //Extra Exercise
-            client.emit('board', this.board);
-            client.on('clickElement', (tabuleiro) => {
-
-                this.notifyAll('board', tabuleiro);
-            });
-
+            
+            
         });
     };
-    
+
     public notifyAll = (channel: string, message: any) => {
         this.io.sockets.emit(channel, message);
     };
+
 };

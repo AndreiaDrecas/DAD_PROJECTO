@@ -3,16 +3,13 @@
 
  <div class="game" *ngIf="game">
     <div class="game-board" *ngFor="let t of game.tabuleiros" >
-      <board>[tabuleiro] = t </board>
+      <board [idGame] = "id">[tabuleiro] = t </board>
     </div>
 </div>
 
 
 <h1>Falta SAIR DO JOGO</h1>
 
-<h1>Falta construir a board para comecar o jogo</h1>
 
-<h1>tenho mais ou menos ideia como se faz, com a websockets
-</h1>
 
-<gameChat></gameChat>
+<gameChat [idGame] = "id"> </gameChat>
