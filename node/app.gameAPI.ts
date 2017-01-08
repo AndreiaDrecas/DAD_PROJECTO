@@ -91,8 +91,7 @@ export class GameAPI {
             .then(result => this.returnGame(result.insertedId, response, next))
             .catch(err => this.handleError(err, response, next));
 
-        this.game.push( new Game(4, response.json._id));
-        
+           
       
 
     }

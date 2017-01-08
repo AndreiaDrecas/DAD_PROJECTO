@@ -24,7 +24,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
     constructor(private websocketService: WebSocketService, private route: ActivatedRoute,
         private router: Router, private sessionService: SessionService) {
-       
+        this.game = new Game(this.id);
         if (!this.sessionService.isLoggedIn()) {
             this.router.navigate(['login']);
         }
@@ -42,24 +42,20 @@ export class GameComponent implements OnInit, OnDestroy {
                 this.id = params['id'];
 
             });
-             this.game = new Game(this.id);
 
-        this.websocketService.getBoardMessages().subscribe((m: any) => {
-            
-            this.game.tabuleiros.push(m);
-           
-        });
+        this.websocketService.getInitBoardMessages().subscribe((m: any) => this.game.tabuleiros.push(m));
+        this.websocketService.getInitBoard({ id: this.id, msg: 'Entrei', name: sessionStorage.getItem('name'), idPlayer: sessionStorage.getItem('_id') });
 
-        this.websocketService.getBoard({ id: this.id, msg: '', name: sessionStorage.getItem('name'), idPlayer:sessionStorage.getItem('_id')});
+
     }
 
 
     sendTable() {
-       
+
         console.log(this.game.tabuleiros);
 
     }
-    
+
 
 
     ngOnDestroy() {

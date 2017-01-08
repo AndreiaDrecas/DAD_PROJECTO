@@ -17,14 +17,6 @@ this._id = idJogo;
 this.tabuleiros = Tabuleiro[nTabuleiros];
 
 
-for (let i = 1; i<=nTabuleiros; i++ ){
-    
-    let tabuleiro: Tabuleiro = new Tabuleiro();
-
-    this.tabuleiros.push(tabuleiro);
-
-}
-
 
 }
 

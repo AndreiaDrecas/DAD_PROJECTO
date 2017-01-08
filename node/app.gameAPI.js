@@ -2,7 +2,6 @@
 var mongodb = require('mongodb');
 var util = require('util');
 var app_database_1 = require('./app.database');
-var game_1 = require('./gameEngine/game');
 var GameAPI = (function () {
     function GameAPI() {
         var _this = this;
@@ -82,7 +81,6 @@ var GameAPI = (function () {
                 .insertOne(game)
                 .then(function (result) { return _this.returnGame(result.insertedId, response, next); })
                 .catch(function (err) { return _this.handleError(err, response, next); });
-            _this.game.push(new game_1.Game(4, response.json._id));
         };
         this.deleteGame = function (request, response, next) {
             var id = new mongodb.ObjectID(request.params.id);

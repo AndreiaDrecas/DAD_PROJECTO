@@ -29,8 +29,8 @@ export class WebSocketService {
         this.socket.emit('gameNotification', msgData);
     }
 
-     getBoard(msgData: any) {
-       this.socket.emit('board', msgData);
+     getInitBoard(msgData: any) {
+       this.socket.emit('initBoard', msgData);
     } 
 
     sendTable(msgData: any) {
@@ -64,8 +64,8 @@ export class WebSocketService {
         this.socket.emit('clickElement', tabuleiro);
     }
 
-    getBoardMessages(): Observable<any> {
-        return this.listenOnChannel('board');
+    getInitBoardMessages(): Observable<any> {
+        return this.listenOnChannel('initBoard');
     }
 
 

@@ -26,8 +26,8 @@ var WebSocketService = (function () {
     WebSocketService.prototype.sendGamePlayersMessage = function (msgData) {
         this.socket.emit('gameNotification', msgData);
     };
-    WebSocketService.prototype.getBoard = function (msgData) {
-        this.socket.emit('board', msgData);
+    WebSocketService.prototype.getInitBoard = function (msgData) {
+        this.socket.emit('initBoard', msgData);
     };
     WebSocketService.prototype.sendTable = function (msgData) {
         this.socket.emit('tabuleiro', msgData);
@@ -51,8 +51,8 @@ var WebSocketService = (function () {
     WebSocketService.prototype.sendClickElementMessage = function (tabuleiro) {
         this.socket.emit('clickElement', tabuleiro);
     };
-    WebSocketService.prototype.getBoardMessages = function () {
-        return this.listenOnChannel('board');
+    WebSocketService.prototype.getInitBoardMessages = function () {
+        return this.listenOnChannel('initBoard');
     };
     WebSocketService.prototype.listenOnChannel = function (channel) {
         var _this = this;

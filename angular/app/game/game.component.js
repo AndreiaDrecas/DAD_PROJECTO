@@ -19,6 +19,7 @@ var GameComponent = (function () {
         this.route = route;
         this.router = router;
         this.sessionService = sessionService;
+        this.game = new game_1.Game(this.id);
         if (!this.sessionService.isLoggedIn()) {
             this.router.navigate(['login']);
         }
@@ -31,11 +32,8 @@ var GameComponent = (function () {
             .subscribe(function (params) {
             _this.id = params['id'];
         });
-        this.game = new game_1.Game(this.id);
-        this.websocketService.getBoardMessages().subscribe(function (m) {
-            _this.game.tabuleiros.push(m);
-        });
-        this.websocketService.getBoard({ id: this.id, msg: '', name: sessionStorage.getItem('name'), idPlayer: sessionStorage.getItem('_id') });
+        this.websocketService.getInitBoardMessages().subscribe(function (m) { return _this.game.tabuleiros.push(m); });
+        this.websocketService.getInitBoard({ id: this.id, msg: 'Entrei', name: sessionStorage.getItem('name'), idPlayer: sessionStorage.getItem('_id') });
     };
     GameComponent.prototype.sendTable = function () {
         console.log(this.game.tabuleiros);

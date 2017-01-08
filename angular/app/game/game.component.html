@@ -3,13 +3,19 @@
 
  <div class="game" *ngIf="game">
     <div class="game-board" *ngFor="let t of game.tabuleiros" >
-      <board [idGame] = "id">[tabuleiro] = t </board>
+      <board [idGame] = "id" [tabuleiro] = "t"> </board>
     </div>
 </div>
 
 
 <h1>Falta SAIR DO JOGO</h1>
 
-<button class="test" (click)="sendTable()" md-raised-button color="accent">Refresh </button>
+<h1>Falta colocar navios</h1>
+
+<h1>depois de colocar os navios, preparamos o jogo a partir de um botao. assim que todos estiverem preparados
+   o dono do jogo consegueria comecar o jogo( a partir de um botao que iria aparecer), passaria as board para todos e entao bloquearia o click na nossa board.
+   tudo atraves do websockets.</h1>
+
+<button class="test" (click)="sendTable()" md-raised-button color="accent">Console log para mostrar q esta board desenhada e mesma a minha</button>
 
 <gameChat [idGame] = "id"> </gameChat>

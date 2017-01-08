@@ -1,17 +1,19 @@
 const io = require('socket.io');
-import {Tabuleiro} from "./gameEngine/tabuleiro";
-
+import { Game } from "./gameEngine/game";
+import { Tabuleiro } from "./gameEngine/tabuleiro";
+import { databaseConnection as database } from './app.database';
+const mongodb = require('mongodb');
 
 export class WebSocketServer {
-    public gameBoard: any[] = [];
+    public games: any[] = [];
     public io: any;
-   
-    
+
+
 
     public init = (server: any) => {
-        
+
         this.io = io.listen(server);
-        
+
         this.io.sockets.on('connection', (client: any) => {
 
             client.emit('players', Date.now() + ': Welcome to battleship');
@@ -43,22 +45,14 @@ export class WebSocketServer {
 
 
             //init board
-             client.on('board', function (msgData) {
+            client.on('initBoard', function (msgData) {
 
                 this.join(msgData.id);
-                
-               // WebSocketServer.gameBoard.push
 
                 var tabuleiro = new Tabuleiro();
                 tabuleiro.idPlayer = msgData.idPlayer;
-                //this.gameBoard.push({idGame: msgData.id, tabuleiros: tabuleiro});
-                //1 buscar os tabuleiros do gameBoard
-                //2juntar o tabuleiro criado por este emit aos tabuleiros do gameBoard
-                //3 enviar no emit o array de tabuleiros
+                this.emit('initBoard', tabuleiro);
 
-                this.emit('board', tabuleiro);
-                
-               
             });
 
 
@@ -66,7 +60,7 @@ export class WebSocketServer {
             client.on('tabuleiro', function (msgData) {
 
                 this.join(msgData.id);
-                
+
                 this.emit('tabuleiro', msgData.tabuleiro);
                 this.to(msgData.id).emit('tabuleiro', msgData.tabuleiro);
 
@@ -80,7 +74,7 @@ export class WebSocketServer {
 
             });
 
-             client.on('board', function (msgData) {
+            client.on('board', function (msgData) {
 
                 this.join(msgData.id);
                 this.emit('board', msgData.tabuleiro);
@@ -88,8 +82,8 @@ export class WebSocketServer {
 
             });
             //Extra Exercise
-            
-            
+
+
         });
     };
 
@@ -97,10 +91,10 @@ export class WebSocketServer {
         this.io.sockets.emit(channel, message);
     };
 
-   public getObjectInArray = function (arr, key) {    
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i].hasOwnProperty(key)) return arr[i][key];
-    }
-};
+    public getObjectInArray = function (arr, key) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].hasOwnProperty(key)) return arr[i][key];
+        }
+    };
 
 };

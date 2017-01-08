@@ -18,21 +18,18 @@ var BoardComponent = (function () {
         this.websocketService = websocketService;
     }
     BoardComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.tabuleiro = new tabuleiro_1.Tabuleiro();
-        this.websocketService.sendTable({ id: this.idGame, msg: this.tabuleiro, name: sessionStorage.getItem('name') });
-        this.websocketService.getBoardMessages().subscribe(function (m) { _this.tabuleiro = m; });
+        this.tabuleiro.nTiros = 0;
+        //this.websocketService.sendTable({id: this.idGame,msg: this.tabuleiro, name: sessionStorage.getItem('name')})
+        //this.websocketService.getBoardMessages().subscribe((m:any) => { this.tabuleiro = m }); 
         // this.tabuleiro.adicionaNavio(TipoNavio.Couracado,Orientacao.Roda90,"D",5);
         //this.tabuleiro.adicionaNavio(TipoNavio.ContraTorpedeiro,Orientacao.Roda90,"D",2);
     };
     BoardComponent.prototype.clickElemento = function (index) {
-        this.tabuleiro.resetReferencias();
         //limpa a table
         //emit da table
-        this.tabuleiro.nTiros += 1;
-        this.tabuleiro.resetReferencias();
         // TIRO 
-        this.tabuleiro.getCelula(index.posicao.linha, index.posicao.coluna).tiro = true;
+        if (this.tabuleiro.nTiros < 3 && this.tabuleiro.userId != sessionStorage.getItem('_id')) {
+        }
         this.tabuleiro.adicionaNavio(navio_1.TipoNavio.ContraTorpedeiro, navio_1.Orientacao.Roda90, index.posicao.linha, index.posicao.coluna);
     };
     BoardComponent.prototype.getPosicaoCelula = function (index) {
@@ -58,6 +55,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], BoardComponent.prototype, "idGame", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", tabuleiro_1.Tabuleiro)
+], BoardComponent.prototype, "tabuleiro", void 0);
 BoardComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

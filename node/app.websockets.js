@@ -1,10 +1,11 @@
 "use strict";
 var io = require('socket.io');
 var tabuleiro_1 = require("./gameEngine/tabuleiro");
+var mongodb = require('mongodb');
 var WebSocketServer = (function () {
     function WebSocketServer() {
         var _this = this;
-        this.gameBoard = [];
+        this.games = [];
         this.init = function (server) {
             _this.io = io.listen(server);
             _this.io.sockets.on('connection', function (client) {
@@ -23,15 +24,11 @@ var WebSocketServer = (function () {
                     this.broadcast.to(msgData.id).emit('gameNotification', Date.now() + ': ' + msgData.name + ' has arrived');
                 });
                 //init board
-                client.on('board', function (msgData) {
+                client.on('initBoard', function (msgData) {
                     this.join(msgData.id);
-                    WebSocketServer.gameBoard.push;
                     var tabuleiro = new tabuleiro_1.Tabuleiro();
                     tabuleiro.idPlayer = msgData.idPlayer;
-                    //this.gamePlayers.push({idGame: msgData.id, tabuleiros: tabuleiro});
-                    //deveria juntar os tabuleiros no json a cima criado mas tive problemas em fazer
-                    this.emit('board', tabuleiro);
-                    this.to(msgData.id).emit('board', tabuleiro);
+                    this.emit('initBoard', tabuleiro);
                 });
                 //recieve and send tabuleiro
                 client.on('tabuleiro', function (msgData) {
