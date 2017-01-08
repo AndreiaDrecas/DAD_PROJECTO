@@ -1,12 +1,8 @@
 "use strict";
-var tabuleiro_1 = require("./tabuleiro");
 var Game = (function () {
-    function Game(nTabuleiros) {
+    function Game(id) {
         this.tabuleiros = [];
-        for (var i = 1; i <= nTabuleiros; i++) {
-            var tabuleiro = new tabuleiro_1.Tabuleiro();
-            this.tabuleiros.push(tabuleiro);
-        }
+        this.idGame = id;
     }
     return Game;
 }());

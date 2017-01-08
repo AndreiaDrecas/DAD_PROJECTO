@@ -29,10 +29,12 @@ export class WebSocketService {
         this.socket.emit('gameNotification', msgData);
     }
 
-    sendTable(tabuleiro: any) {
-        console.log('cheguei ao websocket client');
-        console.log('Numero de tiros: ' + tabuleiro.nTiros);
-        this.socket.emit('tabuleiro', tabuleiro);
+     getBoard(msgData: any) {
+       this.socket.emit('board', msgData);
+    } 
+
+    sendTable(msgData: any) {
+       this.socket.emit('tabuleiro', msgData);
     } //array de tabuleiros, nome e ID do user
 
     getTable(): Observable<any> {
@@ -42,6 +44,8 @@ export class WebSocketService {
     getPlayersMessages(): Observable<any> {
         return this.listenOnChannel('players');
     }
+
+
 
     getGameChatMessages(): Observable<any> {
         return this.listenOnChannel('chatGame');

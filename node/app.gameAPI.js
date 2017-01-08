@@ -30,7 +30,7 @@ var GameAPI = (function () {
         this.getFinishedGames = function (request, response, next) {
             app_database_1.databaseConnection.db.collection('games')
                 .find({
-                state: 'pending'
+                state: 'finished'
             })
                 .toArray()
                 .then(function (games) {

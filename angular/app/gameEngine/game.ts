@@ -8,21 +8,15 @@ export class Game{
 
 public tabuleiros: Tabuleiro[];
 
+public idGame: number;
 
-
-public constructor(nTabuleiros: number){
+public constructor(id: number){
 
 
     this.tabuleiros = [];
+    this.idGame = id;
 
-
-    for (let i = 1; i<=nTabuleiros; i++ ){
-        
-        let tabuleiro: Tabuleiro = new Tabuleiro();
-
-        this.tabuleiros.push(tabuleiro);
-
-    }
+    
 
 
 }

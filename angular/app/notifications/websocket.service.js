@@ -26,10 +26,11 @@ var WebSocketService = (function () {
     WebSocketService.prototype.sendGamePlayersMessage = function (msgData) {
         this.socket.emit('gameNotification', msgData);
     };
-    WebSocketService.prototype.sendTable = function (tabuleiro) {
-        console.log('cheguei ao websocket client');
-        console.log('Numero de tiros: ' + tabuleiro.nTiros);
-        this.socket.emit('tabuleiro', tabuleiro);
+    WebSocketService.prototype.getBoard = function (msgData) {
+        this.socket.emit('board', msgData);
+    };
+    WebSocketService.prototype.sendTable = function (msgData) {
+        this.socket.emit('tabuleiro', msgData);
     }; //array de tabuleiros, nome e ID do user
     WebSocketService.prototype.getTable = function () {
         return this.listenOnChannel('tabuleiro');

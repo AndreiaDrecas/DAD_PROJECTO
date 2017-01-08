@@ -19,10 +19,14 @@ export class Tabuleiro {
     //Propriedade com todas as posições já ocupadas (incluindo a vizinhança dos navios)
     public posicoesOcupadas: Posicao[];
 
+
+    public idPlayer: any;
+
     constructor (){
         this.celulas = [];
         this.posicoesOcupadas = [];
         this.navios= [];
+        this.idPlayer = '';
         Tabuleiro.todasLinhas().forEach(letra=> {
             Tabuleiro.todasColunas().forEach(coluna =>{
                 let c: Celula = new Celula(letra, coluna);
@@ -55,6 +59,8 @@ export class Tabuleiro {
             throw e;
         }
     }
+
+
 
     // Devolve as células na forma de matriz - usar só para testes (performance inferior à propriedade celulas)
     public celulasMatrix(): Celula[][] {

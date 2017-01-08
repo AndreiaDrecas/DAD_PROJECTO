@@ -32,7 +32,7 @@ export class GameAPI {
     public getFinishedGames = (request: any, response: any, next: any) => {
         database.db.collection('games')
             .find({
-                state: 'pending'
+                state: 'finished'
             })
             .toArray()
             .then(games => {

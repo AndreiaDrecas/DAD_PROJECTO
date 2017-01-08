@@ -8,6 +8,7 @@ var Tabuleiro = (function () {
         this.celulas = [];
         this.posicoesOcupadas = [];
         this.navios = [];
+        this.idPlayer = '';
         Tabuleiro.todasLinhas().forEach(function (letra) {
             Tabuleiro.todasColunas().forEach(function (coluna) {
                 var c = new celula_1.Celula(letra, coluna);
