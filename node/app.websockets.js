@@ -4,12 +4,9 @@ var tabuleiro_1 = require("./gameEngine/tabuleiro");
 var WebSocketServer = (function () {
     function WebSocketServer() {
         var _this = this;
-        this.board = [];
-        this.gamePlayers = [];
+        this.gameBoard = [];
         this.init = function (server) {
-            _this.initBoard();
             _this.io = io.listen(server);
-            _this.gamePlayers;
             _this.io.sockets.on('connection', function (client) {
                 client.emit('players', Date.now() + ': Welcome to battleship');
                 client.broadcast.emit('players', Date.now() + ': A new player has arrived');
@@ -28,6 +25,7 @@ var WebSocketServer = (function () {
                 //init board
                 client.on('board', function (msgData) {
                     this.join(msgData.id);
+                    WebSocketServer.gameBoard.push;
                     var tabuleiro = new tabuleiro_1.Tabuleiro();
                     tabuleiro.idPlayer = msgData.idPlayer;
                     //this.gamePlayers.push({idGame: msgData.id, tabuleiros: tabuleiro});
@@ -64,11 +62,6 @@ var WebSocketServer = (function () {
             }
         };
     }
-    WebSocketServer.prototype.initBoard = function () {
-        for (var i = 0; i < 100; i++) {
-            this.board[i] = 0;
-        }
-    };
     return WebSocketServer;
 }());
 exports.WebSocketServer = WebSocketServer;

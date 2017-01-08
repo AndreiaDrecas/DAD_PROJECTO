@@ -34,11 +34,11 @@ var GameComponent = (function () {
         this.game = new game_1.Game(this.id);
         this.websocketService.getBoardMessages().subscribe(function (m) {
             _this.game.tabuleiros.push(m);
-            console.log(_this.game.tabuleiros);
         });
         this.websocketService.getBoard({ id: this.id, msg: '', name: sessionStorage.getItem('name'), idPlayer: sessionStorage.getItem('_id') });
     };
     GameComponent.prototype.sendTable = function () {
+        console.log(this.game.tabuleiros);
     };
     GameComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();

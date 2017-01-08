@@ -3,19 +3,15 @@ import {Tabuleiro} from "./gameEngine/tabuleiro";
 
 
 export class WebSocketServer {
-    public board: number[] = [];
+    public gameBoard: any[] = [];
     public io: any;
-    public gamePlayers: any[] = [];
-    public initBoard() {
-        for (let i = 0; i < 100; i++) {
-            this.board[i] = 0;
-        }
-    }
+   
+    
 
     public init = (server: any) => {
-        this.initBoard();
+        
         this.io = io.listen(server);
-        this.gamePlayers;
+        
         this.io.sockets.on('connection', (client: any) => {
 
             client.emit('players', Date.now() + ': Welcome to battleship');
@@ -51,15 +47,17 @@ export class WebSocketServer {
 
                 this.join(msgData.id);
                 
-                
+               // WebSocketServer.gameBoard.push
 
                 var tabuleiro = new Tabuleiro();
                 tabuleiro.idPlayer = msgData.idPlayer;
-                //this.gamePlayers.push({idGame: msgData.id, tabuleiros: tabuleiro});
-                //deveria juntar os tabuleiros no json a cima criado mas tive problemas em fazer
+                //this.gameBoard.push({idGame: msgData.id, tabuleiros: tabuleiro});
+                //1 buscar os tabuleiros do gameBoard
+                //2juntar o tabuleiro criado por este emit aos tabuleiros do gameBoard
+                //3 enviar no emit o array de tabuleiros
 
                 this.emit('board', tabuleiro);
-                this.to(msgData.id).emit('board', tabuleiro);
+                
                
             });
 

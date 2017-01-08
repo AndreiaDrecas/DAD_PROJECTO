@@ -21,6 +21,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
     public game: Game;
 
+
     constructor(private websocketService: WebSocketService, private route: ActivatedRoute,
         private router: Router, private sessionService: SessionService) {
        
@@ -46,7 +47,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.websocketService.getBoardMessages().subscribe((m: any) => {
             
             this.game.tabuleiros.push(m);
-            console.log(this.game.tabuleiros);
+           
         });
 
         this.websocketService.getBoard({ id: this.id, msg: '', name: sessionStorage.getItem('name'), idPlayer:sessionStorage.getItem('_id')});
@@ -55,8 +56,10 @@ export class GameComponent implements OnInit, OnDestroy {
 
     sendTable() {
        
-    }
+        console.log(this.game.tabuleiros);
 
+    }
+    
 
 
     ngOnDestroy() {
