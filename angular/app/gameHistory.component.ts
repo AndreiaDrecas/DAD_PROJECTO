@@ -17,7 +17,7 @@ export class GameHistoryComponent {
     private isLoggedIn: boolean;
 
     constructor(private session: SessionService, public router: Router, public http: Http) {
-        this._serverPath = 'http://localhost:8888/api/v1/';
+        this._serverPath = 'http://localhost:27017/api/v1/';
         this. isLoggedIn = this.session.isLoggedIn();
         this.getGameHistory();
     }

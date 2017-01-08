@@ -20,7 +20,7 @@ var GameHistoryComponent = (function () {
         this.history = [];
         this.userHistory = [];
         this.userId = sessionStorage.getItem('_id');
-        this._serverPath = 'http://localhost:8888/api/v1/';
+        this._serverPath = 'http://localhost:27017/api/v1/';
         this.isLoggedIn = this.session.isLoggedIn();
         this.getGameHistory();
     }

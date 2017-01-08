@@ -23,7 +23,7 @@ var GamesPendingComponent = (function () {
         this.authToken = sessionStorage.getItem('id_token');
         this.userID = sessionStorage.getItem('_id');
         this.arrayPlayers = [];
-        this._serverPath = 'http://localhost:8888/api/v1/';
+        this._serverPath = 'http://localhost:27017/api/v1/';
         this.getGamesPending();
     }
     GamesPendingComponent.prototype.enterGame = function (id) {

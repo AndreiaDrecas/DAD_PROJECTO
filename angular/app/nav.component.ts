@@ -15,7 +15,7 @@ export class NavComponent {
     public avatar: any;
 
     constructor(public router: Router, public http: Http, private sessionService: SessionService) {
-        this._serverPath = 'http://localhost:8888/api/v1/';
+        this._serverPath = 'http://localhost:27017/api/v1/';
 
     }
 
