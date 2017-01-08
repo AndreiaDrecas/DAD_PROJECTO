@@ -5,7 +5,7 @@ var path = require('path');
 var app_database_1 = require('./app.database');
 var app_websockets_1 = require('./app.websockets');
 var handler_settings_1 = require('./handler.settings');
-var url = 'mongodb://localhost:27017/DAD_PROJECTO';
+var url = 'mongodb://localhost:8888/DAD_PROJECTO';
 // Create Restify and WebSocket Server
 var restifyServer = restify.createServer();
 var socketServer = new app_websockets_1.WebSocketServer();
@@ -42,7 +42,7 @@ restifyServer.get(/^\/(?!api\/).*/, restify.serveStatic({
     default: 'index.html'
 }));
 app_database_1.databaseConnection.connect(url, function () {
-    restifyServer.listen(27017, function () { return console.log('%s listening at %s', restifyServer.name, restifyServer.url); });
+    restifyServer.listen(8888, function () { return console.log('%s listening at %s', restifyServer.name, restifyServer.url); });
     // Websocket is initialized after the server
     socketServer.init(restifyServer.server);
 });

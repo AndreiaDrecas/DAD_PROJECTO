@@ -20,7 +20,7 @@ export class GameChatComponent {
 
 
     constructor(public router: Router, public http: Http, private websocketService: WebSocketService) { 
-        this._serverPath = 'http://localhost:27017/api/v1/';
+        this._serverPath = 'http://localhost:8888/api/v1/';
     }
 
     send(): void {

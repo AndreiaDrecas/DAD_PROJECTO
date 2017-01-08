@@ -17,7 +17,7 @@ var RegisterComponent = (function () {
         this.router = router;
         this.http = http;
         this.validator = validator;
-        this._serverPath = 'http://localhost:27017/api/v1/players';
+        this._serverPath = 'http://localhost:8888/api/v1/players';
     }
     RegisterComponent.prototype.validate = function (name, username, password, passwordConfirmation, email) {
         return true;
