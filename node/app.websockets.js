@@ -28,10 +28,12 @@ var WebSocketServer = (function () {
                 //init board
                 client.on('board', function (msgData) {
                     this.join(msgData.id);
-                    //this.gamePlayers.push({idGame: msgData.id, players: {player: msgData.name}});
                     var tabuleiro = new tabuleiro_1.Tabuleiro();
                     tabuleiro.idPlayer = msgData.idPlayer;
+                    //this.gamePlayers.push({idGame: msgData.id, tabuleiros: tabuleiro});
+                    //deveria juntar os tabuleiros no json a cima criado mas tive problemas em fazer
                     this.emit('board', tabuleiro);
+                    this.to(msgData.id).emit('board', tabuleiro);
                 });
                 //recieve and send tabuleiro
                 client.on('tabuleiro', function (msgData) {

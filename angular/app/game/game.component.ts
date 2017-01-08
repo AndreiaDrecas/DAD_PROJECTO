@@ -44,8 +44,9 @@ export class GameComponent implements OnInit, OnDestroy {
              this.game = new Game(this.id);
 
         this.websocketService.getBoardMessages().subscribe((m: any) => {
-            console.log(m);
+            
             this.game.tabuleiros.push(m);
+            console.log(this.game.tabuleiros);
         });
 
         this.websocketService.getBoard({ id: this.id, msg: '', name: sessionStorage.getItem('name'), idPlayer:sessionStorage.getItem('_id')});
@@ -53,7 +54,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
 
     sendTable() {
-        this.websocketService.sendTable({ id: this.id, msg: this.game });
+       
     }
 
 

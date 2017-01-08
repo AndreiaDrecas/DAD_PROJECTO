@@ -57,8 +57,9 @@ export class WebSocketServer {
                 tabuleiro.idPlayer = msgData.idPlayer;
                 //this.gamePlayers.push({idGame: msgData.id, tabuleiros: tabuleiro});
                 //deveria juntar os tabuleiros no json a cima criado mas tive problemas em fazer
-                
+
                 this.emit('board', tabuleiro);
+                this.to(msgData.id).emit('board', tabuleiro);
                
             });
 

@@ -33,13 +33,12 @@ var GameComponent = (function () {
         });
         this.game = new game_1.Game(this.id);
         this.websocketService.getBoardMessages().subscribe(function (m) {
-            console.log(m);
             _this.game.tabuleiros.push(m);
+            console.log(_this.game.tabuleiros);
         });
         this.websocketService.getBoard({ id: this.id, msg: '', name: sessionStorage.getItem('name'), idPlayer: sessionStorage.getItem('_id') });
     };
     GameComponent.prototype.sendTable = function () {
-        this.websocketService.sendTable({ id: this.id, msg: this.game });
     };
     GameComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();
