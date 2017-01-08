@@ -32,9 +32,13 @@ var GameComponent = (function () {
             .subscribe(function (params) {
             _this.id = params['id'];
         });
-        this.websocketService.getTable().subscribe(function (m) { return _this.game = m; });
+        this.websocketService.getTable().subscribe(function (m) {
+            console.log(m);
+            _this.game = m;
+        });
+        this.websocketService.sendTable({ id: this.id, msg: '', name: sessionStorage.getItem('name') });
     };
-    GameComponent.prototype.sendtable = function () {
+    GameComponent.prototype.sendTable = function () {
         this.websocketService.sendTable({ id: this.id, msg: this.game });
     };
     GameComponent.prototype.ngOnDestroy = function () {
