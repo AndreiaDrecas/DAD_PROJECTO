@@ -25,7 +25,7 @@ export class GamesPendingComponent {
 
 
     constructor(public router: Router, public http: Http, private websocketService: WebSocketService) {
-        this._serverPath = 'http://127.0.0.1:8888/api/v1/';
+        this._serverPath = 'http://54.202.237.33:8888/api/v1/';
         this.getGamesPending();
 
 

@@ -45,7 +45,7 @@ export class GameAPI {
     public getGames = (request: any, response: any, next: any) => {
         database.db.collection('games')
             .find({
-                state: 'playing'
+                state: 'pending'
             })
             .toArray()
             .then(games => {

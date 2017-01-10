@@ -12,7 +12,7 @@ export class Top10Component {
     public Top10Victories: any[] = [];
     public _serverPath: string;
     constructor(public router: Router, public http: Http) {
-        this._serverPath = 'http://localhost:8888/api/v1/';
+        this._serverPath = 'http://54.202.237.33:8888/api/v1/';
         this.getTop10();
     }
 
