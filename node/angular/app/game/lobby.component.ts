@@ -21,7 +21,7 @@ export class LobbyComponent {
 
     constructor(public router: Router, public http: Http, private websocketService: WebSocketService, 
     private sessionService: SessionService) {
-        this._serverPath = 'http://54.202.237.33:8888/api/v1/';
+        this._serverPath = 'http://127.0.0.1:8888/api/v1/';
         
         if(!this.sessionService.isLoggedIn()){
             this.router.navigate(['login']);
