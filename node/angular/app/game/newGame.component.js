@@ -21,7 +21,7 @@ var NewGameComponent = (function () {
         this.userId = sessionStorage.getItem('_id');
         this.userName = sessionStorage.getItem('username');
         this.authToken = sessionStorage.getItem('id_token');
-        this._serverPath = 'http://54.202.237.33:8888/api/v1/';
+        this._serverPath = 'http://54.202.237.33:8080/api/v1/';
     }
     NewGameComponent.prototype.create = function () {
         var _this = this;

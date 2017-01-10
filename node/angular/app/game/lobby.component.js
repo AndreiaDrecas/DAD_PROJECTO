@@ -23,7 +23,7 @@ var LobbyComponent = (function () {
         this.totalVictories = sessionStorage.getItem('totalVictories');
         this.username = sessionStorage.getItem('username');
         this.gamesPending = [];
-        this._serverPath = 'http://54.202.237.33:8888/api/v1/';
+        this._serverPath = 'http://54.202.237.33:8080/api/v1/';
         if (!this.sessionService.isLoggedIn()) {
             this.router.navigate(['login']);
         }

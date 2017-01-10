@@ -42,7 +42,7 @@ restifyServer.get(/^\/(?!api\/).*/, restify.serveStatic({
     default: 'index.html'
 }));
 app_database_1.databaseConnection.connect(url, function () {
-    restifyServer.listen(8888, function () { return console.log('%s listening at %s', restifyServer.name, restifyServer.url); });
+    restifyServer.listen(8080, function () { return console.log('%s listening at %s', restifyServer.name, restifyServer.url); });
     // Websocket is initialized after the server
     socketServer.init(restifyServer.server);
 });

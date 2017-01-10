@@ -16,7 +16,7 @@ var Top10Component = (function () {
         this.router = router;
         this.http = http;
         this.Top10Victories = [];
-        this._serverPath = 'http://54.202.237.33:8888/api/v1/';
+        this._serverPath = 'http://54.202.237.33:8080/api/v1/';
         this.getTop10();
     }
     Top10Component.prototype.getTop10 = function () {

@@ -14,7 +14,7 @@ export class RegisterComponent {
     public _serverPath: string;
 
     constructor(public router: Router, public http: Http, private validator: ValidatorService) {
-        this._serverPath = 'http://localhost:8888/api/v1/players'
+        this._serverPath = 'http://localhost:8080/api/v1/players'
 
     }
 

@@ -17,7 +17,7 @@ var NavComponent = (function () {
         this.router = router;
         this.http = http;
         this.sessionService = sessionService;
-        this._serverPath = 'http://localhost:8888/api/v1/';
+        this._serverPath = 'http://localhost:8080/api/v1/';
     }
     NavComponent.prototype.refresh = function () {
         this.name = sessionStorage.getItem('name');

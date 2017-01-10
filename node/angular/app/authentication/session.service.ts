@@ -10,8 +10,8 @@ export class SessionService {
 
   constructor(public router: Router, private http: Http) {
     this.loggedIn = !!localStorage.getItem('id_token'); //!!localStorage.getItem('id_toen'); quero entender o porque. gabriel
-    this._serverPathLogin = 'http://54.202.237.33:8888/api/v1/login';
-    this._serverPathLogout = 'http://54.202.237.33:8888/api/v1/';
+    this._serverPathLogin = 'http://54.202.237.33:8080/api/v1/login';
+    this._serverPathLogout = 'http://54.202.237.33:8080/api/v1/';
   }
 
   login(event: any, username: any, password: any) {

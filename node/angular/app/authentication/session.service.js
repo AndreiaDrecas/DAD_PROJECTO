@@ -17,8 +17,8 @@ var SessionService = (function () {
         this.http = http;
         this.loggedIn = false;
         this.loggedIn = !!localStorage.getItem('id_token'); //!!localStorage.getItem('id_toen'); quero entender o porque. gabriel
-        this._serverPathLogin = 'http://54.202.237.33:8888/api/v1/login';
-        this._serverPathLogout = 'http://54.202.237.33:8888/api/v1/';
+        this._serverPathLogin = 'http://54.202.237.33:8080/api/v1/login';
+        this._serverPathLogout = 'http://54.202.237.33:8080/api/v1/';
     }
     SessionService.prototype.login = function (event, username, password) {
         var _this = this;

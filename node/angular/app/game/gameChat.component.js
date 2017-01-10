@@ -20,7 +20,7 @@ var GameChatComponent = (function () {
         this.playersCChannel = [];
         this.chatCChannel = [];
         this.authToken = sessionStorage.getItem('id_token');
-        this._serverPath = 'http://54.202.237.33:8888/api/v1/';
+        this._serverPath = 'http://54.202.237.33:8080/api/v1/';
     }
     GameChatComponent.prototype.send = function () {
         this.websocketService.sendGameChatMessage({ id: this.idGame, msg: this.message, name: sessionStorage.getItem('name') });
