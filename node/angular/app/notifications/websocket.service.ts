@@ -10,7 +10,7 @@ export class WebSocketService {
     private socket: SocketIOClient.Socket;
     constructor() {
         if (!this.socket) {
-            this.socket = io(`http://54.202.237.33:8888`);
+            this.socket = io(`http://54.202.237.33:8080`);
             //this.socket = io(`http://${window.location.hostname}:${window.location.port}`);
         }
     }
