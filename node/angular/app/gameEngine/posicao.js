@@ -75,3 +75,4 @@ var Posicao = (function () {
     return Posicao;
 }());
 exports.Posicao = Posicao;
+//# sourceMappingURL=posicao.js.map

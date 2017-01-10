@@ -1,8 +1,8 @@
 "use strict";
 /* tslint:disable:no-unused-variable */
-var app_component_1 = require('./app.component');
-var testing_1 = require('@angular/core/testing');
-var platform_browser_1 = require('@angular/platform-browser');
+var app_component_1 = require("./app.component");
+var testing_1 = require("@angular/core/testing");
+var platform_browser_1 = require("@angular/platform-browser");
 ////////  SPECS  /////////////
 describe('AppComponent', function () {
     var de;
@@ -26,3 +26,4 @@ describe('AppComponent', function () {
         expect(h1.innerText).toMatch(/angular/i, '<h1> should say something about "Angular"');
     });
 });
+//# sourceMappingURL=app.component.spec.js.map
