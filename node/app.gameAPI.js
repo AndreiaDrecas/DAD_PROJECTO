@@ -41,7 +41,7 @@ var GameAPI = (function () {
         this.getGames = function (request, response, next) {
             app_database_1.databaseConnection.db.collection('games')
                 .find({
-                state: 'pending'
+                state: 'playing'
             })
                 .toArray()
                 .then(function (games) {

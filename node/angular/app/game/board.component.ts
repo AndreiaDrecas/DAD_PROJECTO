@@ -14,12 +14,15 @@ import { Posicao } from "../gameEngine/posicao";
 export class BoardComponent implements OnInit {
     @Input() idGame: any;
     @Input() tabuleiro: Tabuleiro;
-
+    public tabuleiroaux: Tabuleiro;
     constructor(private websocketService: WebSocketService) { }
 
     ngOnInit() {
 
         this.tabuleiro.nTiros = 0;
+        this.tabuleiroaux = new Tabuleiro();
+       this.tabuleiroaux.userId = sessionStorage.getItem('_id');
+        this.tabuleiro = this.tabuleiroaux;
         //this.websocketService.sendTable({id: this.idGame,msg: this.tabuleiro, name: sessionStorage.getItem('name')})
         //this.websocketService.getBoardMessages().subscribe((m:any) => { this.tabuleiro = m }); 
         // this.tabuleiro.adicionaNavio(TipoNavio.Couracado,Orientacao.Roda90,"D",5);
@@ -35,13 +38,13 @@ export class BoardComponent implements OnInit {
 
         
         // TIRO 
-        if (this.tabuleiro.nTiros < 3 && this.tabuleiro.userId != sessionStorage.getItem('_id')) {
-            //this.tabuleiro.getCelula(index.posicao.linha, index.posicao.coluna).tiro = true;
-            //this.tabuleiro.nTiros += 1;
+        if (this.tabuleiro.nTiros < 3 && this.tabuleiro.userId == sessionStorage.getItem('_id')) {
+            this.tabuleiro.getCelula(index.posicao.linha, index.posicao.coluna -1 ).tiro = true;
+            this.tabuleiro.nTiros += 1;
             
         }
        
-            this.tabuleiro.adicionaNavio(TipoNavio.ContraTorpedeiro, Orientacao.Roda90, index.posicao.linha, index.posicao.coluna);
+          //  this.tabuleiro.adicionaNavio(TipoNavio.ContraTorpedeiro, Orientacao.Roda90, index.posicao.linha, index.posicao.coluna);
         
         
     }

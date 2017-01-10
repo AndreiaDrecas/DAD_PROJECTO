@@ -52,7 +52,7 @@ export class WebSocketServer {
                 var tabuleiro = new Tabuleiro();
                 tabuleiro.idPlayer = msgData.idPlayer;
                 this.emit('initBoard', tabuleiro);
-
+                
             });
 
 

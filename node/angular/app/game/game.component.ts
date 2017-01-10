@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from '../authentication/session.service';
 import { GameChatComponent } from '../game/gameChat.component';
 
+import { Tabuleiro } from '../gameEngine/tabuleiro';
 
 @Component({
     moduleId: module.id,
@@ -43,7 +44,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
             });
 
-        this.websocketService.getInitBoardMessages().subscribe((m: any) => this.game.tabuleiros.push(m));
+        this.websocketService.getInitBoardMessages().subscribe((m: any) => this.game.tabuleiros.push(<Tabuleiro> m));
         this.websocketService.getInitBoard({ id: this.id, msg: 'Entrei', name: sessionStorage.getItem('name'), idPlayer: sessionStorage.getItem('_id') });
 
 

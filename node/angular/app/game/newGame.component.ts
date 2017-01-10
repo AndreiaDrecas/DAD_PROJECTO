@@ -27,7 +27,7 @@ export class NewGameComponent {
 
 		this.authToken = sessionStorage.getItem('id_token');
 
-		this._serverPath = 'http://localhost:8888/api/v1/';
+		this._serverPath = 'http://54.202.237.33:8888/api/v1/';
 
 
 	}
