@@ -1,10 +1,10 @@
 "use strict";
 var posicao_1 = require("./posicao");
-var TipoCelula;
 (function (TipoCelula) {
     TipoCelula[TipoCelula["Mar"] = 0] = "Mar";
     TipoCelula[TipoCelula["Navio"] = 1] = "Navio";
-})(TipoCelula = exports.TipoCelula || (exports.TipoCelula = {}));
+})(exports.TipoCelula || (exports.TipoCelula = {}));
+var TipoCelula = exports.TipoCelula;
 var Celula = (function () {
     function Celula(linha, coluna) {
         this.posicao = new posicao_1.Posicao(linha, coluna);
@@ -27,4 +27,3 @@ var Celula = (function () {
     return Celula;
 }());
 exports.Celula = Celula;
-//# sourceMappingURL=celula.js.map

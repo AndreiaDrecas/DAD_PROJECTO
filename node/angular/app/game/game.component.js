@@ -5,14 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var websocket_service_1 = require("../notifications/websocket.service");
-var game_1 = require("../gameEngine/game");
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var session_service_1 = require("../authentication/session.service");
+var game_1 = require('../gameEngine/game');
+var core_1 = require('@angular/core');
 var GameComponent = (function () {
     function GameComponent(websocketService, route, router, sessionService) {
         this.websocketService = websocketService;
@@ -45,17 +39,14 @@ var GameComponent = (function () {
     };
     GameComponent.prototype.tiro = function () {
     };
+    GameComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'game',
+            templateUrl: 'game.component.html',
+            styleUrls: ['game.component.css']
+        })
+    ], GameComponent);
     return GameComponent;
 }());
-GameComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'game',
-        templateUrl: 'game.component.html',
-        styleUrls: ['game.component.css']
-    }),
-    __metadata("design:paramtypes", [websocket_service_1.WebSocketService, router_1.ActivatedRoute,
-        router_1.Router, session_service_1.SessionService])
-], GameComponent);
 exports.GameComponent = GameComponent;
-//# sourceMappingURL=game.component.js.map
